@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>신흥 데일리 브리프</title>
+<style>
+  :root{
+    --bg:#f4f6f8;
+    --card:#ffffff;
+    --text:#1a1d21;
+    --sub:#5f6b7a;
+    --accent:#1a56db;
+    --up:#d92d20;
+    --down:#1570ef;
+    --border:#e5e9ef;
+  }
+  @media (prefers-color-scheme: dark){
+    :root{
+      --bg:#0f1115;
+      --card:#181b21;
+      --text:#eef1f5;
+      --sub:#9aa4b2;
+      --accent:#5b9bff;
+      --up:#ff6a5f;
+      --down:#6db2ff;
+      --border:#2a2f3a;
+    }
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    padding:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
+    line-height:1.5;
+  }
+  .wrap{
+    max-width:720px;
+    margin:0 auto;
+    padding:20px 16px 40px;
+  }
+  header{
+    text-align:center;
+    padding:12px 0 20px;
+  }
+  header h1{
+    font-size:1.4rem;
+    margin:0 0 4px;
+  }
+  header .date{
+    color:var(--sub);
+    font-size:0.9rem;
+  }
+  section{
+    margin-bottom:24px;
+  }
+  section > h2{
+    font-size:1.05rem;
+    margin:0 0 10px;
+    padding-left:10px;
+    border-left:4px solid var(--accent);
+  }
+  .fx-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:10px;
+  }
+  @media (max-width:480px){
+    .fx-grid{grid-template-columns:1fr;}
+  }
+  .fx-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:14px 12px;
+    text-align:center;
+  }
+  .fx-card .pair{
+    font-size:0.8rem;
+    color:var(--sub);
+    margin-bottom:6px;
+  }
+  .fx-card .rate{
+    font-size:1.25rem;
+    font-weight:700;
+  }
+  .fx-card .chg{
+    font-size:0.85rem;
+    margin-top:4px;
+  }
+  .chg.up{color:var(--up);}
+  .chg.down{color:var(--down);}
+  .fx-note{
+    font-size:0.72rem;
+    color:var(--sub);
+    text-align:right;
+    margin-top:6px;
+  }
+  .card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:14px 16px;
+    margin-bottom:10px;
+  }
+  .card .company{
+    font-size:0.75rem;
+    font-weight:700;
+    color:var(--accent);
+    margin-bottom:4px;
+  }
+  .card h3{
+    font-size:0.98rem;
+    margin:0 0 6px;
+  }
+  .card p{
+    font-size:0.88rem;
+    color:var(--text);
+    margin:0 0 8px;
+  }
+  .card .meta{
+    font-size:0.75rem;
+    color:var(--sub);
+    display:flex;
+    justify-content:space-between;
+    gap:8px;
+    flex-wrap:wrap;
+  }
+  .card .meta a{
+    color:var(--accent);
+    text-decoration:none;
+  }
+  .card .meta a:hover{text-decoration:underline;}
+  .none{
+    font-size:0.88rem;
+    color:var(--sub);
+    font-style:italic;
+  }
+  .headline-list{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:6px 0;
+  }
+  .headline-list li{
+    list-style:none;
+    padding:10px 16px;
+    border-bottom:1px solid var(--border);
+    font-size:0.88rem;
+  }
+  .headline-list li:last-child{border-bottom:none;}
+  .headline-list a{
+    color:var(--text);
+    text-decoration:none;
+  }
+  .headline-list a:hover{color:var(--accent);}
+  .headline-list .h-meta{
+    font-size:0.72rem;
+    color:var(--sub);
+    margin-top:3px;
+  }
+  footer{
+    text-align:center;
+    color:var(--sub);
+    font-size:0.78rem;
+    padding-top:10px;
+    border-top:1px solid var(--border);
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <h1>신흥 데일리 브리프</h1>
+    <div class="date">2026년 7월 5일 (일)</div>
+  </header>
+
+  <section>
+    <h2>오늘의 환율</h2>
+    <div class="fx-grid">
+      <div class="fx-card">
+        <div class="pair">KRW / USD</div>
+        <div class="rate">1,543.05</div>
+        <div class="chg up">▲ 0.83원 (+0.05%)</div>
+      </div>
+      <div class="fx-card">
+        <div class="pair">KRW / THB (100바트)</div>
+        <div class="rate">4,627.8</div>
+        <div class="chg down">▼ 7.2원 (-0.16%)</div>
+      </div>
+      <div class="fx-card">
+        <div class="pair">KRW / MXN</div>
+        <div class="rate">87.68</div>
+        <div class="chg down">▼ 0.29원 (-0.33%)</div>
+      </div>
+    </div>
+    <div class="fx-note">전일 종가 대비, Investing.com 기준 · 일요일 휴장으로 최근 거래 기준 시세</div>
+  </section>
+
+  <section>
+    <h2>고객사 뉴스</h2>
+
+    <div class="card">
+      <div class="company">LG전자</div>
+      <h3>美 보스턴에 초프리미엄 빌트인 가전 브랜드 'SKS' 쇼룸 개관</h3>
+      <p>LG전자가 미국 매사추세츠주 보스턴에 초프리미엄 빌트인 가전 브랜드 'SKS'의 체험형 쇼룸 'SKS 테크니큐리언 센터'를 열었다. 나파밸리·뉴저지·시카고에 이은 네 번째 체험 공간으로, 북미 빌트인 B2B 시장 공략을 강화한다.</p>
+      <div class="meta">
+        <span>2026.07.05 11:18</span>
+        <a href="https://news.einfomax.co.kr/news/articleView.html?idxno=4423386" target="_blank" rel="noopener">연합인포맥스 기사 보기</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="company">남동발전</div>
+      <h3>고효율 이산화탄소 포집·전환 기술 사내 특강 진행</h3>
+      <p>한국남동발전이 진주 본사에서 임직원 대상으로 KENTECH 강영수 교수를 초빙해 '고효율 이산화탄소 포집 및 전환 기술' 특강을 열었다. 무탄소 에너지 전환 및 청정연료 기술 역량 강화 차원이다.</p>
+      <div class="meta">
+        <span>2026.07.05 09:00</span>
+        <a href="https://www.ekn.kr/web/view.php?key=20260705026209079" target="_blank" rel="noopener">에너지경제 기사 보기</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="company">남동발전</div>
+      <h3>산업부 산하기관장 인선 재개…가스공사·산기평과 함께 거론</h3>
+      <p>지방선거 이후 산업통상부 산하기관장 인선이 재개되는 가운데, 한국남동발전도 사장 후임 선임이 조만간 가닥을 잡을 것으로 전망된다.</p>
+      <div class="meta">
+        <span>2026.07.05 05:25</span>
+        <a href="https://n.news.naver.com/mnews/article/022/0004140513?sid=101" target="_blank" rel="noopener">세계일보 기사 보기</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="company">남부발전</div>
+      <h3>'차세대 건물일체형태양광(BIPV) 포럼' 출범</h3>
+      <p>한국남부발전이 산학연 전문가로 구성된 '차세대 BIPV 포럼'을 출범했다. 도심형 태양광 보급 확대와 탄소중립형 스마트 건축 확산을 위한 산·학·연 협력체계를 구축한다는 계획이다.</p>
+      <div class="meta">
+        <span>2026.07.04 22:32</span>
+        <a href="https://n.news.naver.com/mnews/article/082/0001388283?sid=101" target="_blank" rel="noopener">부산일보 기사 보기</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="company">광양그린에너지</div>
+      <p class="none">최근 24시간 이내 관련 뉴스 없음 · 해당 없음</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>관계사 뉴스</h2>
+
+    <div class="card">
+      <div class="company">신성델타테크</div>
+      <h3>AI 홈 로봇 '레미(Lemmy)' 로보컵서 공개</h3>
+      <p>신성델타테크가 개발한 돌봄로봇 '레미'가 인천 송도 로보컵 행사에서 공개됐다. 2027년 상반기 출시 예정으로, 가정 내 스케줄 관리와 가족 간 통화 지원 등 휴머노이드 홈 로봇 시장을 겨냥한다.</p>
+      <div class="meta">
+        <span>2026.07.04 09:06</span>
+        <a href="https://kidd.co.kr/news/246597" target="_blank" rel="noopener">KIDD 기사 보기</a>
+      </div>
+    </div>
+
+    <div class="card">
+      <div class="company">신성에스티</div>
+      <p class="none">최근 24시간 이내 관련 뉴스 없음 · 해당 없음</p>
+    </div>
+
+    <div class="card">
+      <div class="company">신성오토모티브</div>
+      <p class="none">최근 24시간 이내 관련 뉴스 없음 · 해당 없음</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>물류·무역 업계 헤드라인</h2>
+    <ul class="headline-list">
+      <li>
+        <a href="https://www.pinpointnews.co.kr/news/articleView.html?idxno=465580" target="_blank" rel="noopener">코트라, 베트남 하노이서 한류박람회 개최…"역대 최대 3326만 달러 수출 상담"</a>
+        <div class="h-meta">2026.07.05 11:06 · 핀포인트뉴스</div>
+      </li>
+      <li>
+        <a href="http://www.hansbiz.co.kr/news/articleView.html?idxno=848195" target="_blank" rel="noopener">[이슈체크] K-철강, EU 무관세 물량 확보..."공용쿼터 잡아라"</a>
+        <div class="h-meta">2026.07.05 09:00 · 한스경제</div>
+      </li>
+      <li>
+        <a href="https://www.theguru.co.kr/news/article.html?no=103956" target="_blank" rel="noopener">이용호 LX판토스 대표 "글로벌 공급망 재편은 큰 기회"…종합물류 체질 개선</a>
+        <div class="h-meta">2026.07.05 07:32 · 더구루</div>
+      </li>
+      <li>
+        <a href="https://www.etoday.co.kr/news/view/2600286" target="_blank" rel="noopener">[정부 주요 일정] 경제·사회부처 주간 일정(7월 6일~10일)…복합거점물류센터 점검 등</a>
+        <div class="h-meta">2026.07.05 09:02 · 이투데이</div>
+      </li>
+      <li>
+        <a href="https://www.econovill.com/news/articleView.html?idxno=744248" target="_blank" rel="noopener">AI 화물 특수 언제까지?..."항공업계, 포트폴리오 다변화 모색해야"</a>
+        <div class="h-meta">2026.07.03 18:58 · 이코노믹리뷰</div>
+      </li>
+    </ul>
+  </section>
+
+  <footer>
+    마지막 업데이트: 2026-07-05 11:31 (KST)
+  </footer>
+
+</div>
+</body>
+</html>
