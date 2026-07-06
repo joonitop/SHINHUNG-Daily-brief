@@ -16,6 +16,7 @@
     --border:#e5e9ef;
     --chart-line:#1a56db;
     --chart-fill:rgba(26,86,219,0.12);
+    --nav-bg:#ffffff;
   }
   @media (prefers-color-scheme: dark){
     :root{
@@ -29,6 +30,7 @@
       --border:#2a2f3a;
       --chart-line:#5b9bff;
       --chart-fill:rgba(91,155,255,0.14);
+      --nav-bg:#181b21;
     }
   }
   *{box-sizing:border-box;}
@@ -39,70 +41,79 @@
     background:var(--bg);
     color:var(--text);
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
-    line-height:1.6;
+    line-height:1.55;
     font-size:1rem;
   }
   .wrap{
     max-width:720px;
     margin:0 auto;
-    padding:20px 16px 40px;
+    padding:16px 14px 32px;
   }
   header{
     text-align:center;
-    padding:12px 0 18px;
+    padding:8px 0 12px;
   }
   header h1{
-    font-size:1.5rem;
-    margin:0 0 8px;
+    font-size:1.4rem;
+    margin:0 0 6px;
   }
   header .date{
     color:var(--sub);
     font-size:1rem;
   }
   .nav{
+    position:sticky;
+    top:0;
+    z-index:100;
+    background:var(--nav-bg);
     display:flex;
-    flex-wrap:wrap;
-    gap:8px;
-    justify-content:center;
-    margin-bottom:24px;
+    flex-wrap:nowrap;
+    gap:6px;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+    padding:10px 6px;
+    margin:0 -14px 16px;
+    border-bottom:1px solid var(--border);
   }
   .nav a{
+    flex:0 0 auto;
     display:inline-block;
     background:var(--card);
     border:1px solid var(--border);
     border-radius:999px;
-    padding:9px 16px;
-    font-size:0.95rem;
+    padding:8px 12px;
+    font-size:0.85rem;
     font-weight:600;
     color:var(--accent);
     text-decoration:none;
+    white-space:nowrap;
   }
-  .nav a:hover{background:var(--accent);color:#fff;border-color:var(--accent);}
+  .nav a:active{background:var(--accent);color:#fff;border-color:var(--accent);}
   section{
-    margin-bottom:26px;
-    scroll-margin-top:14px;
+    margin-bottom:20px;
+    scroll-margin-top:56px;
   }
   section > h2{
-    font-size:1.25rem;
-    margin:0 0 12px;
+    font-size:1.2rem;
+    margin:0 0 10px;
     padding-left:10px;
     border-left:4px solid var(--accent);
   }
   section > h3.sub{
-    font-size:1.05rem;
-    margin:18px 0 10px;
+    font-size:1rem;
+    margin:14px 0 8px;
     color:var(--sub);
   }
   .fx-list{
     display:flex;
     flex-direction:column;
-    gap:12px;
+    gap:8px;
   }
   .fx-card{
     background:var(--card);
     border:1px solid var(--border);
     border-radius:14px;
-    padding:16px;
+    padding:12px;
   }
   .fx-card .pair{
     font-size:0.9rem;
@@ -110,7 +121,7 @@
     margin-bottom:4px;
   }
   .fx-card .rate{
-    font-size:1.35rem;
+    font-size:1.3rem;
     font-weight:700;
   }
   .fx-card .chg{
@@ -119,10 +130,11 @@
   }
   .chg.up{color:var(--up);}
   .chg.down{color:var(--down);}
+  .chg.flat{color:var(--sub);}
   .fx-card .chart{
-    margin-top:10px;
+    margin-top:8px;
     width:100%;
-    height:70px;
+    height:64px;
   }
   .note{
     font-size:0.85rem;
@@ -133,7 +145,7 @@
   .stock-grid{
     display:grid;
     grid-template-columns:1fr 1fr;
-    gap:10px;
+    gap:8px;
   }
   @media (max-width:480px){
     .stock-grid{grid-template-columns:1fr;}
@@ -142,7 +154,7 @@
     background:var(--card);
     border:1px solid var(--border);
     border-radius:14px;
-    padding:14px 12px;
+    padding:12px;
   }
   .stock-card .name{
     font-size:0.95rem;
@@ -166,8 +178,8 @@
     background:var(--card);
     border:1px solid var(--border);
     border-radius:14px;
-    padding:14px 16px;
-    margin-bottom:10px;
+    padding:12px 14px;
+    margin-bottom:8px;
   }
   .card .company{
     font-size:0.85rem;
@@ -177,7 +189,7 @@
   }
   .card h3{
     font-size:1.05rem;
-    margin:0 0 8px;
+    margin:0 0 6px;
     line-height:1.4;
   }
   .card h3 a{
@@ -190,7 +202,7 @@
   .card p{
     font-size:0.95rem;
     color:var(--text);
-    margin:0 0 8px;
+    margin:0 0 6px;
   }
   .card .meta{
     font-size:0.82rem;
@@ -199,13 +211,13 @@
   .indicator-grid{
     display:flex;
     flex-direction:column;
-    gap:10px;
+    gap:8px;
   }
   .indicator-card{
     background:var(--card);
     border:1px solid var(--border);
     border-radius:14px;
-    padding:14px 16px;
+    padding:12px 14px;
   }
   .indicator-card .name{
     font-size:0.95rem;
@@ -224,7 +236,7 @@
     background:var(--card);
     border:1px solid var(--border);
     border-radius:14px;
-    padding:4px 0;
+    padding:2px 0;
   }
   .headline-list li{
     list-style:none;
@@ -236,7 +248,7 @@
     color:var(--text);
     text-decoration:none;
     display:block;
-    padding:12px 16px;
+    padding:10px 14px;
   }
   .headline-list a:hover{color:var(--accent);}
   .headline-list .h-meta{
@@ -259,7 +271,7 @@
 
   <header>
     <h1>신흥글로벌 데일리 뉴스</h1>
-    <div class="date">2026년 7월 6일 (월)</div>
+    <div class="date">2026년 7월 7일 (화)</div>
   </header>
 
   <nav class="nav">
@@ -275,33 +287,39 @@
     <div class="fx-list">
       <div class="fx-card">
         <div class="pair">KRW / USD</div>
-        <div class="rate">1,530.30원</div>
-        <div class="chg up">▲ 4.70원 (+0.31%)</div>
+        <div class="rate">1,530.0원</div>
+        <div class="chg down">▼ 0.3원 (-0.02%)</div>
         <svg class="chart" viewBox="0 0 300 70" preserveAspectRatio="none">
-          <circle cx="150" cy="35" r="4" fill="var(--chart-line)"></circle>
-          <text x="150" y="20" text-anchor="middle" font-size="11" fill="currentColor">1,530.30</text>
+          <polyline points="10,18 290,55" fill="none" stroke="var(--chart-line)" stroke-width="2.5" stroke-linecap="round"></polyline>
+          <circle cx="10" cy="18" r="3" fill="var(--chart-line)" opacity="0.5"></circle>
+          <circle cx="290" cy="55" r="4" fill="var(--chart-line)"></circle>
+          <text x="290" y="42" text-anchor="end" font-size="11" fill="currentColor">1,530.0</text>
         </svg>
       </div>
       <div class="fx-card">
         <div class="pair">KRW / THB (100바트)</div>
-        <div class="rate">4,611.2원</div>
-        <div class="chg down">▼ 25.0원 (-0.54%)</div>
+        <div class="rate">4,612.1원</div>
+        <div class="chg up">▲ 0.9원 (+0.02%)</div>
         <svg class="chart" viewBox="0 0 300 70" preserveAspectRatio="none">
-          <circle cx="150" cy="35" r="4" fill="var(--chart-line)"></circle>
-          <text x="150" y="20" text-anchor="middle" font-size="11" fill="currentColor">4,611.2</text>
+          <polyline points="10,55 290,18" fill="none" stroke="var(--chart-line)" stroke-width="2.5" stroke-linecap="round"></polyline>
+          <circle cx="10" cy="55" r="3" fill="var(--chart-line)" opacity="0.5"></circle>
+          <circle cx="290" cy="18" r="4" fill="var(--chart-line)"></circle>
+          <text x="290" y="32" text-anchor="end" font-size="11" fill="currentColor">4,612.1</text>
         </svg>
       </div>
       <div class="fx-card">
         <div class="pair">KRW / CNY (1위안)</div>
-        <div class="rate">225.28원</div>
-        <div class="chg down">▼ 0.08원 (-0.04%)</div>
+        <div class="rate">225.27원</div>
+        <div class="chg down">▼ 0.09원 (-0.04%)</div>
         <svg class="chart" viewBox="0 0 300 70" preserveAspectRatio="none">
-          <circle cx="150" cy="35" r="4" fill="var(--chart-line)"></circle>
-          <text x="150" y="20" text-anchor="middle" font-size="11" fill="currentColor">225.28</text>
+          <polyline points="10,18 290,55" fill="none" stroke="var(--chart-line)" stroke-width="2.5" stroke-linecap="round"></polyline>
+          <circle cx="10" cy="18" r="3" fill="var(--chart-line)" opacity="0.5"></circle>
+          <circle cx="290" cy="55" r="4" fill="var(--chart-line)"></circle>
+          <text x="290" y="42" text-anchor="end" font-size="11" fill="currentColor">225.27</text>
         </svg>
       </div>
     </div>
-    <div class="note">오늘(7/6) 15:30 기준 하나은행 고시 매매기준율로, 원·달러는 1,530.30원(전 거래일 7/3 대비 ▲4.70원), 위안화는 225.28원입니다(철강금속신문). 태국 바트는 Investing.com 종가 46.112(전일 종가 46.362) 기준으로 100바트당 환산·계산했습니다. 환율 그래프는 fx_history.json에 매일 누적되는 값을 기준으로 그려지며, 첫 수집일인 오늘은 데이터가 1건뿐이라 점으로 표시됩니다. 이 데이터는 검색 시점 기준이며 실시간 고시환율과 차이가 있을 수 있어 정확한 수치는 은행 앱에서 재확인이 필요합니다.</div>
+    <div class="note">7월 7일 오전 6시(24시간 외환거래 첫 영업일 기준) 원/달러 환율은 전일(7/6) 주간거래 종가(오후 3시30분) 1,530.3원 대비 0.3원 내린 1,530.0원입니다(연합뉴스·EBN). 위안화는 7/6 하나은행 고시 매매기준율 225.27원(-0.09원, -0.04%), 태국 바트는 Investing.com 종가 46.121(100바트 환산 4,612.1원) 기준입니다. 그래프는 fx_history.json에 누적된 데이터를 기준으로 그려지며, 현재 2일치 데이터가 쌓여 2점 선 그래프로 표시됩니다. 이 데이터는 검색 시점 기준이며 실시간 고시환율과 차이가 있을 수 있어 정확한 수치는 은행 앱에서 재확인이 필요합니다.</div>
   </section>
 
   <section id="stock">
@@ -320,53 +338,16 @@
         <div class="prev">전전 거래일(7/3): 868.41</div>
       </div>
     </div>
-    <div class="note">코스피·코스닥은 오늘(7/6, 월) 정규장 마감 종가를 직전 영업일인 7/3(금) 종가와 비교한 것입니다(서울경제). 코스피는 장중 한때 8,327.26까지 급등했다가 다시 밀리는 변동장세를 보였고, 개인 투자자가 양 시장에서 약 3조원을 순매수하며 지수 하방을 지지했습니다. 이 데이터는 검색 시점 기준이며 실시간 시세와 차이가 있을 수 있습니다.</div>
+    <div class="note">코스피·코스닥은 직전 영업일인 7/6(월) 정규장 마감 종가를 그 전 영업일 7/3(금) 종가와 비교한 것입니다(세계일보·노컷뉴스·YTN). 코스피는 장중 한때 8,327.26까지 올랐다가 7,815.53까지 밀리는 등 500포인트 넘게 출렁였으며, 개인 투자자가 순매수하며 지수를 지지한 반면 외국인·기관은 순매도했습니다. 이 데이터는 검색 시점 기준이며 실시간 시세와 차이가 있을 수 있습니다.</div>
   </section>
 
   <section id="schedule">
     <h2>기획팀 향후 일정</h2>
 
-    <h3 class="sub">7월 7일 (화)</h3>
-    <div class="card">
-      <div class="company">10:00 - 10:30</div>
-      <h3>정) Deel Demo 미팅</h3>
-      <div class="meta">장소: Google Meet 화상회의</div>
-    </div>
-
     <h3 class="sub">7월 8일 (수)</h3>
     <div class="card">
-      <div class="company">07:30 - 08:30</div>
+      <div class="company">14:30 - 15:30</div>
       <h3>1차 전략보고</h3>
-    </div>
-    <div class="card">
-      <div class="company">13:30 - 17:30</div>
-      <h3>정, 이) 상공회의소 교육</h3>
-    </div>
-
-    <h3 class="sub">7월 14일 (화)</h3>
-    <div class="card">
-      <div class="company">08:00 - 09:00</div>
-      <h3>2차 전략보고</h3>
-    </div>
-    <div class="card">
-      <div class="company">18:00 - 19:00</div>
-      <h3>팀장이상 석식</h3>
-    </div>
-
-    <h3 class="sub">7월 15일 (수)</h3>
-    <div class="card">
-      <div class="company">08:00 - 09:00</div>
-      <h3>해외 경영정보회의</h3>
-    </div>
-
-    <h3 class="sub">7월 16일 (목)</h3>
-    <div class="card">
-      <div class="company">08:00 - 09:00</div>
-      <h3>국내 경영정보회의</h3>
-    </div>
-    <div class="card">
-      <div class="company">종일</div>
-      <h3>강) 연차</h3>
     </div>
   </section>
 
@@ -375,23 +356,23 @@
 
     <div class="card">
       <div class="company">LG전자</div>
-      <h3><a href="https://it.chosun.com/news/articleView.html?idxno=2023092165233" target="_blank" rel="noopener">삼성전자 역대 최대 실적 예고…LG전자도 어닝 서프라이즈 기대</a></h3>
-      <p>오는 7일 삼성전자와 LG전자의 2분기 잠정실적 발표를 시작으로 어닝시즌 막이 오른다. LG전자의 2분기 영업이익 컨센서스는 1조580억원으로 전년 동기 대비 65.5% 증가할 것으로 추정되며, 미국 정부로부터 돌려받는 상호관세 환급분이 깜짝 실적의 핵심 요인으로 꼽힌다.</p>
-      <div class="meta">2026.07.06 16:30 · 조선비즈(IT조선)</div>
+      <h3><a href="https://www.bntnews.co.kr/article/view/bnt202607070005" target="_blank" rel="noopener">LG전자 잠정실적 오늘 발표…컨센서스 주목</a></h3>
+      <p>7일 삼성전자와 함께 LG전자의 2분기 잠정실적이 발표된다. 미국 정부로부터 받는 관세 환급 효과(약 3000억원) 등에 힘입어 컨센서스를 웃도는 '깜짝 실적' 가능성이 제기되고 있다.</p>
+      <div class="meta">2026.07.07 06:32 · bnt뉴스</div>
     </div>
 
     <div class="card">
       <div class="company">LG전자</div>
-      <h3><a href="https://n.news.naver.com/mnews/article/011/0004638690?sid=101" target="_blank" rel="noopener">LG전자·두산로보틱스 주가 '반토막'</a></h3>
-      <p>AI·로봇 테마 열풍 당시 투자자 관심을 한몸에 받았던 LG전자와 두산로보틱스 주가가 고점 대비 절반 수준까지 떨어졌다. 상승 여력은 남아 있지만 AI·로봇 산업 기대가 실제 실적으로 얼마나 이어질지가 관건이라는 분석이다.</p>
-      <div class="meta">2026.07.06 18:07 · 서울경제</div>
+      <h3><a href="https://www.viva100.com/article/20260706500652" target="_blank" rel="noopener">가전 넘어 기업으로⋯ 삼성·LG, 글로벌 B2B 시장 확대 '사활'</a></h3>
+      <p>삼성전자와 LG전자가 B2C 가전 시장의 성장 둔화 속에서 글로벌 기업간거래(B2B) 시장 확대를 통한 새로운 성장동력 확보 경쟁에 나서고 있다.</p>
+      <div class="meta">2026.07.07 06:24 · 브릿지경제</div>
     </div>
 
     <div class="card">
       <div class="company">남동발전</div>
-      <h3><a href="https://www.g-enews.com/view.php?ud=202607061225571689a9fc143920_1" target="_blank" rel="noopener">남동발전, 이산화탄소 포집·전환 청정연료화 기술로 탄소중립 속도 낸다</a></h3>
-      <p>한국남동발전이 글로벌 기후위기 대응과 무탄소 에너지 생태계 조성을 목표로 고효율 이산화탄소 포집·전환(CCU) 분야 첨단 기술 확보에 나섰다. 포집한 탄소를 청정 연료로 자원화하는 혁신 기술로 배출량 감축을 넘어서는 전략을 추진한다.</p>
-      <div class="meta">2026.07.06 13:20 · G밸리뉴스</div>
+      <h3><a href="https://n.news.naver.com/mnews/article/055/0001370006?sid=102" target="_blank" rel="noopener">남동발전·현대건설 소형원전 공동 연구에… 지역 주민 거센 반발</a></h3>
+      <p>한국남동발전이 현대건설과 협약을 맺고 석탄화력발전소를 소형모듈원전(SMR)으로 전환하는 '리트로핏' 방식 연구에 착수했다. 다만 SMR 전환 연구 중단을 요구하는 지역 주민 반발이 거세지고 있어 사업 추진에 진통이 예상된다.</p>
+      <div class="meta">2026.07.06 12:35 · SBS</div>
     </div>
 
     <div class="card">
@@ -399,15 +380,6 @@
       <h3><a href="http://www.epj.co.kr/news/articleView.html?idxno=38924" target="_blank" rel="noopener">남부발전, 2.2GW 대규모 해상풍력 프로젝트 개발 본격 추진</a></h3>
       <p>한국남부발전이 정부의 '해상풍력 중장기 입찰 로드맵'에 부응해 총 2.2GW 규모의 대형 해상풍력 프로젝트 개발에 본격 착수했다. 올해 9월 영광 야월(104MW), 내년 상반기 부산 다대포(99MW) 착공을 목표로 하고 있다.</p>
       <div class="meta">2026.07.06 17:56 · 전기저널</div>
-    </div>
-
-    <h2>관계사 뉴스</h2>
-
-    <div class="card">
-      <div class="company">신성델타테크</div>
-      <h3><a href="https://kidd.co.kr/news/246597" target="_blank" rel="noopener">인천시, 로보컵서 2030년 미래 스마트 모듈러 주택 제시</a></h3>
-      <p>인천 송도에서 열린 '로보컵 2026' 행사에서 신성델타테크가 개발한 돌봄로봇 '레미(Lemmy)'가 미래 스마트 모듈러 주택 콘셉트와 함께 공개됐다. 2027년 상반기 출시 예정인 레미는 가정 내 일정 관리와 가족 간 화상통화 지원 기능을 갖췄다.</p>
-      <div class="meta">2026.07.04 09:06 · KIDD(건설기술신문)</div>
     </div>
   </section>
 
@@ -435,25 +407,25 @@
         </a>
       </li>
       <li>
-        <a href="http://www.choicenews.co.kr/news/articleView.html?idxno=167629" target="_blank" rel="noopener">북극항로 급속 해빙...쇄빙선 없이도 운항
-          <div class="h-meta">2026.07.06 08:34 · 초이스경제</div>
+        <a href="https://n.news.naver.com/mnews/article/629/0000513671?sid=102" target="_blank" rel="noopener">부산항발 컨 운임 9주째 상승…KCCI 4330p·건화물도 반등
+          <div class="h-meta">2026.07.06 19:32 · 더팩트</div>
         </a>
       </li>
       <li>
-        <a href="http://www.snmnews.com/news/articleView.html?idxno=571634" target="_blank" rel="noopener">쿼터의 시대, 철강 수출 '물량'보다 '전략'이다
-          <div class="h-meta">2026.07.06 07:52 · 철강금속신문</div>
+        <a href="https://n.news.naver.com/mnews/article/008/0005382236?sid=101" target="_blank" rel="noopener">운임 상승에 HMM 실적 기대감 '쑥'…성수기 선반영 변수
+          <div class="h-meta">2026.07.07 05:01 · 머니투데이</div>
         </a>
       </li>
       <li>
-        <a href="https://www.g-enews.com/view.php?ud=202607060609454417e7e8286d56_1" target="_blank" rel="noopener">홍해 물류 대란 공포 재점화… 예멘 앞바다서 상선 피격
-          <div class="h-meta">2026.07.06 06:14 · 글로벌이코노믹</div>
+        <a href="https://n.news.naver.com/mnews/article/658/0000148622?sid=110" target="_blank" rel="noopener">[해양수산칼럼] 보이지 않는 물류의 엔진, 공(空) 컨테이너
+          <div class="h-meta">2026.07.05 18:52 · 국제신문</div>
         </a>
       </li>
     </ul>
   </section>
 
   <footer>
-    마지막 업데이트: 2026-07-06 21:30 (KST)<br>
+    마지막 업데이트: 2026-07-07 07:30 (KST)<br>
     ※ 환율·주가·지수 데이터는 검색 시점 기준이며 실시간 시세와 차이가 있을 수 있습니다.
   </footer>
 
