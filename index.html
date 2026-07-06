@@ -14,6 +14,8 @@
     --up:#d92d20;
     --down:#1570ef;
     --border:#e5e9ef;
+    --chart-line:#1a56db;
+    --chart-fill:rgba(26,86,219,0.12);
   }
   @media (prefers-color-scheme: dark){
     :root{
@@ -25,10 +27,12 @@
       --up:#ff6a5f;
       --down:#6db2ff;
       --border:#2a2f3a;
+      --chart-line:#5b9bff;
+      --chart-fill:rgba(91,155,255,0.14);
     }
   }
   *{box-sizing:border-box;}
-  html{font-size:16px;}
+  html{font-size:16px;scroll-behavior:smooth;}
   body{
     margin:0;
     padding:0;
@@ -45,7 +49,7 @@
   }
   header{
     text-align:center;
-    padding:12px 0 22px;
+    padding:12px 0 18px;
   }
   header h1{
     font-size:1.5rem;
@@ -55,8 +59,28 @@
     color:var(--sub);
     font-size:1rem;
   }
+  .nav{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    justify-content:center;
+    margin-bottom:24px;
+  }
+  .nav a{
+    display:inline-block;
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:999px;
+    padding:9px 16px;
+    font-size:0.95rem;
+    font-weight:600;
+    color:var(--accent);
+    text-decoration:none;
+  }
+  .nav a:hover{background:var(--accent);color:#fff;border-color:var(--accent);}
   section{
     margin-bottom:26px;
+    scroll-margin-top:14px;
   }
   section > h2{
     font-size:1.25rem;
@@ -64,52 +88,60 @@
     padding-left:10px;
     border-left:4px solid var(--accent);
   }
-  .fx-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:10px;
+  section > h3.sub{
+    font-size:1.05rem;
+    margin:18px 0 10px;
+    color:var(--sub);
   }
-  @media (max-width:480px){
-    .fx-grid{grid-template-columns:1fr;}
-    .stock-grid{grid-template-columns:1fr;}
+  .fx-list{
+    display:flex;
+    flex-direction:column;
+    gap:12px;
   }
   .fx-card{
     background:var(--card);
     border:1px solid var(--border);
-    border-radius:12px;
-    padding:14px 12px;
-    text-align:center;
+    border-radius:14px;
+    padding:16px;
   }
   .fx-card .pair{
     font-size:0.9rem;
     color:var(--sub);
-    margin-bottom:6px;
+    margin-bottom:4px;
   }
   .fx-card .rate{
-    font-size:1.3rem;
+    font-size:1.35rem;
     font-weight:700;
   }
   .fx-card .chg{
     font-size:0.95rem;
-    margin-top:4px;
+    margin-top:2px;
   }
   .chg.up{color:var(--up);}
   .chg.down{color:var(--down);}
+  .fx-card .chart{
+    margin-top:10px;
+    width:100%;
+    height:70px;
+  }
   .note{
     font-size:0.85rem;
     color:var(--sub);
     margin-top:8px;
-    line-height:1.5;
+    line-height:1.55;
   }
   .stock-grid{
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:10px;
   }
+  @media (max-width:480px){
+    .stock-grid{grid-template-columns:1fr;}
+  }
   .stock-card{
     background:var(--card);
     border:1px solid var(--border);
-    border-radius:12px;
+    border-radius:14px;
     padding:14px 12px;
   }
   .stock-card .name{
@@ -130,15 +162,10 @@
     color:var(--sub);
     margin-top:4px;
   }
-  .stock-card .na{
-    font-size:0.95rem;
-    color:var(--sub);
-    font-style:italic;
-  }
   .card{
     background:var(--card);
     border:1px solid var(--border);
-    border-radius:12px;
+    border-radius:14px;
     padding:14px 16px;
     margin-bottom:10px;
   }
@@ -169,16 +196,34 @@
     font-size:0.82rem;
     color:var(--sub);
   }
-  .none{
+  .indicator-grid{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
+  }
+  .indicator-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:14px 16px;
+  }
+  .indicator-card .name{
     font-size:0.95rem;
-    color:var(--sub);
-    font-style:italic;
-    padding:4px 0;
+    font-weight:700;
+    margin-bottom:4px;
+  }
+  .indicator-card .price{
+    font-size:1.2rem;
+    font-weight:700;
+  }
+  .indicator-card .chg{
+    font-size:0.9rem;
+    margin-top:4px;
   }
   .headline-list{
     background:var(--card);
     border:1px solid var(--border);
-    border-radius:12px;
+    border-radius:14px;
     padding:4px 0;
   }
   .headline-list li{
@@ -217,29 +262,48 @@
     <div class="date">2026년 7월 6일 (월)</div>
   </header>
 
-  <section>
+  <nav class="nav">
+    <a href="#fx">환율</a>
+    <a href="#stock">주가</a>
+    <a href="#indicators">경제지표</a>
+    <a href="#news">뉴스</a>
+  </nav>
+
+  <section id="fx">
     <h2>오늘의 환율</h2>
-    <div class="fx-grid">
+    <div class="fx-list">
       <div class="fx-card">
         <div class="pair">KRW / USD</div>
-        <div class="rate">1,530.30</div>
+        <div class="rate">1,530.30원</div>
         <div class="chg up">▲ 4.70원 (+0.31%)</div>
+        <svg class="chart" viewBox="0 0 300 70" preserveAspectRatio="none">
+          <circle cx="150" cy="35" r="4" fill="var(--chart-line)"></circle>
+          <text x="150" y="20" text-anchor="middle" font-size="11" fill="currentColor">1,530.30</text>
+        </svg>
       </div>
       <div class="fx-card">
         <div class="pair">KRW / THB (100바트)</div>
-        <div class="rate">4,595.6</div>
-        <div class="chg down">▼ 15.6원 (-0.34%)</div>
+        <div class="rate">4,611.2원</div>
+        <div class="chg down">▼ 25.0원 (-0.54%)</div>
+        <svg class="chart" viewBox="0 0 300 70" preserveAspectRatio="none">
+          <circle cx="150" cy="35" r="4" fill="var(--chart-line)"></circle>
+          <text x="150" y="20" text-anchor="middle" font-size="11" fill="currentColor">4,611.2</text>
+        </svg>
       </div>
       <div class="fx-card">
         <div class="pair">KRW / CNY (1위안)</div>
-        <div class="rate">225.27</div>
-        <div class="chg down">▼ 0.09원 (-0.04%)</div>
+        <div class="rate">225.28원</div>
+        <div class="chg down">▼ 0.08원 (-0.04%)</div>
+        <svg class="chart" viewBox="0 0 300 70" preserveAspectRatio="none">
+          <circle cx="150" cy="35" r="4" fill="var(--chart-line)"></circle>
+          <text x="150" y="20" text-anchor="middle" font-size="11" fill="currentColor">225.28</text>
+        </svg>
       </div>
     </div>
-    <div class="note">오늘(7/6)부터 시행된 외환시장 24시간 거래 체제 첫날, 원·달러 환율은 전 거래일(7/3, 금) 대비 4.70원 오른 1,530.3원에 주간거래를 마쳤습니다(연합뉴스TV 등). 위안화는 하나은행 고시 매매기준율(14:02 기준) 225.27원입니다. 태국 바트는 국내 언론의 일일 변동폭 보도가 드물어 Investing.com 종가(45.956원/바트)를 기준으로 전일 대비 변동폭을 추정 계산했습니다. 이 데이터는 검색 시점 기준이며 실시간 고시환율과 차이가 있을 수 있어 정확한 수치는 은행 앱에서 재확인이 필요합니다.</div>
+    <div class="note">오늘(7/6) 15:30 기준 하나은행 고시 매매기준율로, 원·달러는 1,530.30원(전 거래일 7/3 대비 ▲4.70원), 위안화는 225.28원입니다(철강금속신문). 태국 바트는 Investing.com 종가 46.112(전일 종가 46.362) 기준으로 100바트당 환산·계산했습니다. 환율 그래프는 fx_history.json에 매일 누적되는 값을 기준으로 그려지며, 첫 수집일인 오늘은 데이터가 1건뿐이라 점으로 표시됩니다. 이 데이터는 검색 시점 기준이며 실시간 고시환율과 차이가 있을 수 있어 정확한 수치는 은행 앱에서 재확인이 필요합니다.</div>
   </section>
 
-  <section>
+  <section id="stock">
     <h2>주가·지수 비교</h2>
     <div class="stock-grid">
       <div class="stock-card">
@@ -255,10 +319,10 @@
         <div class="prev">전전 거래일(7/3): 868.41</div>
       </div>
     </div>
-    <div class="note">코스피·코스닥은 오늘(7/6, 월) 정규장 마감 종가를 직전 영업일인 7/3(금) 종가와 비교한 것입니다. 장중 코스피는 8,327.26까지 급등했다가 7,815~8,051 구간까지 등락하는 변동장세를 보였습니다. 이 데이터는 검색 시점 기준이며 실시간 시세와 차이가 있을 수 있습니다.</div>
+    <div class="note">코스피·코스닥은 오늘(7/6, 월) 정규장 마감 종가를 직전 영업일인 7/3(금) 종가와 비교한 것입니다(서울경제). 코스피는 장중 한때 8,327.26까지 급등했다가 다시 밀리는 변동장세를 보였고, 개인 투자자가 양 시장에서 약 3조원을 순매수하며 지수 하방을 지지했습니다. 이 데이터는 검색 시점 기준이며 실시간 시세와 차이가 있을 수 있습니다.</div>
   </section>
 
-  <section>
+  <section id="news">
     <h2>고객사 뉴스</h2>
 
     <div class="card">
@@ -288,9 +352,7 @@
       <p>한국남부발전이 정부의 '해상풍력 중장기 입찰 로드맵'에 부응해 총 2.2GW 규모의 대형 해상풍력 프로젝트 개발에 본격 착수했다. 올해 9월 영광 야월(104MW), 내년 상반기 부산 다대포(99MW) 착공을 목표로 하고 있다.</p>
       <div class="meta">2026.07.06 17:56 · 전기저널</div>
     </div>
-  </section>
 
-  <section>
     <h2>관계사 뉴스</h2>
 
     <div class="card">
@@ -301,8 +363,23 @@
     </div>
   </section>
 
-  <section>
-    <h2>물류·무역 업계 헤드라인</h2>
+  <section id="indicators">
+    <h2>해운 운임지수</h2>
+    <div class="indicator-grid">
+      <div class="indicator-card">
+        <div class="name">BDI (발틱운임지수)</div>
+        <div class="price">2,717pt</div>
+        <div class="chg up">▲ 193pt 전주 대비 (+7.7%)</div>
+      </div>
+      <div class="indicator-card">
+        <div class="name">SCFI (상하이컨테이너운임지수)</div>
+        <div class="price">3,326.87pt</div>
+        <div class="chg up">▲ 87.23pt 전주 대비</div>
+      </div>
+    </div>
+    <div class="note">BDI는 7월 6일 기준(전주 대비), SCFI는 상하이해운거래소가 매주 금요일 발표하는 지수로 7월 3일자 최신 값(전주 대비) 기준입니다. 두 지수 모두 일별이 아닌 주간 단위로 발표되어 '전일 대비'가 아닌 '전주 대비' 변동으로 표기했습니다.</div>
+
+    <h3 class="sub">물류·무역 업계 헤드라인</h3>
     <ul class="headline-list">
       <li>
         <a href="https://n.news.naver.com/mnews/article/366/0001177073?sid=101" target="_blank" rel="noopener">자동차 운반선 싹쓸이하는 中… 韓, 친환경 기술로 틈새 공략
@@ -324,16 +401,11 @@
           <div class="h-meta">2026.07.06 06:14 · 글로벌이코노믹</div>
         </a>
       </li>
-      <li>
-        <a href="https://n.news.naver.com/mnews/article/421/0009041719?sid=101" target="_blank" rel="noopener">정책자금 6793억 풀렸지만…끝나지 않는 중동發에 수출中企 '한숨'
-          <div class="h-meta">2026.07.06 06:10 · 뉴스1</div>
-        </a>
-      </li>
     </ul>
   </section>
 
   <footer>
-    마지막 업데이트: 2026-07-06 20:59 (KST)<br>
+    마지막 업데이트: 2026-07-06 21:15 (KST)<br>
     ※ 환율·주가·지수 데이터는 검색 시점 기준이며 실시간 시세와 차이가 있을 수 있습니다.
   </footer>
 
