@@ -133,6 +133,11 @@
     width:100%;
     height:92px;
   }
+  .fx-card .src-note{
+    font-size:0.78rem;
+    color:var(--sub);
+    margin-top:6px;
+  }
   .indicator-card .desc{
     font-size:0.85rem;
     color:var(--sub);
@@ -313,7 +318,13 @@
         <p>12:00-13:00&nbsp;&nbsp;중식 (법인장이상)</p>
       </div>
     </div>
-    <div class="note">7월 16일부터 22일까지 SG일정 캘린더를 조회한 결과이며, 위 날짜 외에는 등록된 일정이 없습니다.</div>
+    <div class="schedule-day">
+      <h3 class="sub">7월 23일 (목)</h3>
+      <div class="card">
+        <p>종일&nbsp;&nbsp;상반기 REVIEW 및 하반기 전략보고</p>
+      </div>
+    </div>
+    <div class="note">7월 16일부터 23일까지 SG일정 캘린더를 조회한 결과이며, 위 날짜 외에는 등록된 일정이 없습니다.</div>
   </section>
 
   <section id="fx">
@@ -322,7 +333,7 @@
       <div class="fx-card">
         <div class="pair">KRW / USD</div>
         <div class="rate">1,484.70원</div>
-        <div class="chg down">▼ 2.80원 (-0.19%)</div>
+        <div class="chg down">▼ 8.30원 (-0.56%) · 전일(07/14 종가 1,493.00원) 대비</div>
         <svg class="chart" viewBox="0 0 300 100" preserveAspectRatio="none">
           <polyline points="20.00,63.93 63.33,65.00 106.67,27.01 150.00,42.95 193.33,30.26 236.67,15.00 280.00,39.27" fill="none" stroke="var(--chart-line)" stroke-width="2.5" stroke-linecap="round"></polyline>
           <circle cx="20.00" cy="63.93" r="2.5" fill="var(--chart-line)" opacity="0.5"></circle>
@@ -347,11 +358,12 @@
           <text x="236.67" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">6월</text>
           <text x="280.00" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">현재</text>
         </svg>
+        <div class="src-note">매매기준율 기준</div>
       </div>
       <div class="fx-card">
         <div class="pair">KRW / THB (100바트)</div>
         <div class="rate">4,520.00원</div>
-        <div class="chg up">▲ 10.20원 (+0.23%, 시세 기준)</div>
+        <div class="chg flat">— 전영업일(07/15) 매매기준율 유지</div>
         <svg class="chart" viewBox="0 0 300 100" preserveAspectRatio="none">
           <polyline points="20.00,40.00 63.33,35.45 106.67,24.09 150.00,65.00 193.33,17.65 236.67,15.00 280.00,58.18" fill="none" stroke="var(--chart-line)" stroke-width="2.5" stroke-linecap="round"></polyline>
           <circle cx="20.00" cy="40.00" r="2.5" fill="var(--chart-line)" opacity="0.5"></circle>
@@ -376,11 +388,12 @@
           <text x="236.67" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">6월</text>
           <text x="280.00" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">현재</text>
         </svg>
+        <div class="src-note">매매기준율 기준</div>
       </div>
       <div class="fx-card">
         <div class="pair">KRW / CNY (1위안)</div>
         <div class="rate">219.36원</div>
-        <div class="chg up">▲ 0.08원 (+0.04%)</div>
+        <div class="chg down">▼ 0.80원 (-0.36%) · 전영업일(07/15) 매매기준율 기준</div>
         <svg class="chart" viewBox="0 0 300 100" preserveAspectRatio="none">
           <polyline points="20.00,65.00 63.33,59.30 106.67,34.22 150.00,40.73 193.33,26.13 236.67,15.00 280.00,32.69" fill="none" stroke="var(--chart-line)" stroke-width="2.5" stroke-linecap="round"></polyline>
           <circle cx="20.00" cy="65.00" r="2.5" fill="var(--chart-line)" opacity="0.5"></circle>
@@ -405,9 +418,34 @@
           <text x="236.67" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">6월</text>
           <text x="280.00" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">현재</text>
         </svg>
+        <div class="src-note">매매기준율 기준</div>
+      </div>
+      <div class="fx-card">
+        <div class="pair">USD / THB</div>
+        <div class="rate">33.59바트</div>
+        <div class="chg up">▲ 0.13 (+0.39%) · 직전 세션 대비</div>
+        <svg class="chart" viewBox="0 0 300 100" preserveAspectRatio="none">
+          <circle cx="280.00" cy="50.00" r="4" fill="var(--chart-line)"></circle>
+          <text x="280.00" y="42.00" text-anchor="end" font-size="8" fill="currentColor" font-weight="700">33.59</text>
+          <text x="280.00" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">현재(7/16)</text>
+          <text x="150.00" y="52" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.55">오늘부터 데이터 축적 시작</text>
+        </svg>
+        <div class="src-note">조회 시점 국제시장 시세 기준</div>
+      </div>
+      <div class="fx-card">
+        <div class="pair">USD / CNY</div>
+        <div class="rate">6.7691위안</div>
+        <div class="chg flat">— 조회 시점 기준</div>
+        <svg class="chart" viewBox="0 0 300 100" preserveAspectRatio="none">
+          <circle cx="280.00" cy="50.00" r="4" fill="var(--chart-line)"></circle>
+          <text x="280.00" y="42.00" text-anchor="end" font-size="8" fill="currentColor" font-weight="700">6.7691</text>
+          <text x="280.00" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">현재(7/16)</text>
+          <text x="150.00" y="52" text-anchor="middle" font-size="8" fill="currentColor" opacity="0.55">오늘부터 데이터 축적 시작</text>
+        </svg>
+        <div class="src-note">조회 시점 국제시장 시세 기준</div>
       </div>
     </div>
-    <div class="note">USD·CNY는 하나은행 매매기준율(고시환율) 기준이며, 7월 16일 1차 고시가 아직 발표되지 않은 이른 시각이라 전영업일(07/15) 매매기준율을 사용했고 전전영업일(07/14) 대비 등락을 표시했습니다. THB는 은행 매매기준율 확인이 어려워 시세(시장환율) 기준으로 참고 표기했습니다. 그래프는 최근 6개월 월말 수치와 현재 수치를 이은 선입니다. 이 데이터는 검색 시점 기준이며 실시간 고시환율과 차이가 있을 수 있습니다.</div>
+    <div class="note">KRW 기준 3종(USD·THB·CNY)은 하나은행 매매기준율(고시환율) 기준입니다. 7/16 1차 고시가 아직 확인되지 않아 USD는 전 거래일 서울외환시장 종가(1,484.70원)를 당일 매매기준율 산정 근거로, CNY·THB는 전영업일(07/15) 매매기준율을 그대로 사용했습니다. USD/THB·USD/CNY는 국내 은행 고시 대상이 아니어서 국제시장 시세를 오늘(조회 시점) 기준으로 표기했으며, 실시간으로 변동될 수 있고 오늘부터 이력을 새로 축적합니다. 원화 3종 그래프는 최근 6개월 월말 수치와 현재 수치를 이은 선입니다. 이 데이터는 검색 시점 기준이며 실시간 고시환율과 차이가 있을 수 있습니다.</div>
   </section>
 
   <section id="indicators">
@@ -484,21 +522,21 @@
 
       <div class="indicator-card">
         <div class="name">국제 금 시세</div>
-        <div class="price">$4,051.80 / 온스</div>
-        <div class="chg down">▼ $16.87 (-0.4%) · 7/15(현지시간) COMEX 8월물 금 선물 종가 기준</div>
-        <div class="desc">미국 6월 생산자물가(PPI) 지표가 예상보다 둔화하며 장 초반 낙폭을 대부분 만회했으나, 국제유가 상승과 지정학적 긴장 속 달러 강세가 금값 상승을 제한하고 있습니다.</div>
+        <div class="price">$4,060.66 / 온스</div>
+        <div class="chg up">▲ +0.16% · 7/15(현지시간) 기준, 전일 대비</div>
+        <div class="desc">미국 6월 생산자물가(PPI) 지표가 예상보다 둔화하며 연준 긴축 완화 기대가 커졌지만, 중동 지정학적 긴장에 따른 안전자산 수요와 국제유가 상승이 금값을 지지하고 있습니다.</div>
       </div>
 
       <div class="indicator-card">
         <div class="name">미국 기준금리</div>
         <div class="price">3.50 ~ 3.75%</div>
-        <div class="chg flat">— 동결 유지 (6월 FOMC 4연속 동결) · 6월 CPI·PPI 둔화로 7월 30일(현지시간 29일) FOMC 인상 가능성은 낮아진 상태</div>
+        <div class="chg flat">— 동결 유지 (6월 FOMC 4연속 동결) · 다음 FOMC는 7월 29일(현지시간), 시장은 동결 후 9월 인상 가능성에 무게</div>
       </div>
 
       <div class="indicator-card">
         <div class="name">한국 기준금리</div>
         <div class="price">2.50%</div>
-        <div class="chg flat">— 동결 중 · 오늘(7/16) 오전 9시50분경 금융통화위원회 결과 발표 예정, 채권·거시 전문가 12명 중 10명이 0.25%p 인상(2.75%)을 전망하며 3년 6개월 만의 인상 여부 주목</div>
+        <div class="chg flat">— 동결 결정 (오늘 7/16 금융통화위원회) · 물가·환율 상승에도 시장의 인상 전망(0.25%p)과 달리 현 수준 유지</div>
       </div>
     </div>
     <div class="note">SCFI·KCCI는 최근 6개월 월말 발표치와 이번 달 최신 발표치를 이은 선 그래프입니다. SCFI는 7/10(금), KCCI는 7/13(월) 발표치로 이번 주 신규 발표 전이라 값이 유지되고 있습니다. 이 데이터는 검색 시점 기준이며 실시간 시세와 차이가 있을 수 있습니다.</div>
@@ -547,30 +585,30 @@
 
     <div class="card">
       <div class="company">LG전자</div>
-      <h3><a href="https://n.news.naver.com/mnews/article/008/0005386755?sid=101" target="_blank" rel="noopener">"10년 적자 설움 끝났다"…LG 전장 분기 매출 '3조 시대' 안착</a></h3>
-      <p>LG전자 전장(VS)사업본부가 분기 최대 실적 경신을 이어가며 그룹 내 핵심 캐시카우로 자리 잡고 있다. 100조원을 웃도는 수주잔고가 본격적으로 매출과 수익성에 반영되며 10년 만에 적자 구조에서 완전히 벗어났다.</p>
-      <div class="meta">2026.07.16 05:30 · 머니투데이</div>
+      <h3><a href="https://www.topstarnews.net/news/articleView.html?idxno=16136389" target="_blank" rel="noopener">LG전자 주가, 7월 16일 장중 183,700원 5.31% 하락</a></h3>
+      <p>16일 오전 10시 20분 기준 LG전자 주가가 지난 종가(194,000원) 대비 5.31% 하락한 183,700원에 거래되고 있다. 미국 반도체주 약세 여파로 코스피가 급락 출발하며 대형주 전반이 조정을 받는 모습이다.</p>
+      <div class="meta">2026.07.16 10:22 · 톱스타뉴스</div>
     </div>
 
     <div class="card">
-      <div class="company">LG전자 로봇사업</div>
-      <h3><a href="https://www.job-post.co.kr/news/articleView.html?idxno=221279" target="_blank" rel="noopener">GS건설·LG전자, AI·로봇 결합한 차세대 AI홈 개발 '맞손'</a></h3>
-      <p>GS건설이 LG전자와 차세대 AI홈 공동개발을 위한 업무협약(MOU)을 체결했다. 양사는 LG전자의 홈로봇 '클로이드(CLOiD)'를 포함한 로봇 생태계와 AI홈 솔루션을 자이 아파트 단지 인프라에 연계해 협력 범위를 확대할 계획이다.</p>
-      <div class="meta">2026.07.16 02:48 · 잡포스트</div>
+      <div class="company">LG전자</div>
+      <h3><a href="https://n.news.naver.com/mnews/article/079/0004169020?sid=101" target="_blank" rel="noopener">'사용 데이터 분석' 맞춤형 출수 옵션 제공…LG AI 정수기 출시</a></h3>
+      <p>LG전자가 AI 음성인식과 맞춤 출수 기능을 적용한 'LG 퓨리케어 AI 냉동얼음정수기'를 출시했다. 세탁기·건조기·청소로봇 등을 음성으로 제어하는 AI홈 허브 역할도 겸하며 씽큐 생태계 확장을 노린다.</p>
+      <div class="meta">2026.07.16 10:17 · 노컷뉴스</div>
     </div>
 
     <div class="card">
-      <div class="company">LG화학</div>
-      <h3><a href="https://n.news.naver.com/mnews/article/018/0006330984?sid=101" target="_blank" rel="noopener">"유럽 HVO 파트너 찾는다"…LG화학, 친환경 연료·소재 공급망 속도</a></h3>
-      <p>LG화학이 유럽에서 친환경 바이오 오일(HVO) 사업 파트너 찾기에 본격 나섰다. 글로벌 시장에서 탄소 규제와 고객사의 저탄소 제품 요구가 강화되는 가운데 충남 서산 HVO 공장을 기반으로 공급망 확장을 추진하고 있다.</p>
-      <div class="meta">2026.07.15 16:44 · 이데일리</div>
+      <div class="company">LG에너지솔루션</div>
+      <h3><a href="https://www.the-pr.co.kr/news/articleView.html?idxno=61952" target="_blank" rel="noopener">LG엔솔, 구글 역대 최대 ESS 프로젝트 수주…수천억대 배터리 공급</a></h3>
+      <p>LG에너지솔루션이 구글의 역대 최대 규모 태양광·에너지저장장치(ESS) 프로젝트에 배터리를 전량 공급하기로 결정했다. 북미 대용량 전력 관리 솔루션 시장 공략에 속도가 붙을 전망이며, 이날 관련 소식에 주가도 강세를 나타냈다.</p>
+      <div class="meta">2026.07.16 10:04 · 더피알</div>
     </div>
 
     <div class="card">
       <div class="company">남동발전</div>
-      <h3><a href="https://n.news.naver.com/mnews/article/366/0001179459?sid=101" target="_blank" rel="noopener">발전공기업 5사 통합 추진에 들썩이는 지자체… 본사 유치 경쟁</a></h3>
-      <p>발전 공기업 5사(남동·남부·동서·서부·중부발전) 통합 논의가 본격화하며 각 사 본사가 있는 지자체들의 유치 경쟁이 뜨거워지고 있다. 경남 진주에 본사를 둔 남동발전을 포함해 구조 개편 향방에 업계 관심이 집중되고 있다.</p>
-      <div class="meta">2026.07.15 16:27 · 조선비즈</div>
+      <h3><a href="http://www.netongs.com/news/articleView.html?idxno=334102" target="_blank" rel="noopener">여수발전본부 후원, '사랑,해 빨간밥차' 건강한 여름나기 삼계탕 나눔</a></h3>
+      <p>한국남동발전 여수발전본부가 초복을 맞아 여수시노인복지관과 함께 삼계탕 나눔 행사를 후원했다. 지역 어르신 대상 건강한 여름나기 지원으로 지역사회 상생 행보를 이어갔다.</p>
+      <div class="meta">2026.07.16 07:24 · 네통뉴스</div>
     </div>
 
     <div class="card">
@@ -579,6 +617,15 @@
       <p>경남 하동군이 한국남부발전과 손잡고 옥종면 일원에 700MW 규모의 양수 발전소 건설을 추진하고 있다. 김현수 하동군수는 지역 미래 100년을 책임질 핵심 국가사업으로 반드시 유치하겠다는 의지를 밝혔다.</p>
       <div class="meta">2026.07.16 05:03 · 서울신문</div>
     </div>
+
+    <div class="card">
+      <div class="company">중부발전</div>
+      <h3><a href="https://n.news.naver.com/mnews/article/030/0003448341?sid=100" target="_blank" rel="noopener">순수 국내자본 해상풍력 시대 연다…신안우이 390㎿ 착공</a></h3>
+      <p>한화오션·한국중부발전·SK이터닉스·현대건설이 참여하는 총사업비 3조4000억원 규모의 신안우이 해상풍력이 착공했다. 중부발전은 지분 19%로 참여하며, 국민성장펀드 1호 투자사업으로 선정돼 대규모 정책금융도 확보했다.</p>
+      <div class="meta">2026.07.16 09:31 · 전자신문</div>
+    </div>
+
+    <h3 class="sub">관계사 뉴스</h3>
 
     <div class="card">
       <div class="company">신성델타테크</div>
@@ -597,11 +644,6 @@
     <h3 class="sub">물류·무역 업계 헤드라인</h3>
     <ul class="headline-list">
       <li>
-        <a href="https://www.bntnews.co.kr/article/view/bnt202607160009" target="_blank" rel="noopener">호르무즈 봉쇄 재개…국제유가 요동
-          <div class="h-meta">2026.07.16 06:50 · 비앤티뉴스</div>
-        </a>
-      </li>
-      <li>
         <a href="https://n.news.naver.com/mnews/article/417/0001151596?sid=103" target="_blank" rel="noopener">'호르무즈 20% 통행료' 트럼프 선언에…해운업계 "물류비 부담 우려"
           <div class="h-meta">2026.07.14 14:40 · 시대일보</div>
         </a>
@@ -616,11 +658,21 @@
           <div class="h-meta">2026.07.13 17:33 · 뉴스1</div>
         </a>
       </li>
+      <li>
+        <a href="http://www.dailylog.co.kr/news/articleView.html?idxno=26621" target="_blank" rel="noopener">황종우 장관, 항만물류업계 만나 현안 점검…하역시장 안정화 논의
+          <div class="h-meta">2026.07.10 11:44 · 데일리로그</div>
+        </a>
+      </li>
+      <li>
+        <a href="https://www.g-enews.com/view.php?ud=2026070913465575680c8c1c064d_1" target="_blank" rel="noopener">현대글로비스, "세계 최대 자동차선 띄웠지만 웃는 건 中 조선업"
+          <div class="h-meta">2026.07.09 13:54 · 글로벌이코노믹</div>
+        </a>
+      </li>
     </ul>
   </section>
 
   <footer>
-    마지막 업데이트: 2026-07-16 07:00 (KST)<br>
+    마지막 업데이트: 2026-07-16 10:35 (KST)<br>
     ※ 환율·주가·운임지수·경제지표 데이터는 검색 시점 기준이며 실시간 시세와 차이가 있을 수 있습니다. 정확한 수치는 각 공식 출처에서 재확인하시기 바랍니다.
   </footer>
 
