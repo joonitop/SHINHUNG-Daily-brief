@@ -6,719 +6,398 @@
 <title>신흥글로벌 데일리 뉴스</title>
 <style>
   :root{
-    --bg:#f4f6f8;
-    --card:#ffffff;
-    --text:#1a1d21;
-    --sub:#5f6b7a;
-    --accent:#1a56db;
-    --up:#d92d20;
-    --down:#1570ef;
-    --border:#e5e9ef;
-    --chart-line:#1a56db;
-    --chart-fill:rgba(26,86,219,0.12);
-    --nav-bg:#ffffff;
+    --bg:#f4f6f9; --card:#ffffff; --text:#1a1d24; --sub:#5b6472; --border:#e3e7ee;
+    --accent:#2f5fe0; --accent2:#1c9d6b; --danger:#e0402f; --nav-bg:#1a2540; --nav-text:#eef1f8;
+    --chip-bg:#eef2fb;
   }
   @media (prefers-color-scheme: dark){
     :root{
-      --bg:#0f1115;
-      --card:#181b21;
-      --text:#eef1f5;
-      --sub:#9aa4b2;
-      --accent:#5b9bff;
-      --up:#ff6a5f;
-      --down:#6db2ff;
-      --border:#2a2f3a;
-      --chart-line:#5b9bff;
-      --chart-fill:rgba(91,155,255,0.14);
-      --nav-bg:#181b21;
+      --bg:#12151c; --card:#1b202b; --text:#eef1f7; --sub:#9aa4b5; --border:#2a3140;
+      --accent:#6c93ff; --accent2:#3fcf95; --danger:#ff6b5e; --nav-bg:#0d1220; --nav-text:#eef1f8;
+      --chip-bg:#22283a;
     }
   }
+  :root[data-theme="dark"]{
+    --bg:#12151c; --card:#1b202b; --text:#eef1f7; --sub:#9aa4b5; --border:#2a3140;
+    --accent:#6c93ff; --accent2:#3fcf95; --danger:#ff6b5e; --nav-bg:#0d1220; --nav-text:#eef1f8;
+    --chip-bg:#22283a;
+  }
+  :root[data-theme="light"]{
+    --bg:#f4f6f9; --card:#ffffff; --text:#1a1d24; --sub:#5b6472; --border:#e3e7ee;
+    --accent:#2f5fe0; --accent2:#1c9d6b; --danger:#e0402f; --nav-bg:#1a2540; --nav-text:#eef1f8;
+    --chip-bg:#eef2fb;
+  }
   *{box-sizing:border-box;}
-  html{font-size:16px;scroll-behavior:smooth;}
+  html{scroll-behavior:smooth;}
   body{
-    margin:0;
-    padding:0;
-    background:var(--bg);
-    color:var(--text);
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Apple SD Gothic Neo","Malgun Gothic",sans-serif;
-    line-height:1.5;
-    font-size:1rem;
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans KR",Helvetica,Arial,sans-serif;
+    font-size:16px; line-height:1.5;
+    padding-bottom:32px;
   }
-  .wrap{
-    max-width:720px;
-    margin:0 auto;
-    padding:12px 14px 28px;
+  header.top{ padding:18px 16px 10px; }
+  header.top h1{ margin:0 0 4px; font-size:21px; font-weight:800; letter-spacing:-0.3px; }
+  header.top .date{ color:var(--sub); font-size:14px; }
+
+  nav.tabbar{
+    position:sticky; top:0; z-index:50;
+    display:flex; width:100%; background:var(--nav-bg); box-shadow:0 2px 8px rgba(0,0,0,.15);
   }
-  header{
-    text-align:center;
-    padding:6px 0 10px;
+  nav.tabbar a{
+    flex:1; text-align:center; color:var(--nav-text); text-decoration:none;
+    font-size:15px; font-weight:700; padding:14px 4px; white-space:nowrap;
+    scroll-margin-top:56px;
   }
-  header h1{
-    font-size:1.4rem;
-    margin:0 0 4px;
-  }
-  header .date{
-    color:var(--sub);
-    font-size:1rem;
-  }
-  .nav{
-    position:sticky;
-    top:0;
-    z-index:100;
-    background:var(--nav-bg);
-    display:flex;
-    width:100%;
-    margin:0 -14px 14px;
-    border-bottom:1px solid var(--border);
-    box-shadow:0 1px 0 rgba(0,0,0,0.03);
-  }
-  .nav a{
-    flex:1;
-    text-align:center;
-    padding:12px 2px;
-    font-size:15px;
-    font-weight:700;
-    color:var(--accent);
-    text-decoration:none;
-    border-right:1px solid var(--border);
-    white-space:nowrap;
-  }
-  .nav a:last-child{border-right:none;}
-  .nav a:active{background:var(--accent);color:#fff;}
-  section{
-    margin-bottom:16px;
-    scroll-margin-top:54px;
-  }
-  section > h2{
-    font-size:1.15rem;
-    margin:0 0 8px;
-    padding-left:10px;
-    border-left:4px solid var(--accent);
-  }
-  section > h3.sub{
-    font-size:1rem;
-    margin:12px 0 6px;
-    color:var(--sub);
-  }
-  .fx-list, .indicator-grid{
-    display:flex;
-    flex-direction:column;
-    gap:8px;
-  }
-  .fx-card, .indicator-card{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:12px;
-  }
-  .fx-card .pair, .indicator-card .name{
-    font-size:0.95rem;
-    color:var(--sub);
-    font-weight:700;
-    margin-bottom:4px;
-  }
-  .fx-card .src{
-    font-size:0.75rem;
-    color:var(--sub);
-    margin-bottom:4px;
-  }
-  .fx-card .rate, .indicator-card .price{
-    font-size:1.3rem;
-    font-weight:700;
-  }
-  .fx-card .chg, .indicator-card .chg{
-    font-size:0.95rem;
-    margin-top:2px;
-  }
-  .chg.up{color:var(--up);}
-  .chg.down{color:var(--down);}
-  .chg.flat{color:var(--sub);}
-  .fx-card .chart, .indicator-card .chart{
-    margin-top:6px;
-    width:100%;
-    height:92px;
-  }
-  .indicator-card .desc{
-    font-size:0.85rem;
-    color:var(--sub);
-    margin-top:6px;
-    line-height:1.5;
-  }
-  .na-badge{
-    display:inline-block;
-    font-size:0.9rem;
-    color:var(--sub);
-    background:var(--bg);
-    border:1px dashed var(--border);
-    border-radius:8px;
-    padding:8px 10px;
-    margin-top:4px;
-  }
-  .last-known{
-    font-size:0.8rem;
-    color:var(--sub);
-    margin-top:6px;
-  }
-  .note{
-    font-size:0.85rem;
-    color:var(--sub);
-    margin-top:8px;
-    line-height:1.6;
-  }
-  .stock-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:8px;
-  }
-  @media (max-width:480px){
-    .stock-grid{grid-template-columns:1fr;}
-  }
-  .stock-card{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:12px;
-  }
-  .stock-card .name{
-    font-size:1rem;
-    font-weight:700;
-    margin-bottom:5px;
-  }
-  .stock-card .price{
-    font-size:1.2rem;
-    font-weight:700;
-  }
-  .stock-card .chg{
-    font-size:0.95rem;
-    margin-top:3px;
-  }
-  .stock-card .prev{
-    font-size:0.85rem;
-    color:var(--sub);
-    margin-top:3px;
-  }
+  nav.tabbar a:active, nav.tabbar a:focus{ background:rgba(255,255,255,.08); }
+
+  section{ padding:18px 16px 6px; scroll-margin-top:56px; }
+  section h2{ font-size:18px; margin:0 0 10px; font-weight:800; }
+  section .section-desc{ color:var(--sub); font-size:13px; margin:-6px 0 12px; }
+
   .card{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:12px 14px;
-    margin-bottom:8px;
+    background:var(--card); border:1px solid var(--border); border-radius:14px;
+    padding:12px 14px; margin-bottom:8px; box-shadow:0 1px 3px rgba(0,0,0,.04);
   }
-  .card .company{
-    font-size:0.9rem;
-    font-weight:700;
-    color:var(--accent);
-    margin-bottom:4px;
-  }
-  .card h3{
-    font-size:1.05rem;
-    margin:0 0 5px;
-    line-height:1.4;
-  }
-  .card h3 a{
-    color:var(--text);
-    text-decoration:none;
-    display:inline-block;
-    padding:8px 0;
-  }
-  .card h3 a:hover{color:var(--accent);text-decoration:underline;}
-  .card p{
-    font-size:1rem;
-    color:var(--text);
-    margin:0 0 5px;
-  }
-  .card .meta{
-    font-size:0.85rem;
-    color:var(--sub);
-  }
-  .headline-list{
-    background:var(--card);
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:2px 0;
-  }
-  .headline-list li{
-    list-style:none;
-    border-bottom:1px solid var(--border);
-    font-size:1rem;
-  }
-  .headline-list li:last-child{border-bottom:none;}
-  .headline-list a{
-    color:var(--text);
-    text-decoration:none;
-    display:block;
-    padding:12px 14px;
-  }
-  .headline-list a:hover{color:var(--accent);}
-  .headline-list .h-meta{
-    font-size:0.82rem;
-    color:var(--sub);
-    margin-top:3px;
-  }
-  .schedule-day{
-    margin-bottom:8px;
-  }
-  .schedule-day h3.sub{margin:12px 0 6px;}
-  .alert-card{
-    background:var(--card);
-    border:1px solid var(--up);
-    border-radius:14px;
-    padding:12px 14px;
-    margin-bottom:12px;
-  }
-  .alert-card .tag{
-    display:inline-block;
-    font-size:0.78rem;
-    font-weight:700;
-    color:#fff;
-    background:var(--up);
-    border-radius:6px;
-    padding:2px 8px;
-    margin-bottom:6px;
-  }
-  .alert-card p{
-    margin:0;
-    font-size:0.95rem;
-    line-height:1.6;
-  }
-  footer{
-    text-align:center;
-    color:var(--sub);
-    font-size:0.85rem;
-    padding-top:12px;
-    border-top:1px solid var(--border);
-    line-height:1.6;
-  }
+  .card + .card{ margin-top:8px; }
+
+  /* schedule */
+  .sched-day{ font-weight:800; font-size:14px; color:var(--accent); margin-bottom:6px; }
+  .sched-item{ font-size:16px; padding:6px 0; border-top:1px dashed var(--border); }
+  .sched-item:first-of-type{ border-top:none; }
+  .sched-time{ font-weight:700; margin-right:8px; }
+
+  /* fx cards */
+  .fx-grid{ display:grid; grid-template-columns:1fr; gap:10px; }
+  .fx-card .fx-head{ display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:6px; }
+  .fx-card .fx-title{ font-weight:800; font-size:16px; }
+  .fx-card .fx-value{ font-weight:800; font-size:20px; color:var(--accent); }
+  .fx-card .fx-note{ color:var(--sub); font-size:12px; margin-top:2px; }
+  .chart-wrap{ width:100%; overflow-x:auto; margin-top:8px; }
+  svg.chart{ display:block; width:100%; height:auto; min-width:320px; }
+  .chart-pt{ font-size:10px; fill:var(--sub); }
+  .chart-axis{ font-size:10px; fill:var(--sub); }
+
+  /* indicator grid */
+  .ind-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:10px; }
+  @media (max-width:420px){ .ind-grid{ grid-template-columns:1fr 1fr; } }
+  .ind-card{ text-align:left; }
+  .ind-label{ color:var(--sub); font-size:13px; margin-bottom:4px; }
+  .ind-value{ font-weight:800; font-size:18px; }
+  .ind-delta{ font-size:13px; font-weight:700; margin-top:2px; }
+  .up{ color:var(--danger); }
+  .down{ color:var(--accent); }
+  .flat{ color:var(--sub); }
+
+  /* stock grid */
+  .stock-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:10px; }
+  .stock-card .stock-name{ font-weight:800; font-size:15px; margin-bottom:4px; }
+  .stock-card .stock-value{ font-size:19px; font-weight:800; }
+  .stock-card .stock-delta{ font-size:13px; font-weight:700; margin-top:2px; }
+
+  /* news */
+  .news-co{ font-weight:800; font-size:13px; color:var(--accent2); margin-bottom:4px; text-transform:none; }
+  .news-title a{ color:var(--text); text-decoration:none; font-weight:700; font-size:16px; line-height:1.35; }
+  .news-title a:active{ opacity:.7; }
+  .news-summary{ color:var(--sub); font-size:14px; margin-top:4px; }
+  .news-sub-h{ font-size:14px; font-weight:800; color:var(--sub); margin:16px 0 8px; text-transform:uppercase; letter-spacing:.04em; }
+
+  footer.foot{ padding:20px 16px 10px; color:var(--sub); font-size:12px; line-height:1.7; }
+  footer.foot .rule{ border-top:1px solid var(--border); margin-bottom:14px; }
+
+  .badge{ display:inline-block; background:var(--chip-bg); color:var(--accent); font-size:11px; font-weight:700; border-radius:6px; padding:2px 6px; margin-left:6px; }
 </style>
 </head>
 <body>
-<div class="wrap">
 
-  <header>
-    <h1>신흥글로벌 데일리 뉴스</h1>
-    <div class="date">2026년 7월 31일 (금)</div>
-  </header>
+<header class="top">
+  <h1>신흥글로벌 데일리 뉴스</h1>
+  <div class="date">2026년 8월 4일 (화)</div>
+</header>
 
-  <nav class="nav">
-    <a href="#schedule">일정</a>
-    <a href="#fx">환율</a>
-    <a href="#indicators">경제지표</a>
-    <a href="#stock">주가</a>
-    <a href="#news">뉴스</a>
-  </nav>
+<nav class="tabbar">
+  <a href="#schedule">일정</a>
+  <a href="#fx">환율</a>
+  <a href="#indicators">경제지표</a>
+  <a href="#stock">주가</a>
+  <a href="#news">뉴스</a>
+</nav>
 
-  <div class="alert-card">
-    <div class="tag">시황 주의</div>
-    <p>美 연준이 7/29(현지시간) FOMC에서 기준금리를 5회 연속 동결(3.50~3.75%)했음에도 인플레이션 우려가 부각되며 30년 만기 美국채 금리가 5.21%까지 치솟아(2007년 7월 이후 최고) 뉴욕증시가 급락했습니다. 국내 증시도 7/28 '검은 화요일'(-10.84%), 7/29(-5.98%)에 이어 7/30에도 -1.23% 추가 하락하며 3거래일 연속 조정을 받았습니다. 자세한 내용은 [주가]·[경제지표] 섹션을 확인하세요.</p>
+<section id="schedule">
+  <h2>📅 향후 7일 일정 <span class="badge">SG일정</span></h2>
+  <div class="card">
+    <div class="sched-day">8/3(월) ~ 8/5(수)</div>
+    <div class="sched-item">전사 하계휴무</div>
+  </div>
+  <div class="card">
+    <div class="sched-day">8/6(목)</div>
+    <div class="sched-item"><span class="sched-time">06:17-11:47</span>팀장이상 행사</div>
+  </div>
+  <div class="card">
+    <div class="sched-day">8/7(금)</div>
+    <div class="sched-item"><span class="sched-time">09:30-10:30</span>자금보고</div>
+  </div>
+</section>
+
+<section id="fx">
+  <h2>💱 환율</h2>
+  <div class="fx-grid">
+
+    <div class="card fx-card">
+      <div class="fx-head">
+        <div class="fx-title">KRW / USD</div>
+        <div class="fx-value">1,429.80원</div>
+      </div>
+      <div class="fx-note">매매기준율 기준 · 매매기준율 확인 불가로 전일(8/3, 월) 서울외환시장 종가로 대체 표시</div>
+      <div class="chart-wrap"><div id="chart-usd"></div></div>
+    </div>
+
+    <div class="card fx-card">
+      <div class="fx-head">
+        <div class="fx-title">KRW / THB (100바트)</div>
+        <div class="fx-value">4,605.50원</div>
+      </div>
+      <div class="fx-note">매매기준율 기준 · 매매기준율 확인 불가로 국제 외환시장 조회 시점 시세로 대체 표시</div>
+      <div class="chart-wrap"><div id="chart-thb"></div></div>
+    </div>
+
+    <div class="card fx-card">
+      <div class="fx-head">
+        <div class="fx-title">KRW / CNY</div>
+        <div class="fx-value">211.77원</div>
+      </div>
+      <div class="fx-note">매매기준율 기준 · 매매기준율 확인 불가로 전일(8/3, 월) 서울외환시장 종가로 대체 표시</div>
+      <div class="chart-wrap"><div id="chart-cny"></div></div>
+    </div>
+
+    <div class="card fx-card">
+      <div class="fx-head">
+        <div class="fx-title">USD / THB</div>
+        <div class="fx-value">32.540</div>
+      </div>
+      <div class="fx-note">조회 시점 국제시장 시세 기준 (실시간 변동)</div>
+      <div class="chart-wrap"><div id="chart-usdthb"></div></div>
+    </div>
+
+    <div class="card fx-card">
+      <div class="fx-head">
+        <div class="fx-title">USD / CNY</div>
+        <div class="fx-value">6.7687</div>
+      </div>
+      <div class="fx-note">조회 시점 국제시장 시세 기준 (실시간 변동)</div>
+      <div class="chart-wrap"><div id="chart-usdcny"></div></div>
+    </div>
+
+  </div>
+</section>
+
+<section id="indicators">
+  <h2>📦 해운 운임지수</h2>
+  <div class="card">
+    <div class="fx-head">
+      <div class="fx-title">SCFI <span class="badge">상하이컨테이너운임지수</span></div>
+      <div class="fx-value">3,205.97p</div>
+    </div>
+    <div class="fx-note">상하이 수출 컨테이너 운임의 종합지수 · 7/31 기준 발표치</div>
+    <div class="chart-wrap"><div id="chart-scfi"></div></div>
+  </div>
+  <div class="card">
+    <div class="fx-head">
+      <div class="fx-title">KCCI <span class="badge">한국컨테이너운임지수</span></div>
+      <div class="fx-value">4,318p</div>
+    </div>
+    <div class="fx-note">부산항 출발 컨테이너 해상운임 종합지수 · 8/3 기준 발표치</div>
+    <div class="chart-wrap"><div id="chart-kcci"></div></div>
   </div>
 
-  <section id="schedule">
-    <h2>향후 7일 일정 (SG일정)</h2>
-    <div class="schedule-day">
-      <h3 class="sub">7월 31일 (금)</h3>
-      <div class="card">
-        <p>08:30-10:30&nbsp;&nbsp;국내 경영정보회의</p>
-      </div>
-      <div class="card">
-        <p>11:30-13:00&nbsp;&nbsp;팀장 이상 중식</p>
-      </div>
-      <div class="card">
-        <p>14:30-15:30&nbsp;&nbsp;그린E 영업전략회의</p>
-      </div>
+  <h2 style="margin-top:20px;">📊 경제지표</h2>
+  <div class="ind-grid">
+    <div class="card ind-card">
+      <div class="ind-label">WTI 유가</div>
+      <div class="ind-value">$80.34</div>
+      <div class="ind-delta down">▼ 5.1% (전일 대비)</div>
     </div>
-    <div class="schedule-day">
-      <h3 class="sub">8월 3일 (월) ~ 5일 (수)</h3>
-      <div class="card">
-        <p>종일&nbsp;&nbsp;하계휴무</p>
-      </div>
+    <div class="card ind-card">
+      <div class="ind-label">국제 금 시세</div>
+      <div class="ind-value">$4,038.16/oz</div>
+      <div class="ind-delta down">▼ 0.12% (전일 대비)</div>
     </div>
-    <div class="schedule-day">
-      <h3 class="sub">8월 6일 (목)</h3>
-      <div class="card">
-        <p>06:17-11:47&nbsp;&nbsp;팀장이상 행사</p>
-      </div>
+    <div class="card ind-card">
+      <div class="ind-label">미국 기준금리</div>
+      <div class="ind-value">3.50~3.75%</div>
+      <div class="ind-delta flat">동결 (5회 연속)</div>
     </div>
-    <div class="note">오늘(7/31)부터 8/6까지 SG일정 캘린더를 조회한 결과입니다. 8/1~2는 등록된 일정이 없습니다.</div>
-  </section>
+    <div class="card ind-card">
+      <div class="ind-label">한국 기준금리</div>
+      <div class="ind-value">2.75%</div>
+      <div class="ind-delta up">▲ 0.25%p (7/16 인상)</div>
+    </div>
+  </div>
+</section>
 
-  <section id="fx">
-    <h2>오늘의 환율</h2>
-    <div class="fx-list">
-      <div class="fx-card">
-        <div class="pair">KRW / USD</div>
-        <div class="src">매매기준율 확인 불가로 전일(7/30, 목) 서울외환시장 정규장 종가로 대체 표시</div>
-        <div class="rate">1,437.10원</div>
-        <div class="chg down">전월 말(6월) 1,541.50원 대비 -104.40원</div>
-        <svg class="chart" viewBox="0 0 300 100" preserveAspectRatio="none">
-          <polyline points="20.00,63.93 63.33,65.00 106.67,27.01 150.00,42.95 193.33,30.26 236.67,15.00 280.00,59.62" fill="none" stroke="var(--chart-line)" stroke-width="2.5" stroke-linecap="round"></polyline>
-          <circle cx="20.00" cy="63.93" r="2.5" fill="var(--chart-line)" opacity="0.5"></circle>
-          <circle cx="63.33" cy="65.00" r="2.5" fill="var(--chart-line)" opacity="0.5"></circle>
-          <circle cx="106.67" cy="27.01" r="2.5" fill="var(--chart-line)" opacity="0.5"></circle>
-          <circle cx="150.00" cy="42.95" r="2.5" fill="var(--chart-line)" opacity="0.5"></circle>
-          <circle cx="193.33" cy="30.26" r="2.5" fill="var(--chart-line)" opacity="0.5"></circle>
-          <circle cx="236.67" cy="15.00" r="2.5" fill="var(--chart-line)" opacity="0.5"></circle>
-          <circle cx="280.00" cy="59.62" r="4" fill="var(--chart-line)" opacity="1"></circle>
-          <text x="20.00" y="55.93" text-anchor="middle" font-size="7.5" fill="currentColor">1,427.00</text>
-          <text x="63.33" y="57.00" text-anchor="middle" font-size="7.5" fill="currentColor">1,424.50</text>
-          <text x="106.67" y="19.01" text-anchor="middle" font-size="7.5" fill="currentColor">1,513.40</text>
-          <text x="150.00" y="34.95" text-anchor="middle" font-size="7.5" fill="currentColor">1,476.10</text>
-          <text x="193.33" y="22.26" text-anchor="middle" font-size="7.5" fill="currentColor">1,505.80</text>
-          <text x="236.67" y="7.00" text-anchor="middle" font-size="7.5" fill="currentColor">1,541.50</text>
-          <text x="280.00" y="53.62" text-anchor="end" font-size="8" fill="currentColor" font-weight="700">1,437.10</text>
-          <text x="20.00" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">1월</text>
-          <text x="63.33" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">2월</text>
-          <text x="106.67" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">3월</text>
-          <text x="150.00" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">4월</text>
-          <text x="193.33" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">5월</text>
-          <text x="236.67" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">6월</text>
-          <text x="280.00" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">07/30</text>
-        </svg>
-      </div>
-      <div class="fx-card">
-        <div class="pair">KRW / CNY (1위안)</div>
-        <div class="src">매매기준율 확인 불가로 국제 외환시장 조회 시점 시세로 대체 표시</div>
-        <div class="rate">213.37원</div>
-        <div class="chg down">전월 말(6월) 226.97원 대비 -13.60원</div>
-        <svg class="chart" viewBox="0 0 300 100" preserveAspectRatio="none">
-          <polyline points="20.00,65.00 63.33,59.30 106.67,34.22 150.00,40.73 193.33,26.13 236.67,15.00 280.00,46.61" fill="none" stroke="var(--chart-line)" stroke-width="2.5" stroke-linecap="round"></polyline>
-          <circle cx="20.00" cy="65.00" r="2.5" fill="var(--chart-line)" opacity="0.5"></circle>
-          <circle cx="63.33" cy="59.30" r="2.5" fill="var(--chart-line)" opacity="0.5"></circle>
-          <circle cx="106.67" cy="34.22" r="2.5" fill="var(--chart-line)" opacity="0.5"></circle>
-          <circle cx="150.00" cy="40.73" r="2.5" fill="var(--chart-line)" opacity="0.5"></circle>
-          <circle cx="193.33" cy="26.13" r="2.5" fill="var(--chart-line)" opacity="0.5"></circle>
-          <circle cx="236.67" cy="15.00" r="2.5" fill="var(--chart-line)" opacity="0.5"></circle>
-          <circle cx="280.00" cy="46.61" r="4" fill="var(--chart-line)" opacity="1"></circle>
-          <text x="20.00" y="57.00" text-anchor="middle" font-size="7.5" fill="currentColor">205.46</text>
-          <text x="63.33" y="51.30" text-anchor="middle" font-size="7.5" fill="currentColor">207.91</text>
-          <text x="106.67" y="26.22" text-anchor="middle" font-size="7.5" fill="currentColor">218.70</text>
-          <text x="150.00" y="32.73" text-anchor="middle" font-size="7.5" fill="currentColor">215.90</text>
-          <text x="193.33" y="18.13" text-anchor="middle" font-size="7.5" fill="currentColor">222.18</text>
-          <text x="236.67" y="7.00" text-anchor="middle" font-size="7.5" fill="currentColor">226.97</text>
-          <text x="280.00" y="40.61" text-anchor="end" font-size="8" fill="currentColor" font-weight="700">213.37</text>
-          <text x="20.00" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">1월</text>
-          <text x="63.33" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">2월</text>
-          <text x="106.67" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">3월</text>
-          <text x="150.00" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">4월</text>
-          <text x="193.33" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">5월</text>
-          <text x="236.67" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">6월</text>
-          <text x="280.00" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">07/30</text>
-        </svg>
-      </div>
-      <div class="fx-card">
-        <div class="pair">KRW / THB (100바트)</div>
-        <div class="src">매매기준율 확인 불가로 국제 외환시장 조회 시점 시세로 대체 표시</div>
-        <div class="rate">4,331.10원</div>
-        <div class="chg down">전월 말(6월) 4,634.00원 대비 -302.90원</div>
-        <svg class="chart" viewBox="0 0 300 100" preserveAspectRatio="none">
-          <polyline points="20.00,25.89 63.33,23.91 106.67,18.96 150.00,36.79 193.33,16.16 236.67,15.00 280.00,65.00" fill="none" stroke="var(--chart-line)" stroke-width="2.5" stroke-linecap="round"></polyline>
-          <circle cx="20.00" cy="25.89" r="2.5" fill="var(--chart-line)" opacity="0.5"></circle>
-          <circle cx="63.33" cy="23.91" r="2.5" fill="var(--chart-line)" opacity="0.5"></circle>
-          <circle cx="106.67" cy="18.96" r="2.5" fill="var(--chart-line)" opacity="0.5"></circle>
-          <circle cx="150.00" cy="36.79" r="2.5" fill="var(--chart-line)" opacity="0.5"></circle>
-          <circle cx="193.33" cy="16.16" r="2.5" fill="var(--chart-line)" opacity="0.5"></circle>
-          <circle cx="236.67" cy="15.00" r="2.5" fill="var(--chart-line)" opacity="0.5"></circle>
-          <circle cx="280.00" cy="65.00" r="4" fill="var(--chart-line)" opacity="1"></circle>
-          <text x="20.00" y="17.89" text-anchor="middle" font-size="7.5" fill="currentColor">4,568.00</text>
-          <text x="63.33" y="15.91" text-anchor="middle" font-size="7.5" fill="currentColor">4,580.00</text>
-          <text x="106.67" y="10.96" text-anchor="middle" font-size="7.5" fill="currentColor">4,610.00</text>
-          <text x="150.00" y="28.79" text-anchor="middle" font-size="7.5" fill="currentColor">4,502.00</text>
-          <text x="193.33" y="8.16" text-anchor="middle" font-size="7.5" fill="currentColor">4,627.00</text>
-          <text x="236.67" y="7.00" text-anchor="middle" font-size="7.5" fill="currentColor">4,634.00</text>
-          <text x="280.00" y="59.00" text-anchor="end" font-size="8" fill="currentColor" font-weight="700">4,331.10</text>
-          <text x="20.00" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">1월</text>
-          <text x="63.33" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">2월</text>
-          <text x="106.67" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">3월</text>
-          <text x="150.00" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">4월</text>
-          <text x="193.33" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">5월</text>
-          <text x="236.67" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">6월</text>
-          <text x="280.00" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">07/30</text>
-        </svg>
-      </div>
-      <div class="fx-card">
-        <div class="pair">USD / THB</div>
-        <div class="src">조회 시점 국제시장 시세 기준 (실시간 변동)</div>
-        <div class="rate">33.47</div>
-        <div class="chg up">전월 말(6월) 33.2650 대비 +0.205 상승</div>
-        <svg class="chart" viewBox="0 0 300 100" preserveAspectRatio="none">
-          <polyline points="20.00,62.11 63.33,65.00 106.67,28.50 150.00,29.37 193.33,34.52 236.67,19.27 280.00,15.00" fill="none" stroke="var(--chart-line)" stroke-width="2.5" stroke-linecap="round"></polyline>
-          <circle cx="20.00" cy="62.11" r="2.5" fill="var(--chart-line)" opacity="0.5"></circle>
-          <circle cx="63.33" cy="65.00" r="2.5" fill="var(--chart-line)" opacity="0.5"></circle>
-          <circle cx="106.67" cy="28.50" r="2.5" fill="var(--chart-line)" opacity="0.5"></circle>
-          <circle cx="150.00" cy="29.37" r="2.5" fill="var(--chart-line)" opacity="0.5"></circle>
-          <circle cx="193.33" cy="34.52" r="2.5" fill="var(--chart-line)" opacity="0.5"></circle>
-          <circle cx="236.67" cy="19.27" r="2.5" fill="var(--chart-line)" opacity="0.5"></circle>
-          <circle cx="280.00" cy="15.00" r="4" fill="var(--chart-line)" opacity="1"></circle>
-          <text x="20.00" y="54.11" text-anchor="middle" font-size="7.5" fill="currentColor">31.24</text>
-          <text x="63.33" y="57.00" text-anchor="middle" font-size="7.5" fill="currentColor">31.10</text>
-          <text x="106.67" y="20.50" text-anchor="middle" font-size="7.5" fill="currentColor">32.83</text>
-          <text x="150.00" y="21.37" text-anchor="middle" font-size="7.5" fill="currentColor">32.79</text>
-          <text x="193.33" y="26.52" text-anchor="middle" font-size="7.5" fill="currentColor">32.54</text>
-          <text x="236.67" y="11.27" text-anchor="middle" font-size="7.5" fill="currentColor">33.27</text>
-          <text x="280.00" y="9.00" text-anchor="end" font-size="8" fill="currentColor" font-weight="700">33.47</text>
-          <text x="20.00" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">1월</text>
-          <text x="63.33" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">2월</text>
-          <text x="106.67" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">3월</text>
-          <text x="150.00" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">4월</text>
-          <text x="193.33" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">5월</text>
-          <text x="236.67" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">6월</text>
-          <text x="280.00" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">07/30</text>
-        </svg>
-      </div>
-      <div class="fx-card">
-        <div class="pair">USD / CNY</div>
-        <div class="src">조회 시점 국제시장 시세 기준 (실시간 변동)</div>
-        <div class="rate">6.7551</div>
-        <div class="chg down">전월 말(6월) 6.7916 대비 -0.0365 하락</div>
-        <svg class="chart" viewBox="0 0 300 100" preserveAspectRatio="none">
-          <polyline points="20.00,15.00 63.33,39.67 106.67,21.67 150.00,43.48 193.33,59.14 236.67,55.41 280.00,65.00" fill="none" stroke="var(--chart-line)" stroke-width="2.5" stroke-linecap="round"></polyline>
-          <circle cx="20.00" cy="15.00" r="2.5" fill="var(--chart-line)" opacity="0.5"></circle>
-          <circle cx="63.33" cy="39.67" r="2.5" fill="var(--chart-line)" opacity="0.5"></circle>
-          <circle cx="106.67" cy="21.67" r="2.5" fill="var(--chart-line)" opacity="0.5"></circle>
-          <circle cx="150.00" cy="43.48" r="2.5" fill="var(--chart-line)" opacity="0.5"></circle>
-          <circle cx="193.33" cy="59.14" r="2.5" fill="var(--chart-line)" opacity="0.5"></circle>
-          <circle cx="236.67" cy="55.41" r="2.5" fill="var(--chart-line)" opacity="0.5"></circle>
-          <circle cx="280.00" cy="65.00" r="4" fill="var(--chart-line)" opacity="1"></circle>
-          <text x="20.00" y="7.00" text-anchor="middle" font-size="7.5" fill="currentColor">6.9454</text>
-          <text x="63.33" y="31.67" text-anchor="middle" font-size="7.5" fill="currentColor">6.8515</text>
-          <text x="106.67" y="13.67" text-anchor="middle" font-size="7.5" fill="currentColor">6.9200</text>
-          <text x="150.00" y="35.48" text-anchor="middle" font-size="7.5" fill="currentColor">6.8370</text>
-          <text x="193.33" y="51.14" text-anchor="middle" font-size="7.5" fill="currentColor">6.7774</text>
-          <text x="236.67" y="47.41" text-anchor="middle" font-size="7.5" fill="currentColor">6.7916</text>
-          <text x="280.00" y="59.00" text-anchor="end" font-size="8" fill="currentColor" font-weight="700">6.7551</text>
-          <text x="20.00" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">1월</text>
-          <text x="63.33" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">2월</text>
-          <text x="106.67" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">3월</text>
-          <text x="150.00" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">4월</text>
-          <text x="193.33" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">5월</text>
-          <text x="236.67" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">6월</text>
-          <text x="280.00" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">07/30</text>
-        </svg>
-      </div>
+<section id="stock">
+  <h2>📈 주가지수</h2>
+  <div class="section-desc">직전 영업일(8/3) 종가와 그 전 영업일(7/31) 종가 비교 · 검색 시점 기준이며 실시간 시세와 차이가 있을 수 있음</div>
+  <div class="stock-grid">
+    <div class="card stock-card">
+      <div class="stock-name">KOSPI</div>
+      <div class="stock-value">6,257.45</div>
+      <div class="stock-delta down">▼ 338.00 (-5.12%)</div>
     </div>
-    <div class="note">검색 시점에는 서울외국환중개 매매기준율이 확인되지 않아, KRW/USD는 직전 영업일(7/30, 목)의 서울외환시장 종가로, KRW/CNY·KRW/THB는 국제 외환시장 조회 시점 시세로 대체 표시했습니다. USD/THB·USD/CNY는 국내 은행 고시 대상이 아니므로 조회 시점 국제 외환시장 시세를 표기했으며 실시간으로 변동됩니다. 이 데이터는 검색 시점 기준이며 실시간 시세와 차이가 있을 수 있습니다.</div>
-  </section>
-
-  <section id="indicators">
-    <h2>해운 운임지수</h2>
-    <div class="indicator-grid">
-      <div class="indicator-card">
-        <div class="name">SCFI (상하이컨테이너운임지수)</div>
-        <div class="price">3,062.95pt</div>
-        <div class="chg down">최신 발표일: 2026-07-24 (전주 대비 -17.36p, -0.56%) · 다음 발표 오늘(7/31) 예정</div>
-        <svg class="chart" viewBox="0 0 300 100" preserveAspectRatio="none">
-          <polyline points="20.00,65.00 63.33,64.57 106.67,51.74 150.00,49.54 193.33,32.36 236.67,15.00 280.00,19.59" fill="none" stroke="var(--chart-line)" stroke-width="2.5" stroke-linecap="round"></polyline>
-          <circle cx="20.00" cy="65.00" r="2.5" fill="var(--chart-line)" opacity="0.5"></circle>
-          <circle cx="63.33" cy="64.57" r="2.5" fill="var(--chart-line)" opacity="0.5"></circle>
-          <circle cx="106.67" cy="51.74" r="2.5" fill="var(--chart-line)" opacity="0.5"></circle>
-          <circle cx="150.00" cy="49.54" r="2.5" fill="var(--chart-line)" opacity="0.5"></circle>
-          <circle cx="193.33" cy="32.36" r="2.5" fill="var(--chart-line)" opacity="0.5"></circle>
-          <circle cx="236.67" cy="15.00" r="2.5" fill="var(--chart-line)" opacity="0.5"></circle>
-          <circle cx="280.00" cy="19.59" r="4" fill="var(--chart-line)" opacity="1"></circle>
-          <text x="20.00" y="57.00" text-anchor="middle" font-size="7.5" fill="currentColor">1,317</text>
-          <text x="63.33" y="56.57" text-anchor="middle" font-size="7.5" fill="currentColor">1,333</text>
-          <text x="106.67" y="43.74" text-anchor="middle" font-size="7.5" fill="currentColor">1,827</text>
-          <text x="150.00" y="41.54" text-anchor="middle" font-size="7.5" fill="currentColor">1,911</text>
-          <text x="193.33" y="24.36" text-anchor="middle" font-size="7.5" fill="currentColor">2,572</text>
-          <text x="236.67" y="7.00" text-anchor="middle" font-size="7.5" fill="currentColor">3,240</text>
-          <text x="280.00" y="13.59" text-anchor="end" font-size="8" fill="currentColor" font-weight="700">3,063</text>
-          <text x="20.00" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">1월</text>
-          <text x="63.33" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">2월</text>
-          <text x="106.67" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">3월</text>
-          <text x="150.00" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">4월</text>
-          <text x="193.33" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">5월</text>
-          <text x="236.67" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">6월</text>
-          <text x="280.00" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">현재</text>
-        </svg>
-        <div class="desc">상하이해운거래소가 매주 금요일 발표하는 컨테이너 수출 운임지수로, 상하이발 15개 주요 항로의 스팟 운임을 종합한 대표적 컨테이너선 운임 지표입니다. 이번 주(7/31) 신규 발표치는 아직 나오지 않아 지난주 수치를 유지했습니다.</div>
-      </div>
-
-      <div class="indicator-card">
-        <div class="name">KCCI (한국컨테이너운임지수)</div>
-        <div class="price">4,123pt</div>
-        <div class="chg down">최신 발표일: 2026-07-27 (전주 대비 -81p, -1.9%) · 다음 발표 8/3(월) 예정</div>
-        <svg class="chart" viewBox="0 0 300 100" preserveAspectRatio="none">
-          <polyline points="20.00,59.68 63.33,65.00 106.67,54.00 150.00,52.12 193.33,46.62 236.67,18.90 280.00,15.00" fill="none" stroke="var(--chart-line)" stroke-width="2.5" stroke-linecap="round"></polyline>
-          <circle cx="20.00" cy="59.68" r="2.5" fill="var(--chart-line)" opacity="0.5"></circle>
-          <circle cx="63.33" cy="65.00" r="2.5" fill="var(--chart-line)" opacity="0.5"></circle>
-          <circle cx="106.67" cy="54.00" r="2.5" fill="var(--chart-line)" opacity="0.5"></circle>
-          <circle cx="150.00" cy="52.12" r="2.5" fill="var(--chart-line)" opacity="0.5"></circle>
-          <circle cx="193.33" cy="46.62" r="2.5" fill="var(--chart-line)" opacity="0.5"></circle>
-          <circle cx="236.67" cy="18.90" r="2.5" fill="var(--chart-line)" opacity="0.5"></circle>
-          <circle cx="280.00" cy="15.00" r="4" fill="var(--chart-line)" opacity="1"></circle>
-          <text x="20.00" y="51.68" text-anchor="middle" font-size="7.5" fill="currentColor">1,799</text>
-          <text x="63.33" y="57.00" text-anchor="middle" font-size="7.5" fill="currentColor">1,522</text>
-          <text x="106.67" y="46.00" text-anchor="middle" font-size="7.5" fill="currentColor">2,094</text>
-          <text x="150.00" y="44.12" text-anchor="middle" font-size="7.5" fill="currentColor">2,192</text>
-          <text x="193.33" y="38.62" text-anchor="middle" font-size="7.5" fill="currentColor">2,478</text>
-          <text x="236.67" y="10.90" text-anchor="middle" font-size="7.5" fill="currentColor">3,920</text>
-          <text x="280.00" y="9.00" text-anchor="end" font-size="8" fill="currentColor" font-weight="700">4,123</text>
-          <text x="20.00" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">1월</text>
-          <text x="63.33" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">2월</text>
-          <text x="106.67" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">3월</text>
-          <text x="150.00" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">4월</text>
-          <text x="193.33" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">5월</text>
-          <text x="236.67" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">6월</text>
-          <text x="280.00" y="96" text-anchor="middle" font-size="9" fill="currentColor" opacity="0.7">현재</text>
-        </svg>
-        <div class="desc">한국해양진흥공사가 매주 월요일 발표하는 국적선사 중심의 컨테이너 운임지수로, 부산항 등 국내 주요 수출항로의 운임 동향을 반영합니다. 미주 서안·유럽·지중해 항로가 동반 조정되며 3주 연속 하락했습니다.</div>
-      </div>
-
-      <div class="indicator-card">
-        <div class="name">WTI 유가</div>
-        <div class="price">$84.46 / 배럴</div>
-        <div class="chg up">▲ 전일 대비 +6.6% · 7/29(현지시간) 마감 기준</div>
-        <div class="desc">이란 관련 지정학 긴장이 재부각되며 중동 리스크 프리미엄이 확대, WTI가 하루 만에 6%대 급등했습니다.</div>
-      </div>
-
-      <div class="indicator-card">
-        <div class="name">국제 금 시세</div>
-        <div class="price">$4,101.99 / 온스</div>
-        <div class="chg up">▲ 전일 대비 +1.9% · 7/29(현지시간) 마감 기준</div>
-        <div class="desc">연준의 금리 동결 발표와 지정학 리스크 고조 속에 안전자산 수요가 확대되며 금값이 상승했습니다.</div>
-      </div>
-
-      <div class="indicator-card">
-        <div class="name">미국 기준금리</div>
-        <div class="price">3.50 ~ 3.75%</div>
-        <div class="chg flat">— 5회 연속 동결 (2026년 7월 29일 FOMC, 케빈 워시 의장 취임 후 2번째 회의 · 위원 3명은 인상 주장)</div>
-      </div>
-
-      <div class="indicator-card">
-        <div class="name">한국 기준금리</div>
-        <div class="price">2.75%</div>
-        <div class="chg flat">— 동결 유지 (2026년 7월 16일 금융통화위원회, 2.50%→2.75% 인상 이후 유지) · 다음 회의 8/27 예정, 추가 인상 가능성 거론</div>
-      </div>
+    <div class="card stock-card">
+      <div class="stock-name">KOSDAQ</div>
+      <div class="stock-value">737.35</div>
+      <div class="stock-delta up">▲ 17.59 (+2.44%)</div>
     </div>
-    <div class="note">SCFI·KCCI는 최근 6개월 월말 발표치와 이번 달 최신 발표치를 이은 선 그래프입니다. 이 데이터는 검색 시점 기준이며 실시간 시세와 차이가 있을 수 있습니다.</div>
-  </section>
+    <div class="card stock-card">
+      <div class="stock-name">나스닥</div>
+      <div class="stock-value">25,913.90</div>
+      <div class="stock-delta up">▲ 540.04 (+2.13%)</div>
+    </div>
+    <div class="card stock-card">
+      <div class="stock-name">다우존스</div>
+      <div class="stock-value">53,178.41</div>
+      <div class="stock-delta up">▲ 693.38 (+1.32%)</div>
+    </div>
+  </div>
+</section>
 
-  <section id="stock">
-    <h2>주가·지수 비교</h2>
-    <div class="stock-grid">
-      <div class="stock-card">
-        <div class="name">KOSPI</div>
-        <div class="price">5,593.56</div>
-        <div class="chg down">▼ 69.68 (-1.23%)</div>
-        <div class="prev">직전 영업일(7/30) vs 그 전 영업일(7/29) 대비 · 3거래일 연속 하락</div>
-      </div>
-      <div class="stock-card">
-        <div class="name">KOSDAQ</div>
-        <div class="price">644.78</div>
-        <div class="chg down">▼ 17.90 (-2.70%)</div>
-        <div class="prev">직전 영업일(7/30) vs 그 전 영업일(7/29) 대비</div>
-      </div>
-      <div class="stock-card">
-        <div class="name">나스닥종합지수</div>
-        <div class="price">24,442.94</div>
-        <div class="chg down">▼ 433.97 (-1.74%)</div>
-        <div class="prev">직전 영업일(현지시간 7/29) vs 그 전 영업일(현지시간 7/28) 대비</div>
-      </div>
-      <div class="stock-card">
-        <div class="name">다우존스30</div>
-        <div class="price">51,594.14</div>
-        <div class="chg down">▼ 1,153.18 (-2.19%)</div>
-        <div class="prev">직전 영업일(현지시간 7/29) vs 그 전 영업일(현지시간 7/28) 대비</div>
-      </div>
-    </div>
-    <div class="note">코스피·코스닥은 7/28 '검은 화요일'(-10.84%), 7/29(-5.98%)에 이어 7/30에도 추가 하락하며 3거래일 연속 조정을 받았습니다. 나스닥·다우존스는 美 연준의 금리 동결(3.50~3.75%) 발표 이후 인플레이션 우려와 美국채 30년물 금리 급등(5.21%, 2007년 7월 이후 최고)의 영향으로 동반 급락했습니다. 이 데이터는 검색 시점 기준이며 실시간 시세와 차이가 있을 수 있습니다.</div>
-  </section>
+<section id="news">
+  <h2>📰 뉴스</h2>
 
-  <section id="news">
-    <h2>고객사 뉴스</h2>
+  <div class="news-sub-h">고객사</div>
 
-    <div class="card">
-      <div class="company">LG그룹</div>
-      <h3><a href="http://www.bizwnews.com/news/articleView.html?idxno=142024" target="_blank" rel="noopener">"'착시 효과' 걷어내면"…LG, 배터리 실속 적자에 물류비 부담</a></h3>
-      <p>LG그룹 주요 계열사들이 2분기 겉으로는 선방한 실적표를 내놨지만, 전기차 캐즘 장기화와 해상운임 폭등, 중국 업체 추격 등으로 실속은 적자에 가깝다는 분석이다. 증권가와 산업계는 그룹 실적의 착시 효과를 우려하고 있다.</p>
-      <div class="meta">2026.07.30 · 비즈더블유뉴스</div>
-    </div>
-    <div class="card">
-      <div class="company">LG전자</div>
-      <h3><a href="https://n.news.naver.com/mnews/article/092/0002432530?sid=105" target="_blank" rel="noopener">[속보] LG전자 2분기 영업익 1.6조원...역대 2분기 최대</a></h3>
-      <p>LG전자가 2분기 연결 기준 영업이익 1조5791억원, 매출 23조8265억원을 기록하며 역대 2분기 최대 실적을 달성했다. 전년 동기 대비 영업이익이 2배 이상 늘었으며 생활가전과 전장 사업의 성장이 실적을 견인했다.</p>
-      <div class="meta">2026.07.30 · 네이버뉴스</div>
-    </div>
-    <div class="card">
-      <div class="company">LG전자</div>
-      <h3><a href="http://www.dailypop.kr/news/articleView.html?idxno=101063" target="_blank" rel="noopener">LG전자·LG유플러스, '밸류업' 본격화…배당·자사주 매입·대규모 AI 투자</a></h3>
-      <p>LG전자와 LG유플러스가 각각 이사회를 열고 중간배당 실시와 자사주 매입·소각 계획을 발표하며 주주가치 제고에 나섰다. 동시에 대규모 AI 투자를 병행하며 신성장 동력 확보에도 속도를 내고 있다.</p>
-      <div class="meta">2026.07.30 · 데일리팝</div>
-    </div>
-    <div class="card">
-      <div class="company">LG전자 로봇사업</div>
-      <h3><a href="https://www.itdaily.kr/news/articleView.html?idxno=240718" target="_blank" rel="noopener">[컨콜] LG전자, AIDC 냉각 수주 6000억원…로봇 사업도 본격화</a></h3>
-      <p>LG전자가 2분기 실적발표 컨퍼런스콜에서 상반기 AIDC 냉각솔루션 분야 6000억원 이상의 수주를 확보했다고 밝혔다. 로봇 사업도 본격화하며 엔비디아와 냉각·로봇·AI 팩토리·모빌리티 분야 협력을 추진 중이라고 설명했다.</p>
-      <div class="meta">2026.07.30 · IT데일리</div>
-    </div>
-    <div class="card">
-      <div class="company">LG에너지솔루션</div>
-      <h3><a href="https://n.news.naver.com/mnews/article/032/0003461466?sid=101" target="_blank" rel="noopener">배터리 3사 "적자 터널 끝"</a></h3>
-      <p>LG에너지솔루션이 2분기 영업이익 1133억원을 기록하며 2개 분기 만에 흑자 전환에 성공했다. 매출은 6조562억원으로 전년 동기 대비 24.8% 증가했으며 ESS와 원통형 배터리 판매 확대가 실적 개선을 이끌었다.</p>
-      <div class="meta">2026.07.30 · 네이버뉴스</div>
-    </div>
-    <div class="card">
-      <div class="company">남동발전</div>
-      <h3><a href="https://www.wikitree.co.kr/articles/1149521" target="_blank" rel="noopener">한국남동발전, AI 입은 'GENi 2.0' 전면 가동…발전소 운영·안전관리 디지털화</a></h3>
-      <p>한국남동발전이 AI와 빅데이터 기술을 접목한 차세대 발전설비관리시스템 'GENi 2.0'을 31일 공식 개통한다고 밝혔다. 발전소 설비 유지관리와 안전관리 업무 전반을 디지털 기반으로 전환하는 것이 골자다.</p>
-      <div class="meta">2026.07.30 · 위키트리</div>
-    </div>
-    <div class="card">
-      <div class="company">남부발전</div>
-      <h3><a href="https://n.news.naver.com/mnews/article/009/0005714654?sid=101" target="_blank" rel="noopener">"지역사회 복지 안전망 강화"…남부발전, 하동군 취약계층 어르신에게 폭염 대비 물품 지원</a></h3>
-      <p>한국남부발전이 경남 하동군에서 발전소 주변지역 취약계층 어르신 1900명에게 990만원 상당의 온열질환 예방 물품을 전달했다. 폭염 재난 위기경보 '심각' 단계 상향에 따른 대응 조치다.</p>
-      <div class="meta">2026.07.30 · 네이버뉴스</div>
-    </div>
-    <div class="card">
-      <div class="company">중부발전</div>
-      <h3><a href="https://n.news.naver.com/mnews/article/119/0003116697?sid=101" target="_blank" rel="noopener">[컨콜] SK이노베이션 E&S "용인 반도체 클러스터 발전소, 2030년 2분기 상업운전"</a></h3>
-      <p>SK이노베이션 E&S가 한국중부발전과 컨소시엄을 구성해 용인 반도체 클러스터에 1050MW 규모 LNG 열병합발전소를 건설 중이라고 밝혔다. 해당 시설은 SK하이닉스 반도체 팹에 스팀을 공급하며 2030년 가동될 예정이다.</p>
-      <div class="meta">2026.07.30 · 네이버뉴스</div>
-    </div>
+  <div class="card">
+    <div class="news-co">LG전자</div>
+    <div class="news-title"><a href="https://n.news.naver.com/mnews/article/025/0003542088?sid=101" target="_blank" rel="noopener">[Biz&Now] LG전자, 동남아 상업용 세탁사업 확대</a></div>
+    <div class="news-summary">LG전자가 태국 2위 빨래방 프랜차이즈 '트렌디 워시' 630개 매장에 상업용 세탁기·건조기를 납품하는 등 동남아 기업 고객 대상 세탁 솔루션 공급을 확대한다고 밝혔다. 동남아 B2B 세탁사업 강화 행보로 풀이된다.</div>
+  </div>
+  <div class="card">
+    <div class="news-co">LG전자</div>
+    <div class="news-title"><a href="https://n.news.naver.com/mnews/article/020/0003738519?sid=101" target="_blank" rel="noopener">LG전자 "못 따라 할 것" 반사율 0.5% OLED 구현</a></div>
+    <div class="news-summary">LG전자가 2026년형 'LG 올레드 에보(G6)' TV에서 반사율 0.5%의 신기술을 구현했다고 밝혔다. 중국 등 경쟁사가 따라올 수 없는 디스플레이 기술 격차를 강조했다.</div>
+  </div>
 
-    <h3 class="sub">관계사 뉴스</h3>
-    <div class="card">
-      <div class="company">신성델타테크</div>
-      <h3><a href="https://www.cbci.co.kr/news/articleView.html?idxno=593327" target="_blank" rel="noopener">[속보] 신성델타테크 NXT서 주가 10.40%로 도약...변수 체크에 중점</a></h3>
-      <p>신성델타테크가 코스닥 정규시장(KRX)보다 대체거래소(NXT)에서 더 두드러진 강세를 보이며 주가가 10.40% 급등했다. 초전도체 대표주로서 투자심리가 살아나는 모습이며, 시장 전반이 부진한 가운데 나온 양봉 도약이라 주목도가 높다.</p>
-      <div class="meta">2026.07.30 · CBC뉴스</div>
-    </div>
+  <div class="card">
+    <div class="news-co">LG전자 로봇사업</div>
+    <div class="news-title"><a href="https://biz.chosun.com/it-science/ict/2026/08/03/EPBFAP47INA63PUSESEQLBIKN4/?utm_source=naver&utm_medium=original&utm_campaign=biz" target="_blank" rel="noopener">LG CNS, LG전자와 1897억원 규모 계약…휴머노이드 로봇 학습 인프라 구축</a></div>
+    <div class="news-summary">LG CNS가 LG전자와 1897억원 규모의 계약을 맺고 휴머노이드 로봇 학습에 필요한 피지컬웍스 플랫폼과 GPU 인프라를 공급하기로 했다. 그룹 내 피지컬 AI·로봇 사업 확대의 일환이다.</div>
+  </div>
 
-    <h3 class="sub">물류·무역 업계 헤드라인</h3>
-    <ul class="headline-list">
-      <li>
-        <a href="https://www.asiatoday.co.kr/kn/view.php?key=20260730010011040" target="_blank" rel="noopener">광양항 '항만자동화 테스트베드' 착공…7724억 투입해 AI 스마트항만 구축
-          <div class="h-meta">2026.07.30 · 아시아투데이</div>
-        </a>
-      </li>
-      <li>
-        <a href="https://www.fnnews.com/news/202607301124568143" target="_blank" rel="noopener">美연준 금리 동결에 국제유가 오를까…韓 산업계 희비 교차
-          <div class="h-meta">2026.07.30 · 파이낸셜뉴스</div>
-        </a>
-      </li>
-      <li>
-        <a href="https://www.hankyung.com/article/202607277600i" target="_blank" rel="noopener">HMM, 2030년까지 29조원 투자 중장기 전략 발표…2분기 실적도 청신호
-          <div class="h-meta">2026.07.27 · 한국경제</div>
-        </a>
-      </li>
-      <li>
-        <a href="http://www.haesanews.com/news/articleView.html?idxno=149637" target="_blank" rel="noopener">KCCI 4,123p로 1.93% 하락…미주·유럽 약세 지속으로 3주 연속 하락
-          <div class="h-meta">2026.07.27 · 해사신문</div>
-        </a>
-      </li>
-      <li>
-        <a href="http://www.haesanews.com/news/articleView.html?idxno=149613" target="_blank" rel="noopener">SCFI 3주 연속 하락 3,062.95…미주 서안·유럽 노선 운임 조정
-          <div class="h-meta">2026.07.24 · 해사신문</div>
-        </a>
-      </li>
-    </ul>
-  </section>
+  <div class="card">
+    <div class="news-co">LG에너지솔루션</div>
+    <div class="news-title"><a href="https://www.ggilbo.com/news/articleView.html?idxno=1172545" target="_blank" rel="noopener">LG엔솔, 하반기 ESS 출하 50%↑… 3분기 본격 반등 예고</a></div>
+    <div class="news-summary">LG에너지솔루션이 북미 ESS 생산능력 확대와 중저가 전기차 배터리 사업 효과로 2분기 흑자 전환에 성공했으며, 하반기 ESS 출하량이 50% 이상 늘어날 것으로 전망된다.</div>
+  </div>
+  <div class="card">
+    <div class="news-co">LG에너지솔루션</div>
+    <div class="news-title"><a href="http://www.kjdaily.com/article.php?aid=1785755982683774227" target="_blank" rel="noopener">글로벌 ESS 시장 71% 성장…LG엔솔 북미 점유율 13.6%로 확대</a></div>
+    <div class="news-summary">글로벌 ESS 시장이 71% 성장한 가운데 LG에너지솔루션은 출하량 증가율 357%로 국내 업체 중 가장 두드러진 성장세를 기록, 북미 시장 점유율을 13.6%까지 끌어올렸다.</div>
+  </div>
 
-  <footer>
-    마지막 업데이트: 2026-07-31 07:35 (KST)<br>
-    ※ 고객사 중 신성에스티는 최근 24시간 이내 확인된 기사가 없어 생략했습니다.<br>
-    ※ 환율·주가·운임지수·경제지표 데이터는 검색 시점 기준이며 실시간 시세와 차이가 있을 수 있습니다. 정확한 수치는 각 공식 출처에서 재확인하시기 바랍니다.
-  </footer>
+  <div class="card">
+    <div class="news-co">한국남동발전</div>
+    <div class="news-title"><a href="https://www.gnnews.co.kr/news/articleView.html?idxno=642494" target="_blank" rel="noopener">경남도, 발전공기업 통합본사 유치·LH 본사 존치 총력대응 선언</a></div>
+    <div class="news-summary">발전 5개 공기업 통합 논의가 본격화된 가운데 경남도가 기존 한국남동발전 본사 청사를 활용하면 신규 통합청사 건립비 2500억원 이상을 절감할 수 있다는 강점을 내세우며 유치전에 나섰다.</div>
+  </div>
 
-</div>
+  <div class="card">
+    <div class="news-co">한국남부발전</div>
+    <div class="news-title"><a href="http://www.fnnews.com/news/202608031858092132" target="_blank" rel="noopener">유럽 바이오선박유 수출 뚫었다… 친환경 에너지 기업 '우뚝'</a></div>
+    <div class="news-summary">한 친환경 에너지 기업이 한국남부발전에 기력용 친환경 바이오중유 273억원 규모를 6월 수주·납품하는 등 국내 발전공기업 대상 바이오연료 공급을 확대하고 있다.</div>
+  </div>
+
+  <div class="card">
+    <div class="news-co">한국중부발전</div>
+    <div class="news-title"><a href="https://n.news.naver.com/mnews/article/030/0003453828?sid=100" target="_blank" rel="noopener">중부발전-제주대, 탄소중립 실현·미래 인재 양성을 위한 산학협력 나서</a></div>
+    <div class="news-summary">한국중부발전이 제주대학교와 업무협약을 체결하고 제주지역 탄소중립 실현을 위한 신재생에너지 사업 개발, 기술협력, 인재양성 등에 나서기로 했다.</div>
+  </div>
+
+  <div class="news-sub-h">관계사</div>
+
+  <div class="card">
+    <div class="news-co">신성델타테크</div>
+    <div class="news-title"><a href="https://www.topstarnews.net/news/articleView.html?idxno=16153783" target="_blank" rel="noopener">신성델타테크 주가, 8월 3일 31,100원 7.24% 상승 마감</a></div>
+    <div class="news-summary">신성델타테크가 초전도체 테마 강세에 힘입어 전일 대비 7.24% 오른 3만1,100원에 장을 마쳤다. 코스닥 시장 시가총액 8,548억원으로 79위를 기록했다.</div>
+  </div>
+
+  <div class="card">
+    <div class="news-co">신성에스티</div>
+    <div class="news-title"><a href="https://www.topstarnews.net/news/articleView.html?idxno=16153905" target="_blank" rel="noopener">신성에스티, 특정계좌 매매관여 과다로 투자주의종목 지정</a></div>
+    <div class="news-summary">신성에스티가 특정계좌(군)의 매매관여 과다를 사유로 8월 4일 하루 투자주의종목으로 지정됐다. 3일간 주가변동률은 26.28%에 달했다.</div>
+  </div>
+
+  <div class="news-sub-h">물류·무역 업계 헤드라인</div>
+  <div class="card">
+    <div class="news-title"><a href="https://n.news.naver.com/mnews/article/119/0003117778?sid=101" target="_blank" rel="noopener">컨테이너 해상운임 하락세 꺾였다…KCCI, 3주 만에 반등</a></div>
+  </div>
+  <div class="card">
+    <div class="news-title"><a href="https://www.greened.kr/news/articleView.html?idxno=346588" target="_blank" rel="noopener">8000㎞ 단축… 북극항로 시범운항 22일 출항</a></div>
+  </div>
+  <div class="card">
+    <div class="news-title"><a href="https://www.theguru.co.kr/news/article.html?no=105137" target="_blank" rel="noopener">美 최대 해운·물류 무대 오르는 LX판토스…K-물류 인사이트 공유</a></div>
+  </div>
+  <div class="card">
+    <div class="news-title"><a href="http://www.thebigdata.co.kr/view.php?ud=202607291118384726570d99e4c8_23" target="_blank" rel="noopener">조선산업, 미국 패싱하나...트럼프 제재 불구 中 점유율 역대 최고</a></div>
+  </div>
+
+</section>
+
+<footer class="foot">
+  <div class="rule"></div>
+  마지막 업데이트: 2026년 8월 4일 (화) 07:10 (KST)<br>
+  환율·주가·경제지표는 검색 시점 기준이며 실시간 시세와 차이가 있을 수 있습니다. 매매기준율 확인이 어려운 경우 전일 종가 또는 국제시장 시세로 대체 표시했습니다.
+</footer>
+
+<script>
+(function(){
+  function drawChart(elId, labels, values, color){
+    var el = document.getElementById(elId);
+    if(!el) return;
+    var w = 320, h = 130, padL = 34, padR = 12, padT = 16, padB = 22;
+    var n = values.length;
+    var min = Math.min.apply(null, values), max = Math.max.apply(null, values);
+    if(min === max){ min -= 1; max += 1; }
+    var rangePad = (max - min) * 0.12;
+    min -= rangePad; max += rangePad;
+    var stepX = (w - padL - padR) / (n - 1);
+    function x(i){ return padL + i * stepX; }
+    function y(v){ return padT + (h - padT - padB) * (1 - (v - min) / (max - min)); }
+    var pts = values.map(function(v,i){ return x(i) + ',' + y(v); }).join(' ');
+    var svg = '<svg class="chart" viewBox="0 0 ' + w + ' ' + h + '" preserveAspectRatio="xMinYMid meet">';
+    svg += '<polyline points="' + pts + '" fill="none" stroke="' + color + '" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>';
+    values.forEach(function(v,i){
+      svg += '<circle cx="' + x(i) + '" cy="' + y(v) + '" r="3" fill="' + color + '"/>';
+      var label = (v >= 1000) ? Math.round(v).toLocaleString() : (Math.round(v*100)/100);
+      var anchor = i===0 ? 'start' : (i===n-1 ? 'end' : 'middle');
+      svg += '<text class="chart-pt" x="' + x(i) + '" y="' + (y(v) - 8) + '" text-anchor="' + anchor + '">' + label + '</text>';
+      svg += '<text class="chart-axis" x="' + x(i) + '" y="' + (h - 6) + '" text-anchor="' + anchor + '">' + labels[i] + '</text>';
+    });
+    svg += '</svg>';
+    el.innerHTML = svg;
+  }
+
+  drawChart('chart-usd', ['2월','3월','4월','5월','6월','7월','현재'],
+    [1424.50,1513.40,1476.10,1505.80,1541.50,1437.10,1429.80], '#2f5fe0');
+
+  drawChart('chart-cny', ['2월','3월','4월','5월','6월','7월','현재'],
+    [207.91,218.70,215.90,222.18,226.97,213.37,211.77], '#2f5fe0');
+
+  drawChart('chart-thb', ['2월','3월','4월','5월','6월','7월','현재'],
+    [4580.0,4610.0,4502.0,4627.0,4634.0,4331.10,4605.50], '#2f5fe0');
+
+  drawChart('chart-usdthb', ['2월','3월','4월','5월','6월','7월','현재'],
+    [31.1026,32.8286,32.7876,32.5438,33.2650,33.467,32.540], '#1c9d6b');
+
+  drawChart('chart-usdcny', ['2월','3월','4월','5월','6월','7월','현재'],
+    [6.8515,6.9200,6.8370,6.7774,6.7916,6.7551,6.7687], '#1c9d6b');
+
+  drawChart('chart-scfi', ['1월','2월','3월','4월','5월','6월','현재(7/31)'],
+    [1316.75,1333.1,1826.77,1911.4,2572,3239.64,3205.97], '#e0402f');
+
+  drawChart('chart-kcci', ['2월','3월','4월','5월','6월','7월','현재(8/3)'],
+    [1522,2094,2192,2478,3920,4123,4318], '#e0402f');
+})();
+</script>
+
 </body>
 </html>
