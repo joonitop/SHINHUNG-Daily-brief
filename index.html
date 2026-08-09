@@ -95,11 +95,13 @@
   .stock-card .stock-delta{ font-size:13px; font-weight:700; margin-top:2px; }
 
   /* news */
-  .news-co{ font-weight:800; font-size:13px; color:var(--accent2); margin-bottom:4px; text-transform:none; }
+  .news-co{ font-weight:800; font-size:13px; color:var(--accent2); margin-bottom:2px; text-transform:none; }
+  .news-date{ font-size:11px; color:var(--sub); margin-bottom:6px; }
   .news-title a{ color:var(--text); text-decoration:none; font-weight:700; font-size:16px; line-height:1.35; }
   .news-title a:active{ opacity:.7; }
   .news-summary{ color:var(--sub); font-size:14px; margin-top:4px; }
   .news-sub-h{ font-size:14px; font-weight:800; color:var(--sub); margin:16px 0 8px; text-transform:uppercase; letter-spacing:.04em; }
+  .headline-date{ font-size:11px; color:var(--sub); margin-top:4px; }
 
   footer.foot{ padding:20px 16px 10px; color:var(--sub); font-size:12px; line-height:1.7; }
   footer.foot .rule{ border-top:1px solid var(--border); margin-bottom:14px; }
@@ -111,7 +113,7 @@
 
 <header class="top">
   <h1>신흥글로벌 데일리 뉴스</h1>
-  <div class="date">2026년 8월 9일 (일)</div>
+  <div class="date">2026년 8월 10일 (월)</div>
 </header>
 
 <nav class="tabbar">
@@ -135,7 +137,7 @@
   </div>
   <div class="card">
     <div class="sched-day">8/14(금)</div>
-    <div class="sched-item"><span class="sched-time">14:00-16:00</span>사장단 회의</div>
+    <div class="sched-item"><span class="sched-time">13:00-15:00</span>사장단 회의</div>
   </div>
 </section>
 
@@ -148,16 +150,16 @@
         <div class="fx-title">KRW / USD</div>
         <div class="fx-value">1,407.48원</div>
       </div>
-      <div class="fx-note">매매기준율 기준 · 주말 휴장으로 매매기준율 확인 불가, 국제 외환시장 전일 정규장 종가로 대체 표시 (전일 표시치 대비 16.32원↓)</div>
+      <div class="fx-note">매매기준율 기준 · 서울외국환중개 당일 고시 전으로 국제 외환시장 전일 정규장 종가로 대체 표시 (전일 표시치 대비 보합)</div>
       <div class="chart-wrap"><div id="chart-usd"></div></div>
     </div>
 
     <div class="card fx-card">
       <div class="fx-head">
         <div class="fx-title">KRW / THB (100바트)</div>
-        <div class="fx-value">4,301.20원</div>
+        <div class="fx-value">4,296.40원</div>
       </div>
-      <div class="fx-note">매매기준율 기준 · 주말 휴장으로 매매기준율 확인 불가, 국제 외환시장 전일 정규장 종가로 대체 표시</div>
+      <div class="fx-note">매매기준율 기준 · 서울외국환중개 당일 고시 전으로 국제 외환시장 전일 정규장 종가로 대체 표시 (전일 표시치 대비 4.80원↓)</div>
       <div class="chart-wrap"><div id="chart-thb"></div></div>
     </div>
 
@@ -166,14 +168,14 @@
         <div class="fx-title">KRW / CNY</div>
         <div class="fx-value">213.73원</div>
       </div>
-      <div class="fx-note">매매기준율 기준 · 주말 휴장으로 매매기준율 확인 불가, 국제 외환시장 전일 정규장 종가로 대체 표시 (전일 표시치 대비 2.76원↑)</div>
+      <div class="fx-note">매매기준율 기준 · 서울외국환중개 당일 고시 전으로 국제 외환시장 전일 정규장 종가로 대체 표시 (전일 표시치 대비 보합)</div>
       <div class="chart-wrap"><div id="chart-cny"></div></div>
     </div>
 
     <div class="card fx-card">
       <div class="fx-head">
         <div class="fx-title">USD / THB</div>
-        <div class="fx-value">33.020</div>
+        <div class="fx-value">33.038</div>
       </div>
       <div class="fx-note">조회 시점 국제시장 시세 기준 (실시간 변동)</div>
       <div class="chart-wrap"><div id="chart-usdthb"></div></div>
@@ -198,7 +200,7 @@
       <div class="fx-title">SCFI <span class="badge">상하이컨테이너운임지수</span></div>
       <div class="fx-value">3,205.97p</div>
     </div>
-    <div class="fx-note">상하이 수출 컨테이너 운임의 종합지수 · 8/7 발표치 (전주 3,062.95 대비 143.02p↑, 미·이란 군사충돌 재개로 중동발 공급망 불안 확대)</div>
+    <div class="fx-note">상하이 수출 컨테이너 운임의 종합지수 · 8/7 발표치 유지 (매주 금요일 발표, 다음 발표 8/14)</div>
     <div class="chart-wrap"><div id="chart-scfi"></div></div>
   </div>
   <div class="card">
@@ -206,7 +208,7 @@
       <div class="fx-title">KCCI <span class="badge">한국컨테이너운임지수</span></div>
       <div class="fx-value">4,138p</div>
     </div>
-    <div class="fx-note">부산항 출발 컨테이너 해상운임 종합지수 · 8/3 발표치 유지 (매주 월요일 발표, 다음 발표 8/10)</div>
+    <div class="fx-note">부산항 출발 컨테이너 해상운임 종합지수 · 8/3 발표치 유지 (매주 월요일 14시 발표, 오늘 신규 발표 예정)</div>
     <div class="chart-wrap"><div id="chart-kcci"></div></div>
   </div>
 
@@ -214,23 +216,23 @@
   <div class="ind-grid">
     <div class="card ind-card">
       <div class="ind-label">WTI 유가</div>
-      <div class="ind-value">$78.44</div>
-      <div class="ind-delta down">▼ 1.2% (전일 대비)</div>
+      <div class="ind-value">$78.18</div>
+      <div class="ind-delta up">▲ $0.89 (+1.15%, 전일 대비)</div>
     </div>
     <div class="card ind-card">
       <div class="ind-label">국제 금 시세</div>
-      <div class="ind-value">$4,343.30/oz</div>
-      <div class="ind-delta flat">보합 (전일 대비 0.1%미만 변동)</div>
+      <div class="ind-value">$4,353.20/oz</div>
+      <div class="ind-delta up">▲ $9.90 (+0.23%, 전일 대비)</div>
     </div>
     <div class="card ind-card">
       <div class="ind-label">미국 기준금리</div>
       <div class="ind-value">3.50~3.75%</div>
-      <div class="ind-delta flat">5연속 동결 (7/29 FOMC)</div>
+      <div class="ind-delta flat">5연속 동결 (7/30 FOMC)</div>
     </div>
     <div class="card ind-card">
       <div class="ind-label">한국 기준금리</div>
       <div class="ind-value">2.75%</div>
-      <div class="ind-delta up">▲ 0.25%p (7/16 인상, 유지중)</div>
+      <div class="ind-delta up">▲ 0.25%p (7/16 인상, 유지중 · 8/28 금통위 예정)</div>
     </div>
   </div>
 </section>
@@ -269,42 +271,49 @@
 
   <div class="card">
     <div class="news-co">LG그룹</div>
-    <div class="news-title"><a href="https://www.newspim.com/news/view/20260809000135" target="_blank" rel="noopener">'구광모 & 젠슨 황' 재회동, AI 협력 구체화 전망</a></div>
-    <div class="news-summary">구광모 LG그룹 회장이 이번 주 실리콘밸리 엔비디아 본사에서 젠슨 황 CEO와 두 번째 공식 회동을 갖는다. 지난 6월 서울 회동에서 로봇·AI 데이터센터·모빌리티 협력 방향을 논의한 데 이어, 이번엔 구체적 사업화 방안이 다뤄질 전망이다.</div>
+    <div class="news-date">2026.08.08 23:16</div>
+    <div class="news-title"><a href="https://www.cbci.co.kr/news/articleView.html?idxno=595503" target="_blank" rel="noopener">구광모, 실리콘밸리서 엔비디아 CEO와 재회…로봇·AI 협력 본격화</a></div>
+    <div class="news-summary">구광모 LG그룹 회장이 실리콘밸리 엔비디아 본사에서 젠슨 황 CEO와 다시 만나 로봇·AI 협력을 본격화한다. 지난 6월 서울 회동에서 로봇 공동개발과 데이터센터 협력 방향을 잡은 데 이어, 이번 만남에서 사업화 논의가 구체화될 전망이다.</div>
   </div>
 
   <div class="card">
     <div class="news-co">LG전자</div>
-    <div class="news-title"><a href="https://www.newspim.com/news/view/20260807001063" target="_blank" rel="noopener">LG전자, 히트펌프 영토 넓힌다…가정용부터 118℃ 산업용까지</a></div>
-    <div class="news-summary">LG전자가 유럽 가정용 시장에서 쌓은 히트펌프 기술력을 국내 주거·산업용 시장으로 확장한다. 정부의 난방 전기화 정책에 맞춰 제주 보급사업에 참여하는 한편, 제지·식품·화학 공정에 적용할 118℃ 고온 산업용 히트펌프까지 영역을 넓히고 있다.</div>
+    <div class="news-date">2026.08.10 05:04</div>
+    <div class="news-title"><a href="https://n.news.naver.com/mnews/article/081/0003668851?sid=101" target="_blank" rel="noopener">LG전자, 다저스 홈구장에 235m LED 전광판 공급</a></div>
+    <div class="news-summary">LG전자가 미국 프로야구 LA 다저스 홈구장에 길이 235m에 달하는 대형 LED 전광판을 공급하며 스포츠 경기장용 상업용 디스플레이 시장 공략을 확대한다. B2B 디스플레이 사업 확대의 일환이다.</div>
   </div>
 
   <div class="card">
     <div class="news-co">LG전자 로봇사업</div>
-    <div class="news-title"><a href="https://n.news.naver.com/mnews/article/030/0003455494?sid=105" target="_blank" rel="noopener">美 규제에 삼성전자·LG전자 '로청' 글로벌 출시 늦춘다…"공급망 재편"</a></div>
-    <div class="news-summary">삼성전자와 LG전자가 로봇청소기 신제품의 글로벌 출시 시점을 늦춘 것으로 파악됐다. 관세로 인한 생산기지 재검토 흐름에 더해, 미국이 해외 생산 로봇청소기의 신규 장비 인증까지 제한하면서 공급망 재편 압박이 커진 영향이다.</div>
+    <div class="news-date">2026.08.09 05:07</div>
+    <div class="news-title"><a href="https://www.kpinews.kr/newsView/1065556996028893" target="_blank" rel="noopener">LG전자, '후진형 습식 로봇청소기' 美특허 출원</a></div>
+    <div class="news-summary">LG전자가 미국 특허청에 새로운 로봇청소기 관련 특허를 출원한 것으로 확인됐다. 해외 특허 큐레이션 채널 '페이턴트 펄스'에 따르면 이번 특허(출원번호 US20260224083A1)는 '후진형 습식' 청소 방식을 적용한 기술이다.</div>
   </div>
 
   <div class="card">
     <div class="news-co">LG에너지솔루션</div>
-    <div class="news-title"><a href="https://www.ccdailynews.com/news/articleView.html?idxno=2433125" target="_blank" rel="noopener">LG에너지솔루션, 복날 맞아 지역 주민 100여 명에 삼계탕 대접</a></div>
-    <div class="news-summary">LG에너지솔루션이 무더위에 지친 지역 주민들의 건강한 여름나기를 지원하며 지역사회와의 상생에 나섰다. 지난 8일 복날을 맞아 오창 에너지플랜트 인근 마을 어르신과 주민 100여 명을 초청해 삼계탕을 대접했다.</div>
+    <div class="news-date">2026.08.09 20:25</div>
+    <div class="news-title"><a href="https://n.news.naver.com/mnews/article/032/0003463182?sid=101" target="_blank" rel="noopener">적자 탈출 배터리 3사, 전고체로 로봇 '심장' 노린다</a></div>
+    <div class="news-summary">국내 배터리 3사가 로봇용 전고체 배터리 개발에 속도를 내는 가운데, LG에너지솔루션은 로봇 고객사에 기존 원통형(2170) 배터리를 공급하며 향후 이를 전고체 배터리로 전환해 나갈 계획인 것으로 전해졌다.</div>
   </div>
 
   <div class="card">
     <div class="news-co">한국남동발전</div>
+    <div class="news-date">2026.08.09 13:04</div>
     <div class="news-title"><a href="https://www.shinailbo.co.kr/news/articleView.html?idxno=5049454" target="_blank" rel="noopener">남동발전, 해남 400MW 태양광 착공…2028년 상업운전 목표</a></div>
     <div class="news-summary">한국남동발전이 전남 해남에 단일 사업 기준 국내 최대 규모인 400MW급 태양광 발전단지를 착공했다. SK하이닉스에 RE100 재생에너지 전력을 공급할 계획이며, 2028년 상업운전을 목표로 한다.</div>
   </div>
 
   <div class="card">
     <div class="news-co">한국남부발전</div>
+    <div class="news-date">2026.08.09 13:02</div>
     <div class="news-title"><a href="https://news.einfomax.co.kr/news/articleView.html?idxno=4429284" target="_blank" rel="noopener">[발전사 이모저모] 남부, 하동복합 EPC에 두산에너빌 선정</a></div>
     <div class="news-summary">한국남부발전이 노후 석탄화력인 하동화력 2·3호기를 대체하는 1GW 규모 하동복합 건설사업의 일괄 설치조건부 구매계약(EPC) 낙찰자로 두산에너빌리티 컨소시엄을 선정했다.</div>
   </div>
 
   <div class="card">
     <div class="news-co">한국중부발전</div>
+    <div class="news-date">2026.08.09 18:19</div>
     <div class="news-title"><a href="https://sjbnews.com/news/news.php?number=884798" target="_blank" rel="noopener">신협, 고창 해상풍력에 1,000억원 규모 금융지원</a></div>
     <div class="news-summary">신협이 전북 고창 해상풍력 사업에 1,000억원 규모 금융을 지원한다. 해당 사업은 한국중부발전과 20년 장기 고정가격 계약(PPA)을 체결해 안정적인 전력 판매 기반을 갖췄으며, 생산 전력은 전북 지역 첨단 전략산업에 공급된다.</div>
   </div>
@@ -313,33 +322,35 @@
 
   <div class="card">
     <div class="news-co">신성에스티</div>
+    <div class="news-date">2026.08.09 08:42</div>
     <div class="news-title"><a href="https://www.pinpointnews.co.kr/news/articleView.html?idxno=475618" target="_blank" rel="noopener">신성에스티, ESS 타고 미국으로… SK증권 "체질이 달라졌다"</a></div>
     <div class="news-summary">신성에스티가 전기차 중심 사업에서 ESS(에너지저장장치)와 미국 현지 생산으로 영역을 넓히며 체질 개선에 속도를 내고 있다. SK증권은 ESS와 미국 현지화라는 두 성장축을 근거로 긍정적 평가를 내놨다.</div>
   </div>
 
   <div class="news-sub-h">물류·무역 업계 헤드라인</div>
   <div class="card">
-    <div class="news-title"><a href="https://www.ebn.co.kr/news/articleView.html?idxno=1719254" target="_blank" rel="noopener">예상 밖 강한 해운시장…글로벌 선사들 줄줄이 눈높이 높였다</a></div>
+    <div class="news-title"><a href="https://www.pinpointnews.co.kr/news/articleView.html?idxno=474873" target="_blank" rel="noopener">수출입 물동량 회복 기대감… 해운 관련주 다시 부각</a></div>
+    <div class="headline-date">2026.08.06 09:42</div>
   </div>
   <div class="card">
-    <div class="news-title"><a href="https://www.todayenergy.kr/news/articleView.html?idxno=301208" target="_blank" rel="noopener">호르무즈 해협서 GasLog LNG 운반선 피격…중동 해상 물류 긴장 고조</a></div>
+    <div class="news-title"><a href="https://n.news.naver.com/mnews/article/421/0009101324?sid=102" target="_blank" rel="noopener">[인터뷰] "호르무즈 위기 넘긴 HMM…이제 부산서 100년 준비할 때"</a></div>
+    <div class="headline-date">2026.08.06 16:28</div>
   </div>
   <div class="card">
-    <div class="news-title"><a href="http://www.the-biz.co.kr/news/articleView.html?idxno=725451" target="_blank" rel="noopener">[THE Biz&amp;CEO] 이규복 현대글로비스 사장의 '성장전략 세가지'</a></div>
+    <div class="news-title"><a href="https://www.econovill.com/news/articleView.html?idxno=747182" target="_blank" rel="noopener">HMM, 인도~동아프리카 항로 신설…아프리카 전역 서비스망 확대</a></div>
+    <div class="headline-date">2026.08.05 11:48</div>
   </div>
   <div class="card">
-    <div class="news-title"><a href="https://www.wikitree.co.kr/articles/1150900" target="_blank" rel="noopener">KR, 탄소규제·사이버 보안 대응 기술 공개… 동남아 해운시장 협력 확대</a></div>
-  </div>
-  <div class="card">
-    <div class="news-title"><a href="http://www.impacton.net/news/articleView.html?idxno=19867" target="_blank" rel="noopener">8월 2주차 국내 ESG 핫클립</a></div>
+    <div class="news-title"><a href="https://n.news.naver.com/mnews/article/025/0003542895?sid=101" target="_blank" rel="noopener">"중국 대신 한국것 쓰게해야"…미·중 갈등이 벌어준 韓 골든타임</a></div>
+    <div class="headline-date">2026.08.07 05:00</div>
   </div>
 
 </section>
 
 <footer class="foot">
   <div class="rule"></div>
-  마지막 업데이트: 2026년 8월 9일 (일) (KST)<br>
-  환율·주가·경제지표는 검색 시점 기준이며 실시간 시세와 차이가 있을 수 있습니다. 주말 휴장으로 국내 매매기준율 확인이 불가하여 환율 3종(USD·CNY·THB)은 국제시장 전일 정규장 종가로 대체 표시했습니다. SCFI는 매주 금요일, KCCI는 매주 월요일 발표되며, KCCI는 이번 브리핑 작성 시점에 신규 발표 전이라 직전 발표치(8/3)를 유지했습니다.
+  마지막 업데이트: 2026년 8월 10일 (월) 07:50 (KST)<br>
+  환율·주가·경제지표는 검색 시점 기준이며 실시간 시세와 차이가 있을 수 있습니다. 원화 환율 3종(USD·CNY·THB)은 서울외국환중개 매매기준율 당일 고시 전이라 국제시장 전일 정규장 종가로 대체 표시했습니다. SCFI는 매주 금요일, KCCI는 매주 월요일 발표되며, KCCI는 이번 브리핑 작성 시점에 금주 신규 발표 전이라 직전 발표치(8/3)를 유지했습니다.
 </footer>
 
 <script>
@@ -377,10 +388,10 @@
     [207.91,218.70,215.90,222.18,226.97,213.37,213.73], '#2f5fe0');
 
   drawChart('chart-thb', ['2월','3월','4월','5월','6월','7월','현재'],
-    [4580.0,4610.0,4502.0,4627.0,4634.0,4331.10,4301.20], '#2f5fe0');
+    [4580.0,4610.0,4502.0,4627.0,4634.0,4331.10,4296.40], '#2f5fe0');
 
   drawChart('chart-usdthb', ['2월','3월','4월','5월','6월','7월','현재'],
-    [31.1026,32.8286,32.7876,32.5438,33.2650,33.467,33.020], '#1c9d6b');
+    [31.1026,32.8286,32.7876,32.5438,33.2650,33.467,33.038], '#1c9d6b');
 
   drawChart('chart-usdcny', ['2월','3월','4월','5월','6월','7월','현재'],
     [6.8515,6.9200,6.8370,6.7774,6.7916,6.7551,6.7476], '#1c9d6b');
