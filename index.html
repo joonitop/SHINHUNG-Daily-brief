@@ -2,120 +2,95 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>신흥글로벌 데일리 뉴스</title>
 <style>
   :root{
-    --bg:#f4f6f9; --card:#ffffff; --text:#1a1d24; --sub:#5b6472; --border:#e3e7ee;
-    --accent:#2f5fe0; --accent2:#1c9d6b; --danger:#e0402f; --nav-bg:#1a2540; --nav-text:#eef1f8;
-    --chip-bg:#eef2fb;
-  }
-  @media (prefers-color-scheme: dark){
-    :root{
-      --bg:#12151c; --card:#1b202b; --text:#eef1f7; --sub:#9aa4b5; --border:#2a3140;
-      --accent:#6c93ff; --accent2:#3fcf95; --danger:#ff6b5e; --nav-bg:#0d1220; --nav-text:#eef1f8;
-      --chip-bg:#22283a;
-    }
-  }
-  :root[data-theme="dark"]{
-    --bg:#12151c; --card:#1b202b; --text:#eef1f7; --sub:#9aa4b5; --border:#2a3140;
-    --accent:#6c93ff; --accent2:#3fcf95; --danger:#ff6b5e; --nav-bg:#0d1220; --nav-text:#eef1f8;
-    --chip-bg:#22283a;
-  }
-  :root[data-theme="light"]{
-    --bg:#f4f6f9; --card:#ffffff; --text:#1a1d24; --sub:#5b6472; --border:#e3e7ee;
-    --accent:#2f5fe0; --accent2:#1c9d6b; --danger:#e0402f; --nav-bg:#1a2540; --nav-text:#eef1f8;
-    --chip-bg:#eef2fb;
+    --bg:#f4f5f7; --card:#ffffff; --text:#1c1f26; --muted:#6b7280;
+    --accent:#2f6fed; --accent-dark:#1d4fbf; --border:#e5e7eb;
+    --up:#e0453f; --down:#2f6fed; --navh:56px;
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
   body{
     margin:0; background:var(--bg); color:var(--text);
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans KR",Helvetica,Arial,sans-serif;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans KR",sans-serif;
     font-size:16px; line-height:1.5;
-    padding-bottom:32px;
+    -webkit-text-size-adjust:100%;
   }
-  header.top{ padding:18px 16px 10px; }
-  header.top h1{ margin:0 0 4px; font-size:21px; font-weight:800; letter-spacing:-0.3px; }
-  header.top .date{ color:var(--sub); font-size:14px; }
-
-  nav.tabbar{
-    position:sticky; top:0; z-index:50;
-    display:flex; width:100%; background:var(--nav-bg); box-shadow:0 2px 8px rgba(0,0,0,.15);
+  .wrap{max-width:640px; margin:0 auto; padding:0 16px 32px;}
+  header.top{padding:18px 16px 8px; max-width:640px; margin:0 auto;}
+  h1.title{font-size:22px; margin:0 0 4px; font-weight:800; letter-spacing:-0.3px;}
+  .date-line{color:var(--muted); font-size:14px; margin:0;}
+  nav.tabs{
+    position:sticky; top:0; z-index:100; background:#ffffff;
+    display:flex; width:100%; border-bottom:1px solid var(--border);
+    box-shadow:0 1px 4px rgba(0,0,0,0.06);
   }
-  nav.tabbar a{
-    flex:1; text-align:center; color:var(--nav-text); text-decoration:none;
-    font-size:15px; font-weight:700; padding:14px 4px; white-space:nowrap;
-    scroll-margin-top:56px;
+  nav.tabs a{
+    flex:1; text-align:center; padding:14px 2px; font-size:15px; font-weight:700;
+    color:var(--text); text-decoration:none; white-space:nowrap;
   }
-  nav.tabbar a:active, nav.tabbar a:focus{ background:rgba(255,255,255,.08); }
-
-  section{ padding:18px 16px 6px; scroll-margin-top:56px; }
-  section h2{ font-size:18px; margin:0 0 10px; font-weight:800; }
-  section .section-desc{ color:var(--sub); font-size:13px; margin:-6px 0 12px; }
-
+  nav.tabs a:active, nav.tabs a:hover{background:#eef2ff; color:var(--accent-dark);}
+  section{scroll-margin-top:var(--navh); padding-top:18px;}
+  h2.sec-title{font-size:18px; margin:0 0 10px; font-weight:800; display:flex; align-items:center; gap:6px;}
   .card{
     background:var(--card); border:1px solid var(--border); border-radius:14px;
-    padding:12px 14px; margin-bottom:8px; box-shadow:0 1px 3px rgba(0,0,0,.04);
+    padding:12px 14px; margin-bottom:8px; box-shadow:0 1px 2px rgba(0,0,0,0.03);
   }
-  .card + .card{ margin-top:8px; }
+  .card + .card{margin-top:8px;}
+  .row{display:flex; justify-content:space-between; align-items:center; gap:8px;}
+  .muted{color:var(--muted); font-size:13px;}
+  .small-note{color:var(--muted); font-size:12px; margin-top:4px;}
+  .day-block{margin-bottom:10px;}
+  .day-block:last-child{margin-bottom:0;}
+  .day-title{font-weight:800; font-size:15px; margin-bottom:6px;}
+  .evt-line{padding:8px 0; border-top:1px dashed var(--border); font-size:15px;}
+  .evt-line:first-of-type{border-top:none;}
+  .evt-time{font-weight:700; color:var(--accent-dark); margin-right:6px;}
+  .fx-card .fx-head{display:flex; justify-content:space-between; align-items:baseline;}
+  .fx-name{font-weight:800; font-size:16px;}
+  .fx-value{font-weight:800; font-size:20px;}
+  .fx-change{font-size:13px; font-weight:700; margin-left:6px;}
+  .up{color:var(--up);}
+  .down{color:var(--down);}
+  .chart-wrap{margin-top:6px;}
+  svg.chart{width:100%; height:auto; display:block;}
+  .grid-cards{display:grid; grid-template-columns:1fr 1fr; gap:8px;}
+  .stat-card{background:var(--card); border:1px solid var(--border); border-radius:14px; padding:12px 14px;}
+  .stat-label{font-size:13px; color:var(--muted); font-weight:700; margin-bottom:4px;}
+  .stat-value{font-size:18px; font-weight:800;}
+  .stat-change{font-size:13px; font-weight:700; margin-top:2px;}
+  .stock-card .row{padding:4px 0;}
+  .stock-name{font-weight:800;}
+  .news-company{font-weight:800; font-size:15px; margin-bottom:2px;}
+  .news-date{font-size:12px; color:var(--muted); margin-bottom:6px;}
+  .news-title a{color:var(--accent-dark); font-weight:700; text-decoration:none; font-size:15px;}
+  .news-title a:active, .news-title a:hover{text-decoration:underline;}
+  .news-summary{font-size:14px; margin-top:4px; color:#333;}
+  .headline-item{padding:10px 0; border-top:1px dashed var(--border);}
+  .headline-item:first-child{border-top:none;}
+  footer.bottom{margin-top:24px; padding:16px 4px 8px; color:var(--muted); font-size:12px; border-top:1px solid var(--border);}
+  footer.bottom p{margin:4px 0;}
 
-  /* schedule */
-  .sched-day{ font-weight:800; font-size:14px; color:var(--accent); margin-bottom:6px; }
-  .sched-item{ font-size:16px; padding:6px 0; border-top:1px dashed var(--border); }
-  .sched-item:first-of-type{ border-top:none; }
-  .sched-time{ font-weight:700; margin-right:8px; }
-
-  /* fx cards */
-  .fx-grid{ display:grid; grid-template-columns:1fr; gap:10px; }
-  .fx-card .fx-head{ display:flex; justify-content:space-between; align-items:baseline; flex-wrap:wrap; gap:6px; }
-  .fx-card .fx-title{ font-weight:800; font-size:16px; }
-  .fx-card .fx-value{ font-weight:800; font-size:20px; color:var(--accent); }
-  .fx-card .fx-note{ color:var(--sub); font-size:12px; margin-top:2px; }
-  .chart-wrap{ width:100%; overflow-x:auto; margin-top:8px; }
-  svg.chart{ display:block; width:100%; height:auto; min-width:320px; }
-  .chart-pt{ font-size:10px; fill:var(--sub); }
-  .chart-axis{ font-size:10px; fill:var(--sub); }
-
-  /* indicator grid */
-  .ind-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:10px; }
-  @media (max-width:420px){ .ind-grid{ grid-template-columns:1fr 1fr; } }
-  .ind-card{ text-align:left; }
-  .ind-label{ color:var(--sub); font-size:13px; margin-bottom:4px; }
-  .ind-value{ font-weight:800; font-size:18px; }
-  .ind-delta{ font-size:13px; font-weight:700; margin-top:2px; }
-  .up{ color:var(--danger); }
-  .down{ color:var(--accent); }
-  .flat{ color:var(--sub); }
-
-  /* stock grid */
-  .stock-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:10px; }
-  .stock-card .stock-name{ font-weight:800; font-size:15px; margin-bottom:4px; }
-  .stock-card .stock-value{ font-size:19px; font-weight:800; }
-  .stock-card .stock-delta{ font-size:13px; font-weight:700; margin-top:2px; }
-
-  /* news */
-  .news-co{ font-weight:800; font-size:13px; color:var(--accent2); margin-bottom:4px; text-transform:none; }
-  .news-date{ color:var(--sub); font-size:12px; margin-bottom:4px; }
-  .news-title a{ color:var(--text); text-decoration:none; font-weight:700; font-size:16px; line-height:1.35; }
-  .news-title a:active{ opacity:.7; }
-  .news-summary{ color:var(--sub); font-size:14px; margin-top:4px; }
-  .news-sub-h{ font-size:14px; font-weight:800; color:var(--sub); margin:16px 0 8px; text-transform:uppercase; letter-spacing:.04em; }
-
-  footer.foot{ padding:20px 16px 10px; color:var(--sub); font-size:12px; line-height:1.7; }
-  footer.foot .rule{ border-top:1px solid var(--border); margin-bottom:14px; }
-
-  .badge{ display:inline-block; background:var(--chip-bg); color:var(--accent); font-size:11px; font-weight:700; border-radius:6px; padding:2px 6px; margin-left:6px; }
+  .page-tabs{ display:flex; width:100%; background:#ffffff; border-bottom:1px solid var(--border); }
+  .page-tabs a{ flex:1; text-align:center; padding:12px 4px; font-size:14px; font-weight:800; color:var(--muted); text-decoration:none; border-bottom:3px solid transparent; }
+  .page-tabs a.active{ color:var(--accent-dark); border-bottom-color:var(--accent); }
 </style>
 </head>
 <body>
 
+<div class="page-tabs">
+  <a href="index.html" class="active">오늘의 브리핑</a>
+  <a href="archive/index.html">지난 브리핑</a>
+</div>
+
 <header class="top">
-  <h1>신흥글로벌 데일리 뉴스</h1>
-  <div class="date">2026년 9월 21일 (월)</div>
+  <h1 class="title">신흥글로벌 데일리 뉴스</h1>
+  <p class="date-line" id="today-date">2026년 9월 22일 (화) · KST 기준</p>
 </header>
 
-<nav class="tabbar">
+<nav class="tabs">
   <a href="#schedule">일정</a>
   <a href="#fx">환율</a>
   <a href="#indicators">경제지표</a>
@@ -123,275 +98,268 @@
   <a href="#news">뉴스</a>
 </nav>
 
-<section id="schedule">
-  <h2>📅 향후 7일 일정 <span class="badge">SG일정</span></h2>
-  <div class="card">
-    <div class="sched-day">9/21(월)</div>
-    <div class="sched-item"><span class="sched-time">14:00-15:30</span>그린E영업전략회의</div>
-  </div>
-  <div class="card">
-    <div class="sched-day">9/22(화)</div>
-    <div class="sched-item"><span class="sched-time">08:00-10:00</span>해외 경영정보회의</div>
-    <div class="sched-item"><span class="sched-time">14:00-15:30</span>중견가전회의</div>
-    <div class="sched-item"><span class="sched-time">16:30-18:00</span>독서토론회 7차 : 그린에너지사업부장</div>
-  </div>
-  <div class="card">
-    <div class="sched-day">9/23(수)</div>
-    <div class="sched-item"><span class="sched-time">08:30-10:30</span>국내 경영정보회의</div>
-  </div>
-</section>
+<div class="wrap">
 
-<section id="fx">
-  <h2>💱 환율</h2>
-  <div class="fx-grid">
-
-    <div class="card fx-card">
-      <div class="fx-head">
-        <div class="fx-title">KRW / USD</div>
-        <div class="fx-value">1,383.30원</div>
+  <section id="schedule">
+    <h2 class="sec-title">📅 향후 7일 일정 <span class="muted" style="font-weight:400;font-size:13px;">(SG일정)</span></h2>
+    <div class="card">
+      <div class="day-block">
+        <div class="day-title">9/22 (화)</div>
+        <div class="evt-line"><span class="evt-time">08:00-10:00</span>해외 경영정보회의</div>
+        <div class="evt-line"><span class="evt-time">14:00-15:30</span>중견가전회의</div>
+        <div class="evt-line"><span class="evt-time">16:30-18:00</span>독서토론회 7차 : 그린에너지사업부장</div>
       </div>
-      <div class="fx-note">매매기준율 기준 · 9/21(월) 이른 아침으로 금일 매매기준율 고시 전이라 확인 불가하여 전일(9/18, 금) 서울외환시장 종가 1,383.30원으로 대체 표시 (전일 대비 1.10원↑, +0.08%)</div>
-      <div class="chart-wrap"><div id="chart-usd"></div></div>
+      <div class="day-block">
+        <div class="day-title">9/23 (수)</div>
+        <div class="evt-line"><span class="evt-time">08:30-10:30</span>국내 경영정보회의</div>
+      </div>
+      <div class="day-block">
+        <div class="day-title">9/28 (월)</div>
+        <div class="evt-line"><span class="evt-time">11:00-12:00</span>SS 창립기념식</div>
+      </div>
     </div>
+  </section>
+
+  <section id="fx">
+    <h2 class="sec-title">💱 환율</h2>
 
     <div class="card fx-card">
       <div class="fx-head">
-        <div class="fx-title">KRW / THB (100바트)</div>
-        <div class="fx-value">4,160.27원</div>
+        <span class="fx-name">KRW / USD</span>
+        <span><span class="fx-value">1,381.00</span><span class="fx-change down">▼2.30 (-0.17%)</span></span>
       </div>
-      <div class="fx-note">매매기준율 기준 · 국내 매매기준율 미고시로 국제 환전 시세(조회 시점 기준, 100바트당)로 대체 표시</div>
-      <div class="chart-wrap"><div id="chart-thb"></div></div>
+      <div class="chart-wrap" id="chart-usd"></div>
+      <div class="small-note">매매기준율 기준 · 금일 고시 전으로 전일(9/21) 서울외환시장 종가로 대체 표시</div>
     </div>
 
     <div class="card fx-card">
       <div class="fx-head">
-        <div class="fx-title">KRW / CNY</div>
-        <div class="fx-value">206.54원</div>
+        <span class="fx-name">KRW / THB <span class="muted" style="font-weight:400;">(100바트)</span></span>
+        <span><span class="fx-value">4,152.00</span></span>
       </div>
-      <div class="fx-note">매매기준율 기준 · 9/21(월) 이른 아침으로 금일 매매기준율 고시 전이라 확인 불가하여 전일(9/18, 금) 원-위안 매매기준율 206.54원으로 대체 표시 (전일 대비 0.44원↑, +0.21%)</div>
-      <div class="chart-wrap"><div id="chart-cny"></div></div>
+      <div class="chart-wrap" id="chart-thb"></div>
+      <div class="small-note">매매기준율 기준 · 국내 매매기준율 미고시로 국제 환전 시세(조회 시점 기준)로 대체 표시</div>
     </div>
 
     <div class="card fx-card">
       <div class="fx-head">
-        <div class="fx-title">USD / THB</div>
-        <div class="fx-value">33.320</div>
+        <span class="fx-name">KRW / CNY</span>
+        <span><span class="fx-value">206.29</span><span class="fx-change down">▼0.25 (-0.12%)</span></span>
       </div>
-      <div class="fx-note">조회 시점 국제시장 시세 기준 (실시간 변동)</div>
-      <div class="chart-wrap"><div id="chart-usdthb"></div></div>
+      <div class="chart-wrap" id="chart-cny"></div>
+      <div class="small-note">매매기준율 기준 · 금일 고시 전으로 전일(9/21) 서울외환시장 종가로 대체 표시</div>
     </div>
 
     <div class="card fx-card">
       <div class="fx-head">
-        <div class="fx-title">USD / CNY</div>
-        <div class="fx-value">6.6978</div>
+        <span class="fx-name">USD / THB</span>
+        <span><span class="fx-value">33.30</span></span>
       </div>
-      <div class="fx-note">조회 시점 국제시장 시세 기준 (실시간 변동)</div>
-      <div class="chart-wrap"><div id="chart-usdcny"></div></div>
+      <div class="chart-wrap" id="chart-usdthb"></div>
+      <div class="small-note">조회 시점 국제시장 시세 기준 · 실시간으로 변동됨</div>
     </div>
 
-  </div>
-</section>
+    <div class="card fx-card">
+      <div class="fx-head">
+        <span class="fx-name">USD / CNY</span>
+        <span><span class="fx-value">6.6977</span></span>
+      </div>
+      <div class="chart-wrap" id="chart-usdcny"></div>
+      <div class="small-note">조회 시점 국제시장 시세 기준 · 실시간으로 변동됨</div>
+    </div>
+  </section>
 
-<section id="indicators">
-  <h2>📦 해운 운임지수</h2>
-  <div class="card">
-    <div class="fx-head">
-      <div class="fx-title">SCFI <span class="badge">상하이컨테이너운임지수</span></div>
-      <div class="fx-value">3,662.18p</div>
-    </div>
-    <div class="fx-note">상하이 수출 컨테이너 운임의 종합지수 · 9/11(금) 발표치. 9/18(금) 신규 발표치가 검색되지 않아 최신 확인 가능한 수치를 그대로 유지 표시합니다</div>
-    <div class="chart-wrap"><div id="chart-scfi"></div></div>
-  </div>
-  <div class="card">
-    <div class="fx-head">
-      <div class="fx-title">KCCI <span class="badge">한국컨테이너운임지수</span></div>
-      <div class="fx-value">4,696p</div>
-    </div>
-    <div class="fx-note">부산항 출발 컨테이너 해상운임 종합지수 · 9/14(월) 발표치. 오늘(9/21, 월)이 발표일이나 이른 아침으로 신규 발표 전이라 최신 확인 가능한 수치를 유지 표시합니다</div>
-    <div class="chart-wrap"><div id="chart-kcci"></div></div>
-  </div>
+  <section id="indicators">
+    <h2 class="sec-title">📊 경제지표</h2>
 
-  <h2 style="margin-top:20px;">📊 경제지표</h2>
-  <div class="ind-grid">
-    <div class="card ind-card">
-      <div class="ind-label">WTI 유가</div>
-      <div class="ind-value">$100.30</div>
-      <div class="ind-delta down">▼ -$1.61 (-1.58%) · 9/18(금) 현지시간 NYMEX 11월물 마감. 주말 휴장으로 직전 정규장 마감가 기준</div>
+    <div class="card">
+      <div class="row"><span class="fx-name">SCFI <span class="muted" style="font-weight:400;font-size:12px;">상하이컨테이너운임지수</span></span><span class="fx-value">3,687.83</span></div>
+      <div class="muted small-note">글로벌 컨테이너 해상운임 동향을 나타내는 대표 지수 (매주 금요일 발표)</div>
+      <div class="chart-wrap" id="chart-scfi"></div>
     </div>
-    <div class="card ind-card">
-      <div class="ind-label">국제 금 시세</div>
-      <div class="ind-value">$4,377.00/oz</div>
-      <div class="ind-delta up">▲ +$36.30 · 조회 시점(현지시간 기준) 국제 현물가. 안전자산 선호 속 강세 흐름 지속</div>
-    </div>
-    <div class="card ind-card">
-      <div class="ind-label">미국 기준금리</div>
-      <div class="ind-value">3.75~4.00%</div>
-      <div class="ind-delta up">▲ +0.25%p 인상 · 9월 FOMC(현지시간 9/16)에서 2023년 7월 이후 처음으로 인상 결정(종전 3.50~3.75%). 연내 추가 인상 가능성도 거론</div>
-    </div>
-    <div class="card ind-card">
-      <div class="ind-label">한국 기준금리</div>
-      <div class="ind-value">3.00%</div>
-      <div class="ind-delta flat">동결 유지 · 8/27(목) 금통위서 2.75%→3.00%로 2연속 0.25%p 인상 결정한 이후 동결 유지 중</div>
-    </div>
-  </div>
-</section>
 
-<section id="stock">
-  <h2>📈 주가지수</h2>
-  <div class="section-desc">국내지수: 직전 영업일(9/18, 금) 종가 vs 그 전 영업일(9/17, 목) 종가 · 미국지수: 직전 마감(현지시간 9/18, 금) vs 그 전 마감(9/17, 목) · 검색 시점 기준이며 실시간 시세와 차이가 있을 수 있음</div>
-  <div class="stock-grid">
+    <div class="card">
+      <div class="row"><span class="fx-name">KCCI <span class="muted" style="font-weight:400;font-size:12px;">한국컨테이너운임지수</span></span><span class="fx-value">4,760</span></div>
+      <div class="muted small-note">부산항 출발 컨테이너 운임을 기준으로 산출하는 지수 (매주 월요일 발표) · 전주 대비 +64p (+1.4%)</div>
+      <div class="chart-wrap" id="chart-kcci"></div>
+    </div>
+
+    <div class="grid-cards">
+      <div class="stat-card">
+        <div class="stat-label">WTI 유가</div>
+        <div class="stat-value">$91.86</div>
+        <div class="stat-change up">▲ +1.07%</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">국제 금 시세</div>
+        <div class="stat-value">$4,366.00</div>
+        <div class="stat-change down">▼ -0.30%</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">미국 기준금리</div>
+        <div class="stat-value">3.75~4.00%</div>
+        <div class="stat-change up">▲ 9/16 0.25%p 인상</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-label">한국 기준금리</div>
+        <div class="stat-value">3.00%</div>
+        <div class="stat-change muted">8/27부터 동결 유지</div>
+      </div>
+    </div>
+  </section>
+
+  <section id="stock">
+    <h2 class="sec-title">📈 주가/지수</h2>
     <div class="card stock-card">
-      <div class="stock-name">KOSPI</div>
-      <div class="stock-value">6,894.23</div>
-      <div class="stock-delta up">▲ 178.82 (+2.66%)</div>
+      <div class="row"><span class="stock-name">KOSPI</span><span>7,007.72 <span class="fx-change up">▲113.49 (+1.65%)</span></span></div>
+      <div class="row"><span class="stock-name">KOSDAQ</span><span>836.27 <span class="fx-change up">▲9.15 (+1.11%)</span></span></div>
+      <div class="row"><span class="stock-name">NASDAQ</span><span>27,122.09 <span class="fx-change up">▲599.55 (+2.26%)</span></span></div>
+      <div class="row"><span class="stock-name">DOW JONES</span><span>52,048.83 <span class="fx-change up">▲366.19 (+0.71%)</span></span></div>
+      <div class="small-note">국내 지수는 9/21(월) 종가 기준 직전 영업일(9/18, 금) 대비, 미국 지수는 9/21(현지시간) 종가 기준 직전 거래일(9/18) 대비 등락률입니다. 검색 시점 기준이며 실시간 시세와 차이가 있을 수 있습니다.</div>
     </div>
-    <div class="card stock-card">
-      <div class="stock-name">KOSDAQ</div>
-      <div class="stock-value">827.12</div>
-      <div class="stock-delta up">▲ 4.94 (+0.60%)</div>
+  </section>
+
+  <section id="news">
+    <h2 class="sec-title">📰 고객사 뉴스</h2>
+
+    <div class="card">
+      <div class="news-company">LG그룹</div>
+      <div class="news-date">2026.09.21 18:02</div>
+      <div class="news-title"><a href="https://www.ajunews.com/view/20260921092539019" target="_blank">'회장님들'의 시총 전쟁 1년…승자는 SK그룹 '최태원'</a></div>
+      <div class="news-summary">구광모 회장의 LG그룹 시가총액이 158조9400억원에서 188조2700억원으로 29조3300억원(18.5%) 늘어난 것으로 집계됐다. 5위·6위 그룹의 순위도 뒤바뀐 것으로 나타났다.</div>
     </div>
-    <div class="card stock-card">
-      <div class="stock-name">나스닥</div>
-      <div class="stock-value">26,522.55</div>
-      <div class="stock-delta up">▲ 104.25 (+0.39%)</div>
+
+    <div class="card">
+      <div class="news-company">LG전자</div>
+      <div class="news-date">2026.09.21 14:26</div>
+      <div class="news-title"><a href="https://www.job-post.co.kr/news/articleView.html?idxno=228519" target="_blank">LG전자 2.32% 상승…AI 데이터센터용 냉각 신제품 공개</a></div>
+      <div class="news-summary">LG전자가 AI 데이터센터용 냉각 신제품을 공개하며 주가가 2.32% 상승했다. 향후 실제 공급 계약과 냉각 사업 매출을 통해 사업 성과가 확인될 전망이며, 칠러 등 공조 기술 기반 제품군을 확대하고 있다.</div>
     </div>
-    <div class="card stock-card">
-      <div class="stock-name">다우존스</div>
-      <div class="stock-value">51,682.64</div>
-      <div class="stock-delta down">▼ 95.40 (-0.18%)</div>
+
+    <div class="card">
+      <div class="news-company">LG전자 로봇사업</div>
+      <div class="news-date">2026.09.22 06:01</div>
+      <div class="news-title"><a href="https://biz.chosun.com/industry/company/2026/09/22/6C3HPXDHKJADFMH7PSQUVEWPTE/?utm_source=naver&utm_medium=original&utm_campaign=biz" target="_blank">"전 부쳐 주는 로봇 없나요"… '가사 로봇' 언제쯤 우리 집에 올까</a></div>
+      <div class="news-summary">국내에서 가사 로봇 개발에 가장 적극적인 곳은 LG전자로 꼽힌다. LG전자는 지난 6월 CEO 직속 로봇사업센터를 신설해 사업 개발부터 영업·운영, 공급망과 제조까지 로봇 상용화에 필요한 기능을 한데 모았다.</div>
     </div>
-  </div>
-</section>
 
-<section id="news">
-  <h2>📰 뉴스</h2>
+    <div class="card">
+      <div class="news-company">LG에너지솔루션</div>
+      <div class="news-date">2026.09.22 06:34</div>
+      <div class="news-title"><a href="http://www.wowtv.co.kr/NewsCenter/News/Read?articleId=A202609220007&t=NN" target="_blank">K배터리 주도권 찾는다…산업부, '나트륨·전고체' 집중 지원</a></div>
+      <div class="news-summary">산업통상부는 22일 LG에너지솔루션과 삼성SDI, SK온 등 배터리 3사와 포스코퓨처엠, 엘앤에프, 에코프로비엠 등 소재 업체와 함께 '배터리 산업기술 로드맵'을 발표한다. 2030년까지 8조원 규모의 나트륨·전고체 배터리 집중 투자가 골자다.</div>
+    </div>
 
-  <div class="news-sub-h">고객사</div>
+    <div class="card">
+      <div class="news-company">남동발전</div>
+      <div class="news-date">2026.09.22 06:22</div>
+      <div class="news-title"><a href="https://www.dnews.co.kr/uhtml/view.jsp?idxno=202609211129162390917" target="_blank">전력 공기업 수장들 공백… 발주ㆍ계약 차질</a></div>
+      <div class="news-summary">한전 사장 공백에 이어 남동발전도 부사장 직무대행 체제로 운영되면서 발주·계약 업무 차질이 우려된다. 발전공기업 통합 논의와 맞물려 인선 지연이 변수로 작용할 것으로 보인다.</div>
+    </div>
 
-  <div class="card">
-    <div class="news-co">LG그룹</div>
-    <div class="news-date">2026.09.21 02:00</div>
-    <div class="news-title"><a href="https://www.apnews.kr/news/articleView.html?idxno=3051392" target="_blank" rel="noopener">구광모의 '사람 중심 AI'…LG, 2.3만명 키우고 청소년까지 사다리 넓힌다</a></div>
-    <div class="news-summary">LG가 19일부터 1박 2일간 경기 이천 LG인화원에서 'LG 에이머스(Aimers) 해커톤'을 진행했다. 역대 최다인 3393명이 참가했으며 결선 진출자 96명에게 총 1억원의 지원금을 수여한다.</div>
-  </div>
+    <div class="card">
+      <div class="news-company">남부발전</div>
+      <div class="news-date">2026.09.21 17:36</div>
+      <div class="news-title"><a href="http://www.hansbiz.co.kr/news/articleView.html?idxno=867180" target="_blank">남부발전, 함안그린에너지 1181억원 리파이낸싱</a></div>
+      <div class="news-summary">한국남부발전이 함안그린에너지의 1181억원 규모 리파이낸싱을 마무리했다. 고금리 상황에 대응해 금융비용을 줄이고 출자회사의 재무구조를 안정화하기 위한 조치다.</div>
+    </div>
 
-  <div class="card">
-    <div class="news-co">LG전자</div>
-    <div class="news-date">2026.09.21 05:03</div>
-    <div class="news-title"><a href="https://www.seoul.co.kr/news/economy/industry/2026/09/21/20260921030002?wlog_tag3=naver" target="_blank" rel="noopener">LG전자, AI 데이터센터용 '터보 칠러' 출시</a></div>
-    <div class="news-summary">LG전자가 20일 인공지능 데이터센터(AIDC) 냉각에 최적화한 '공랭식 무급유 인버터 터보 칠러'를 출시했다. 전자기력으로 회전축을 띄우는 '무급유 마그네틱 베어링' 기술을 적용해 기계적 마찰과 유지비를 줄였다.</div>
-  </div>
+    <div class="card">
+      <div class="news-company">중부발전</div>
+      <div class="news-date">2026.09.21 21:54</div>
+      <div class="news-title"><a href="https://www.cstimes.com/news/articleView.html?idxno=721555" target="_blank">한국중부발전, 국제표준 인공지능 경영시스템(ISO/IEC 42001) 인증 획득</a></div>
+      <div class="news-summary">한국중부발전이 자체 개발한 생성형 AI 기반 업무 시스템에 대해 국제 표준 인공지능 경영시스템(ISO/IEC 42001) 인증을 획득했다고 밝혔다.</div>
+    </div>
 
-  <div class="card">
-    <div class="news-co">LG전자 로봇사업</div>
-    <div class="news-date">2026.09.20 16:32</div>
-    <div class="news-title"><a href="https://www.g-enews.com/view.php?ud=20260918144402492327fa31d75c_1" target="_blank" rel="noopener">미래 먹거리로 AI와 로봇 픽한 LG '총력전'…구광모 전방위 행보</a></div>
-    <div class="news-summary">구광모 LG그룹 회장이 AI와 로봇을 그룹의 미래 성장축으로 못박고 전방위 행보에 나섰다. LG전자는 완제품과 사업화를 총괄하며 로봇의 '관절과 근육'에 해당하는 액추에이터와 가정용 휴머노이드 'CLOiD'를 담당한다.</div>
-  </div>
+    <h2 class="sec-title" style="margin-top:22px;">🔗 관계사 뉴스</h2>
 
-  <div class="card">
-    <div class="news-co">LG에너지솔루션</div>
-    <div class="news-date">2026.09.21 06:09</div>
-    <div class="news-title"><a href="https://www.yna.co.kr/view/AKR20260918181100003?input=1195m" target="_blank" rel="noopener">상반기 글로벌 ESS용 배터리 출하 71% 급증…각형이 전체의 94%</a></div>
-    <div class="news-summary">상반기 글로벌 ESS용 배터리 출하량이 전년 대비 71% 급증한 가운데, LG에너지솔루션이 미국 시장용 파우치셀 생산을 확대하면서 내년에는 파우치형 비중이 올해보다 커질 전망이다.</div>
-  </div>
+    <div class="card">
+      <div class="news-company">신성델타테크</div>
+      <div class="news-date">2026.09.22 06:30</div>
+      <div class="news-title"><a href="https://www.enetnews.co.kr/news/articleView.html?idxno=54630" target="_blank">[브랜드평판] 코웨이, 가정용품 상장기업 9월 1위... 파세코, 신성델타테크...</a></div>
+      <div class="news-summary">가정용품 상장기업 브랜드평판 9월 조사에서 코웨이가 1위 자리를 굳힌 가운데, 신성델타테크가 46%대 급등하며 위닉스를 제치고 3위로 올라서는 이번 조사 최대 이변을 연출했다.</div>
+    </div>
 
-  <div class="card">
-    <div class="news-co">남동발전</div>
-    <div class="news-date">2026.09.20 16:44</div>
-    <div class="news-title"><a href="https://www.ggilbo.com/news/articleView.html?idxno=1182796" target="_blank" rel="noopener">충청 현안 해결 위해 4개 시·도 뭉쳤다</a></div>
-    <div class="news-summary">정부가 한전의 5개 발전 자회사인 동서·남부·남동·중부·서부발전을 '한국발전(가칭)'으로 통합하기로 한 가운데, 충청권 4개 시·도지사가 통합 발전사 본사 유치를 위해 공동 대응에 나섰다.</div>
-  </div>
+    <div class="card">
+      <div class="news-company">신성에스티</div>
+      <div class="news-date">2026.09.18 11:12</div>
+      <div class="news-title"><a href="https://www.pinpointnews.co.kr/news/articleView.html?idxno=488378" target="_blank">성호전자·삼화콘덴서 주가 폭풍랠리… 전원공급장치 및 적층세라믹콘덴서...</a></div>
+      <div class="news-summary">전원공급장치·MLCC 관련주 강세 속에 솔브레인홀딩스, APS이노베이션, 엠오티와 함께 신성에스티도 상승세를 이어가는 모습을 보였다.</div>
+    </div>
 
-  <div class="card">
-    <div class="news-co">남부발전</div>
-    <div class="news-date">2026.09.20 16:44</div>
-    <div class="news-title"><a href="https://www.ggilbo.com/news/articleView.html?idxno=1182796" target="_blank" rel="noopener">충청 현안 해결 위해 4개 시·도 뭉쳤다</a></div>
-    <div class="news-summary">한전 산하 5개 발전 자회사(남부·남동·중부·서부·동서발전)를 '한국발전(가칭)'으로 통합하는 방안이 추진되는 가운데, 통합 법인의 본사 소재지를 둘러싼 지역 간 유치전이 본격화하고 있다.</div>
-  </div>
+    <h2 class="sec-title" style="margin-top:22px;">🚢 물류·무역 업계 헤드라인</h2>
+    <div class="card">
+      <div class="headline-item">
+        <div class="news-date">2026.09.21 19:40</div>
+        <div class="news-title"><a href="https://www.boannews.com/news/articleView.html?idxno=145979" target="_blank">韓 선박, 해킹에 멈췄다... 선박 보안 경각심↑</a></div>
+      </div>
+      <div class="headline-item">
+        <div class="news-date">2026.09.21 18:04</div>
+        <div class="news-title"><a href="https://n.news.naver.com/mnews/article/629/0000535952?sid=102" target="_blank">부산항발 컨 운임 한 주 만에 반등…건화물 2주째 하락</a></div>
+      </div>
+      <div class="headline-item">
+        <div class="news-date">2026.09.21 17:36</div>
+        <div class="news-title"><a href="https://n.news.naver.com/mnews/article/119/0003135198?sid=101" target="_blank">컨테이너 운임, 한 주만에 반등…중국 선복 관리 영향</a></div>
+      </div>
+      <div class="headline-item">
+        <div class="news-date">2026.09.18 00:19</div>
+        <div class="news-title"><a href="http://dream.kotra.or.kr/kotranews/cms/news/actionKotraBoardDetail.do?SITE_NO=3&MENU_ID=80&CONTENTS_NO=2&bbsGbn=242&bbsSn=242&pNttSn=243991" target="_blank">미 동안향 해상운임 폭등, 파나마 가뭄부터 지정학 리스크까지 5가지 복합요인</a></div>
+      </div>
+      <div class="headline-item">
+        <div class="news-date">2026.09.15 15:10</div>
+        <div class="news-title"><a href="https://www.abcn.kr/news/articleView.html?idxno=91889" target="_blank">엘니뇨에 파나마운하 또 줄인다…해상 운임 폭등 우려</a></div>
+      </div>
+    </div>
+  </section>
 
-  <div class="card">
-    <div class="news-co">중부발전</div>
-    <div class="news-date">2026.09.20 16:44</div>
-    <div class="news-title"><a href="https://www.ggilbo.com/news/articleView.html?idxno=1182796" target="_blank" rel="noopener">충청 현안 해결 위해 4개 시·도 뭉쳤다</a></div>
-    <div class="news-summary">정부의 발전 5사 통합 추진 속에 중부발전 본사가 있는 충남 등 충청권 4개 시·도지사가 통합 발전사 본사를 충남에 둬야 한다며 공동 대응에 나섰다.</div>
-  </div>
+  <footer class="bottom">
+    <p>마지막 업데이트: 2026-09-22 06:56 (KST)</p>
+    <p>환율·주가·경제지표·해운운임지수 등은 검색 시점 기준 데이터로, 실시간 시세와 차이가 있을 수 있습니다. 정확한 거래는 반드시 공식 고시 자료를 확인하시기 바랍니다.</p>
+  </footer>
 
-  <div class="news-sub-h">물류·무역 업계 헤드라인</div>
-  <div class="card">
-    <div class="news-date">2026.09.20 23:00</div>
-    <div class="news-title"><a href="https://www.newscj.com/news/articleView.html?idxno=3434283" target="_blank" rel="noopener">[정치인사이드] 신압록강대교, 12년 만 '개통 카운트다운'…북중 교역 급증 전망</a></div>
-  </div>
-  <div class="card">
-    <div class="news-date">2026.09.19 11:08</div>
-    <div class="news-title"><a href="https://www.gokorea.kr/news/articleView.html?idxno=879115" target="_blank" rel="noopener">허리펑 방미 19∼23일, 미중 무역협상 재개</a></div>
-  </div>
-  <div class="card">
-    <div class="news-date">2026.09.18 11:50</div>
-    <div class="news-title"><a href="https://www.gokorea.kr/news/articleView.html?idxno=878994" target="_blank" rel="noopener">추석 연휴 앞두고 스마트항만 자동화 풀가동</a></div>
-  </div>
-  <div class="card">
-    <div class="news-date">2026.09.17 16:04</div>
-    <div class="news-title"><a href="https://www.ksg.co.kr/news/main_newsView.jsp?pNum=148080" target="_blank" rel="noopener">동남아 4년만에 1000弗 돌파…컨운임지수 3600선 회복</a></div>
-  </div>
-
-</section>
-
-<footer class="foot">
-  <div class="rule"></div>
-  마지막 업데이트: 2026년 9월 21일 (월) 07:00 (KST)<br>
-  환율·주가·경제지표는 검색 시점 기준이며 실시간 시세와 차이가 있을 수 있습니다. 원/달러, 원/위안은 금일(9/21) 이른 아침으로 매매기준율 고시 전이라 확인이 되지 않아 전일(9/18) 종가로 대체 표시했습니다. 원/바트(100바트)는 국내 매매기준율 고시 대상이 아니라 국제 환전 시세(조회 시점 기준)로 대체 표시했습니다. SCFI는 매주 금요일, KCCI는 매주 월요일 발표되며, 이번 조회 시점에는 신규 발표치가 확인되지 않아 직전 발표치를 유지 표시했습니다. 미국 기준금리는 9월 FOMC(현지시간 9/16)에서 3.50~3.75%→3.75~4.00%로 0.25%p 인상 결정되었으며, 2023년 7월 이후 첫 인상입니다. 한국 기준금리는 8/27(목) 금통위에서 3.00%로 인상 결정된 이후 동결 유지 중입니다.
-</footer>
+</div>
 
 <script>
 (function(){
-  function drawChart(elId, labels, values, color){
+  function renderChart(elId, labels, values, opts){
+    opts = opts || {};
     var el = document.getElementById(elId);
     if(!el) return;
-    var w = 320, h = 130, padL = 34, padR = 12, padT = 16, padB = 22;
-    var n = values.length;
+    var w = 300, h = 120, padL = 36, padR = 10, padT = 14, padB = 20;
+    var innerW = w - padL - padR, innerH = h - padT - padB;
     var min = Math.min.apply(null, values), max = Math.max.apply(null, values);
     if(min === max){ min -= 1; max += 1; }
-    var rangePad = (max - min) * 0.12;
-    min -= rangePad; max += rangePad;
-    var stepX = (w - padL - padR) / (n - 1);
-    function x(i){ return padL + i * stepX; }
-    function y(v){ return padT + (h - padT - padB) * (1 - (v - min) / (max - min)); }
-    var pts = values.map(function(v,i){ return x(i) + ',' + y(v); }).join(' ');
-    var svg = '<svg class="chart" viewBox="0 0 ' + w + ' ' + h + '" preserveAspectRatio="xMinYMid meet">';
-    svg += '<polyline points="' + pts + '" fill="none" stroke="' + color + '" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>';
-    values.forEach(function(v,i){
-      svg += '<circle cx="' + x(i) + '" cy="' + y(v) + '" r="3" fill="' + color + '"/>';
-      var label = (v >= 1000) ? Math.round(v).toLocaleString() : (Math.round(v*100)/100);
-      var anchor = i===0 ? 'start' : (i===n-1 ? 'end' : 'middle');
-      svg += '<text class="chart-pt" x="' + x(i) + '" y="' + (y(v) - 8) + '" text-anchor="' + anchor + '">' + label + '</text>';
-      svg += '<text class="chart-axis" x="' + x(i) + '" y="' + (h - 6) + '" text-anchor="' + anchor + '">' + labels[i] + '</text>';
+    var range = max - min;
+    var n = values.length;
+    var pts = values.map(function(v, i){
+      var x = padL + (innerW * i / (n - 1));
+      var y = padT + innerH - ((v - min) / range) * innerH;
+      return [x, y];
+    });
+    var pathD = pts.map(function(p, i){ return (i===0?'M':'L') + p[0].toFixed(1) + ',' + p[1].toFixed(1); }).join(' ');
+    var fmt = opts.fmt || function(v){ return v.toFixed(2); };
+    var svg = '<svg class="chart" viewBox="0 0 ' + w + ' ' + h + '" preserveAspectRatio="xMidYMid meet">';
+    svg += '<path d="' + pathD + '" fill="none" stroke="#2f6fed" stroke-width="2"/>';
+    pts.forEach(function(p, i){
+      svg += '<circle cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="2.6" fill="' + (i === n-1 ? '#e0453f' : '#2f6fed') + '"/>';
+      var labY = p[1] - 7;
+      if(labY < 9) labY = p[1] + 13;
+      svg += '<text x="' + p[0].toFixed(1) + '" y="' + labY.toFixed(1) + '" font-size="9" text-anchor="middle" fill="#333">' + fmt(values[i]) + '</text>';
+      svg += '<text x="' + p[0].toFixed(1) + '" y="' + (h - 4) + '" font-size="9" text-anchor="middle" fill="#8a8f98">' + labels[i] + '</text>';
     });
     svg += '</svg>';
     el.innerHTML = svg;
   }
 
-  drawChart('chart-usd', ['3월','4월','5월','6월','7월','8월','현재'],
-    [1513.40,1476.10,1505.80,1541.50,1437.10,1372.50,1383.30], '#2f5fe0');
+  var months = ['3월','4월','5월','6월','7월','8월','현재'];
 
-  drawChart('chart-cny', ['3월','4월','5월','6월','7월','8월','현재'],
-    [218.70,215.90,222.18,226.97,213.37,204.18,206.54], '#2f5fe0');
-
-  drawChart('chart-thb', ['3월','4월','5월','6월','7월','8월','현재'],
-    [4610.0,4502.0,4627.0,4634.0,4331.10,4244.3,4160.27], '#2f5fe0');
-
-  drawChart('chart-usdthb', ['3월','4월','5월','6월','7월','8월','현재'],
-    [32.8286,32.7876,32.5438,33.2650,33.467,33.158,33.320], '#1c9d6b');
-
-  drawChart('chart-usdcny', ['3월','4월','5월','6월','7월','8월','현재'],
-    [6.9200,6.8370,6.7774,6.7916,6.7551,6.7267,6.6978], '#1c9d6b');
-
-  drawChart('chart-scfi', ['3월','4월','5월','6월','7월','8월','현재(9/11)'],
-    [1826.77,1911.4,2572,3239.64,3062.95,3509.53,3662.18], '#e0402f');
-
-  drawChart('chart-kcci', ['3월','4월','5월','6월','7월','8월','현재(9/14)'],
-    [2094,2192,2478,3920,4123,4591,4696], '#e0402f');
+  renderChart('chart-usd', months, [1513.40,1476.10,1505.80,1541.50,1437.10,1372.50,1381.00], {fmt:function(v){return v.toFixed(0);}});
+  renderChart('chart-cny', months, [218.70,215.90,222.18,226.97,213.37,204.18,206.29], {fmt:function(v){return v.toFixed(1);}});
+  renderChart('chart-thb', months, [4610.0,4502.0,4627.0,4634.0,4331.10,4244.3,4152.00], {fmt:function(v){return v.toFixed(0);}});
+  renderChart('chart-usdthb', months, [32.8286,32.7876,32.5438,33.2650,33.467,33.158,33.30], {fmt:function(v){return v.toFixed(2);}});
+  renderChart('chart-usdcny', months, [6.9200,6.8370,6.7774,6.7916,6.7551,6.7267,6.6977], {fmt:function(v){return v.toFixed(2);}});
+  renderChart('chart-scfi', months, [1826.77,1911.4,2572,3239.64,3062.95,3509.53,3687.83], {fmt:function(v){return v.toFixed(0);}});
+  renderChart('chart-kcci', months, [2094,2192,2478,3920,4123,4591,4760], {fmt:function(v){return v.toFixed(0);}});
 })();
 </script>
 

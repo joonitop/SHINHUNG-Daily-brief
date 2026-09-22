@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>지난 브리핑 - 신흥글로벌 데일리 뉴스</title>
+<style>
+  :root{
+    --bg:#f4f5f7; --card:#ffffff; --text:#1c1f26; --muted:#6b7280;
+    --accent:#2f6fed; --accent-dark:#1d4fbf; --border:#e5e7eb;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans KR",sans-serif;
+    font-size:16px; line-height:1.5; padding-bottom:32px;
+    -webkit-text-size-adjust:100%;
+  }
+  .wrap{max-width:640px; margin:0 auto; padding:0 16px 32px;}
+
+  .page-tabs{ display:flex; width:100%; background:#ffffff; border-bottom:1px solid var(--border); }
+  .page-tabs a{ flex:1; text-align:center; padding:12px 4px; font-size:14px; font-weight:800; color:var(--muted); text-decoration:none; border-bottom:3px solid transparent; }
+  .page-tabs a.active{ color:var(--accent-dark); border-bottom-color:var(--accent); }
+
+  header.top{ padding:18px 16px 6px; max-width:640px; margin:0 auto; }
+  header.top h1{ margin:0 0 4px; font-size:20px; font-weight:800; }
+  header.top .sub{ color:var(--muted); font-size:13px; }
+
+  .date-list{ display:flex; flex-direction:column; gap:8px; margin-top:8px; }
+  a.date-card{
+    display:flex; align-items:center; justify-content:space-between;
+    background:var(--card); border:1px solid var(--border); border-radius:14px;
+    padding:14px 16px; text-decoration:none; color:var(--text);
+    box-shadow:0 1px 2px rgba(0,0,0,0.03);
+  }
+  a.date-card:active{ opacity:.7; }
+  .d-date{ font-weight:800; font-size:16px; }
+  .d-weekday{ color:var(--muted); font-size:13px; margin-top:2px; }
+  .d-arrow{ color:var(--muted); font-size:18px; }
+
+  .empty-card{
+    background:var(--card); border:1px solid var(--border); border-radius:14px;
+    padding:28px 16px; text-align:center; color:var(--muted); font-size:14px; line-height:1.8;
+  }
+
+  footer.bottom{ margin-top:24px; padding:16px 4px 8px; color:var(--muted); font-size:12px; border-top:1px solid var(--border); }
+</style>
+</head>
+<body>
+
+<div class="page-tabs">
+  <a href="../index.html">오늘의 브리핑</a>
+  <a href="index.html" class="active">지난 브리핑</a>
+</div>
+
+<header class="top">
+  <h1>지난 브리핑</h1>
+  <div class="sub">날짜를 누르면 해당 날짜의 브리핑 전체 내용을 볼 수 있습니다 (최근 1개월 보관)</div>
+</header>
+
+<div class="wrap">
+  <div class="date-list" id="date-list">
+    <div class="empty-card">아직 보관된 지난 브리핑이 없습니다.<br>오늘부터 발행되는 브리핑이 하나씩 이곳에 쌓입니다.</div>
+  </div>
+
+  <footer class="bottom">
+    <p>평일(월~금) 브리핑만 보관되며, 발행일 기준 최근 1개월이 지난 항목은 목록에서 자동으로 제외됩니다.</p>
+  </footer>
+</div>
+
+</body>
+</html>
