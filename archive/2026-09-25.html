@@ -81,13 +81,17 @@
 <body>
 
 <div class="page-tabs">
-  <a href="index.html" class="active">오늘의 브리핑</a>
-  <a href="archive/index.html">지난 브리핑</a>
+  <a href="../index.html">오늘의 브리핑</a>
+  <a href="index.html" class="active">지난 브리핑</a>
+</div>
+
+<div style="max-width:640px;margin:0 auto;padding:10px 16px 0;">
+  <a href="index.html" style="color:var(--muted);font-size:13px;text-decoration:none;">&lsaquo; 지난 브리핑 목록으로</a>
 </div>
 
 <header class="top">
-  <h1 class="title">신흥글로벌 데일리 뉴스</h1>
-  <p class="date-line" id="today-date">2026년 9월 28일 (월) · KST 기준</p>
+  <h1 class="title">신흥글로벌 데일리 뉴스 <span style="display:inline-block;font-size:12px;font-weight:800;color:var(--accent-dark);background:#eef2ff;border-radius:8px;padding:2px 8px;vertical-align:middle;margin-left:4px;">지난 브리핑</span></h1>
+  <p class="date-line" id="today-date">2026년 9월 25일 (금) · KST 기준</p>
 </header>
 
 <nav class="tabs">
@@ -137,34 +141,34 @@
     <div class="card fx-card">
       <div class="fx-head">
         <span class="fx-name">KRW / USD</span>
-        <span><span class="fx-value">1,358.00</span><span class="fx-change down">▼8.00 (-0.59%)</span></span>
+        <span><span class="fx-value">1,366.00</span><span class="fx-change up">▲7.60 (+0.56%)</span></span>
       </div>
       <div class="chart-wrap" id="chart-usd"></div>
-      <div class="small-note">매매기준율 기준 · 추석 연휴로 9/28 매매기준율 미발표(개장 전), 역외 NDF 시장 최근 호가(9/26 뉴욕장 마감 기준)로 대체 표시</div>
+      <div class="small-note">매매기준율 기준 · 추석 연휴로 매매기준율 확인 불가, 전일(9/24) 서울외환시장 환율로 대체 표시</div>
     </div>
 
     <div class="card fx-card">
       <div class="fx-head">
         <span class="fx-name">KRW / THB <span class="muted" style="font-weight:400;">(100바트)</span></span>
-        <span><span class="fx-value">4,151.50</span><span class="fx-change up">▲59.90 (+1.46%)</span></span>
+        <span><span class="fx-value">4,091.60</span><span class="fx-change down">▼66.40 (-1.60%)</span></span>
       </div>
       <div class="chart-wrap" id="chart-thb"></div>
-      <div class="small-note">매매기준율 기준 · 국내 매매기준율 미고시로 국제 환전 시세(조회 시점 기준, 100바트당)로 대체 표시</div>
+      <div class="small-note">매매기준율 기준 · 국내 매매기준율 미고시로 국제 환전 시세(조회 시점 기준)로 대체 표시</div>
     </div>
 
     <div class="card fx-card">
       <div class="fx-head">
         <span class="fx-name">KRW / CNY</span>
-        <span><span class="fx-value">202.47</span><span class="fx-change down">▼1.86 (-0.91%)</span></span>
+        <span><span class="fx-value">204.33</span><span class="fx-change up">▲1.86 (+0.92%)</span></span>
       </div>
       <div class="chart-wrap" id="chart-cny"></div>
-      <div class="small-note">매매기준율 기준 · 추석 연휴로 매매기준율 확인 불가, 전영업일(9/23) 서울외환시장 종가로 대체 표시</div>
+      <div class="small-note">매매기준율 기준 · 추석 연휴로 매매기준율 확인 불가, 전일 종가로 대체 표시</div>
     </div>
 
     <div class="card fx-card">
       <div class="fx-head">
         <span class="fx-name">USD / THB</span>
-        <span><span class="fx-value">33.220</span></span>
+        <span><span class="fx-value">33.146</span></span>
       </div>
       <div class="chart-wrap" id="chart-usdthb"></div>
       <div class="small-note">조회 시점 국제시장 시세 기준 · 실시간으로 변동됨</div>
@@ -173,10 +177,10 @@
     <div class="card fx-card">
       <div class="fx-head">
         <span class="fx-name">USD / CNY</span>
-        <span><span class="fx-value">6.7884</span></span>
+        <span><span class="fx-value">6.7134</span></span>
       </div>
       <div class="chart-wrap" id="chart-usdcny"></div>
-      <div class="small-note">조회 시점 국제시장 시세 기준 · 실시간으로 변동됨 (PBOC 기준환율)</div>
+      <div class="small-note">조회 시점 국제시장 시세 기준 · 실시간으로 변동됨</div>
     </div>
   </section>
 
@@ -185,26 +189,26 @@
 
     <div class="card">
       <div class="row"><span class="fx-name">SCFI <span class="muted" style="font-weight:400;font-size:12px;">상하이컨테이너운임지수</span></span><span class="fx-value">3,687.83</span></div>
-      <div class="muted small-note">글로벌 컨테이너 해상운임 동향을 나타내는 대표 지수 (매주 금요일 발표) · 9/18 발표치, 신규 발표 전까지 유지</div>
+      <div class="muted small-note">글로벌 컨테이너 해상운임 동향을 나타내는 대표 지수 (매주 금요일 발표) · 9/18 발표치, 금일(9/25) 신규 발표 전까지 유지</div>
       <div class="chart-wrap" id="chart-scfi"></div>
     </div>
 
     <div class="card">
       <div class="row"><span class="fx-name">KCCI <span class="muted" style="font-weight:400;font-size:12px;">한국컨테이너운임지수</span></span><span class="fx-value">4,760</span></div>
-      <div class="muted small-note">부산항 출발 컨테이너 운임을 기준으로 산출하는 지수 (매주 월요일 발표) · 9/21 발표치, 금일(9/28) 신규 발표 전까지 유지</div>
+      <div class="muted small-note">부산항 출발 컨테이너 운임을 기준으로 산출하는 지수 (매주 월요일 발표) · 9/21 발표치로 신규 발표(9/28 예정) 전까지 유지</div>
       <div class="chart-wrap" id="chart-kcci"></div>
     </div>
 
     <div class="grid-cards">
       <div class="stat-card">
         <div class="stat-label">WTI 유가</div>
-        <div class="stat-value">$78.78</div>
-        <div class="stat-change down">▼ -1.07% (-$0.85)</div>
+        <div class="stat-value">$94.61</div>
+        <div class="stat-change up">▲ +2.66% (+$2.45)</div>
       </div>
       <div class="stat-card">
         <div class="stat-label">국제 금 시세</div>
-        <div class="stat-value">$4,283.82</div>
-        <div class="stat-change down">▼ -0.22% (-$9.27)</div>
+        <div class="stat-value">$4,292.46</div>
+        <div class="stat-change down">▼ -0.66% (-$28.54)</div>
       </div>
       <div class="stat-card">
         <div class="stat-label">미국 기준금리</div>
@@ -214,7 +218,7 @@
       <div class="stat-card">
         <div class="stat-label">한국 기준금리</div>
         <div class="stat-value">3.00%</div>
-        <div class="stat-change muted">8/27 0.25%p 인상 후 동결 유지</div>
+        <div class="stat-change muted">8/27부터 동결 유지</div>
       </div>
     </div>
   </section>
@@ -224,34 +228,94 @@
     <div class="card stock-card">
       <div class="row"><span class="stock-name">KOSPI</span><span>7,080.92 <span class="fx-change up">▲63.01 (+0.90%)</span></span></div>
       <div class="row"><span class="stock-name">KOSDAQ</span><span>844.48 <span class="fx-change up">▲10.10 (+1.21%)</span></span></div>
-      <div class="row"><span class="stock-name">NASDAQ</span><span>27,068.72 <span class="fx-change up">▲129.34 (+0.48%)</span></span></div>
-      <div class="row"><span class="stock-name">DOW JONES</span><span>51,828.62 <span class="fx-change up">▲478.64 (+0.93%)</span></span></div>
-      <div class="small-note">국내 지수는 추석 연휴(9/24~26 휴장, 9/28 거래 재개)로 9/23(수) 종가가 직전 거래일 기준이며, 미국 지수는 9/25(현지시간) 종가 기준 직전 거래일 대비 등락률입니다. 검색 시점 기준이며 실시간 시세와 차이가 있을 수 있습니다.</div>
+      <div class="row"><span class="stock-name">NASDAQ</span><span>26,939.37 <span class="fx-change up">▲3.34 (+0.01%)</span></span></div>
+      <div class="row"><span class="stock-name">DOW JONES</span><span>51,349.98 <span class="fx-change down">▼161.61 (-0.31%)</span></span></div>
+      <div class="small-note">국내 지수는 추석 연휴(9/24~26 휴장, 9/28 거래 재개)로 9/23(수) 종가가 최신 거래일 기준이며, 미국 지수는 9/24(현지시간) 종가 기준 직전 거래일 대비 등락률입니다. 검색 시점 기준이며 실시간 시세와 차이가 있을 수 있습니다.</div>
     </div>
   </section>
 
   <section id="news">
-    <h2 class="sec-title">🚢 물류·무역 업계 헤드라인</h2>
+    <h2 class="sec-title">📰 고객사 뉴스</h2>
+
+    <div class="card">
+      <div class="news-company">LG그룹</div>
+      <div class="news-date">2026.09.25 04:52</div>
+      <div class="news-title"><a href="https://n.news.naver.com/mnews/article/018/0006375415?sid=101" target="_blank">최태원·구광모 등 李대통령 멕시코 간담회 참석…관세·사업 논의 주목</a></div>
+      <div class="news-summary">이재명 대통령의 멕시코 국빈 방문 중 열린 경제인 간담회에 구광모 LG그룹 회장이 최태원 대한상공회의소 회장(SK그룹 회장), 구자은 LS그룹 회장 등 기업인들과 함께 참석해 관세·사업 관련 논의에 나섰다. 노태문 삼성전자 사장 등 다른 대기업 경영진도 자리를 함께했다.</div>
+    </div>
+
+    <div class="card">
+      <div class="news-company">LG전자</div>
+      <div class="news-date">2026.09.24 15:00</div>
+      <div class="news-title"><a href="https://n.news.naver.com/mnews/article/092/0002438722?sid=105" target="_blank">LG전자, AI 데이터센터 냉각 솔루션 영토 확장</a></div>
+      <div class="news-summary">류재철 LG전자 CEO가 구광모 LG그룹 회장과 함께 미국 마이크로소프트 본사를 방문해 AI 데이터센터 인프라 분야 사업 협력 기회를 모색했다. LG전자는 AI 데이터센터에 필요한 냉각 솔루션 공급을 확대하며 관련 사업 영역을 넓히고 있다.</div>
+    </div>
+
+    <div class="card">
+      <div class="news-company">LG전자 로봇사업</div>
+      <div class="news-date">2026.09.25 06:00</div>
+      <div class="news-title"><a href="https://n.news.naver.com/mnews/article/029/0003049785?sid=101" target="_blank">삼성·LG 로봇청소기, 안방은 탈환했는데…글로벌은 여전히 '중국 천하'</a></div>
+      <div class="news-summary">삼성전자와 LG전자가 로봇청소기 신제품을 앞세워 중국 브랜드가 장악하던 국내 시장에서 회복세를 보이고 있다. 다만 올해 2분기 글로벌 로봇청소기 시장에서는 두 회사의 존재감이 여전히 제한적인 것으로 나타나 해외 시장 공략 과제가 남아있다.</div>
+    </div>
+
+    <div class="card">
+      <div class="news-company">LG에너지솔루션</div>
+      <div class="news-date">2026.09.25 06:38</div>
+      <div class="news-title"><a href="https://www.g-enews.com/view.php?ud=202609250629275234fbbec65dfb_1" target="_blank">사용 후 배터리 길 닦는 LG엔솔, 美 전력망 파고들며 새 판 짠다</a></div>
+      <div class="news-summary">LG에너지솔루션이 미국 배터리 재사용 전문기업 B2U스토리지솔루션과 배터리 공급 협약을 맺고 현지 전력망 시장 공략에 나섰다. 사용 후 배터리를 활용한 에너지저장장치(ESS) 사업으로 미국 전력망 시장 진출을 확대하는 행보다.</div>
+    </div>
+
+    <div class="card">
+      <div class="news-company">남동발전</div>
+      <div class="news-date">2026.09.25 05:31</div>
+      <div class="news-title"><a href="https://n.news.naver.com/mnews/article/001/0016335406?sid=101" target="_blank">'네팔 대홍수' 한달째…정부 수색 끝나도 현장 지키는 기업들</a></div>
+      <div class="news-summary">네팔 수력발전소 건설 현장 산사태로 실종된 한국인 근로자 수색이 한 달째 이어지는 가운데, 한국남동발전과 두산에너빌리티가 누적 2500명 이상의 인력을 투입해 추석 연휴에도 수색을 지속하고 있다. 남동발전은 실종자 가족들의 현지 체류도 지원하고 있다.</div>
+    </div>
+
+    <div class="card">
+      <div class="news-company">남부발전</div>
+      <div class="news-date">2026.09.24 12:20</div>
+      <div class="news-title"><a href="http://www.econonews.co.kr/news/articleView.html?idxno=444820" target="_blank">한국남부발전, 함안그린에너지 리파이낸싱 완료...산업은행·알파자산운용...</a></div>
+      <div class="news-summary">한국남부발전이 특수목적법인(SPC) 함안그린에너지의 1181억원 규모 리파이낸싱(금융 재조달)을 완료했다고 밝혔다. 지속되는 고금리 기조에 대응해 금융비용을 절감하고 SPC의 재무 안정성을 높이기 위한 조치다.</div>
+    </div>
+
+    <div class="card">
+      <div class="news-company">중부발전</div>
+      <div class="news-date">2026.09.24 13:44</div>
+      <div class="news-title"><a href="http://www.econonews.co.kr/news/articleView.html?idxno=444825" target="_blank">한국중부발전, 국제표준 인공지능 경영시스템 인증 획득...AI 안전성·신뢰성</a></div>
+      <div class="news-summary">한국중부발전이 인공지능 경영시스템(AIMS)에 대한 국제표준 'ISO/IEC 42001' 인증을 획득했다. 에너지 공기업 최초로 구축한 생성형 AI 시스템 '하이코미(Hi-KOMI)'를 대상으로 진행돼 AI 활용의 안전성과 신뢰성을 인정받았다.</div>
+    </div>
+
+    <h2 class="sec-title" style="margin-top:22px;">🔗 관계사 뉴스</h2>
+
+    <h2 class="sec-title" style="margin-top:22px;">🚢 물류·무역 업계 헤드라인</h2>
     <div class="card">
       <div class="headline-item">
-        <div class="news-date">2026.09.21 09:01</div>
-        <div class="news-title"><a href="https://www.ajunews.com/view/20260921090139826" target="_blank">[종합] 9월 중순 수출 78.3% ↑, 역대 최대 갱신…반도체 259.4% 증가</a></div>
+        <div class="news-date">2026.09.24 08:00</div>
+        <div class="news-title"><a href="https://n.news.naver.com/mnews/article/421/0009189969?sid=102" target="_blank">부산 돌아오는 북극항로 '컨'선…정기노선 관건은 '경제성·기술력'</a></div>
       </div>
       <div class="headline-item">
-        <div class="news-date">2026.09.20</div>
-        <div class="news-title"><a href="https://www.monthlymaritimekorea.com/news/articleView.html?idxno=57775" target="_blank">해수부, 추석 연휴 항만 운영 특별대책 시행</a></div>
+        <div class="news-date">2026.09.23 15:18</div>
+        <div class="news-title"><a href="https://www.mediapen.com/news/view/1125773" target="_blank">"운임 오르고 환율 내리고"…K-수출 '수익성 경고등'</a></div>
       </div>
       <div class="headline-item">
-        <div class="news-date">2026.09.17 08:41</div>
-        <div class="news-title"><a href="https://www.mt.co.kr/industry/2026/09/17/2026091708410891662" target="_blank">CJ대한통운, 하반기 신입사원 공채…미래 물류기술 인재 찾는다</a></div>
+        <div class="news-date">2026.09.23 14:52</div>
+        <div class="news-title"><a href="https://www.klnews.co.kr/news/articleView.html?idxno=322849" target="_blank">부산항만공사, 추석 연휴에도 차질 없는 항만서비스 제공</a></div>
+      </div>
+      <div class="headline-item">
+        <div class="news-date">2026.09.22 20:10</div>
+        <div class="news-title"><a href="https://sateconomy.co.kr/news/view/1065609913982902" target="_blank">HMM 29조 전략, 벌크는 25년 계약 확보…컨테이너는 적재율이 관건</a></div>
+      </div>
+      <div class="headline-item">
+        <div class="news-date">2026.09.21 07:50</div>
+        <div class="news-title"><a href="https://www.news2day.co.kr/article/20260918500127" target="_blank">美·중동 치솟고 日은 내리고…항로 따라 갈린 해상 운송비</a></div>
       </div>
     </div>
   </section>
 
   <footer class="bottom">
-    <p>마지막 업데이트: 2026-09-28 07:28 (KST)</p>
+    <p>마지막 업데이트: 2026-09-25 07:00 (KST)</p>
     <p>환율·주가·경제지표·해운운임지수 등은 검색 시점 기준 데이터로, 실시간 시세와 차이가 있을 수 있습니다. 정확한 거래는 반드시 공식 고시 자료를 확인하시기 바랍니다.</p>
-    <p>고객사·관계사 개별 뉴스는 최근 24시간 이내 확인된 기사가 없어 오늘은 게재하지 않았습니다.</p>
   </footer>
 
 </div>
@@ -290,11 +354,11 @@
 
   var months6 = ['3월','4월','5월','6월','7월','8월','현재'];
 
-  renderChart('chart-usd', months6, [1513.40,1476.10,1505.80,1541.50,1437.10,1372.50,1358.00], {fmt:function(v){return v.toFixed(0);}});
-  renderChart('chart-cny', months6, [218.70,215.90,222.18,226.97,213.37,204.18,202.47], {fmt:function(v){return v.toFixed(1);}});
-  renderChart('chart-thb', months6, [4610.0,4502.0,4627.0,4634.0,4331.10,4244.3,4151.5], {fmt:function(v){return v.toFixed(0);}});
-  renderChart('chart-usdthb', months6, [32.8286,32.7876,32.5438,33.2650,33.467,33.158,33.220], {fmt:function(v){return v.toFixed(2);}});
-  renderChart('chart-usdcny', months6, [6.9200,6.8370,6.7774,6.7916,6.7551,6.7267,6.7884], {fmt:function(v){return v.toFixed(2);}});
+  renderChart('chart-usd', months6, [1513.40,1476.10,1505.80,1541.50,1437.10,1372.50,1366.00], {fmt:function(v){return v.toFixed(0);}});
+  renderChart('chart-cny', months6, [218.70,215.90,222.18,226.97,213.37,204.18,204.33], {fmt:function(v){return v.toFixed(1);}});
+  renderChart('chart-thb', months6, [4610.0,4502.0,4627.0,4634.0,4331.10,4244.3,4091.6], {fmt:function(v){return v.toFixed(0);}});
+  renderChart('chart-usdthb', months6, [32.8286,32.7876,32.5438,33.2650,33.467,33.158,33.146], {fmt:function(v){return v.toFixed(2);}});
+  renderChart('chart-usdcny', months6, [6.9200,6.8370,6.7774,6.7916,6.7551,6.7267,6.7134], {fmt:function(v){return v.toFixed(2);}});
   renderChart('chart-scfi', months6, [1826.77,1911.4,2572,3239.64,3062.95,3509.53,3687.83], {fmt:function(v){return v.toFixed(0);}});
   renderChart('chart-kcci', months6, [2094,2192,2478,3920,4123,4591,4760], {fmt:function(v){return v.toFixed(0);}});
 })();
