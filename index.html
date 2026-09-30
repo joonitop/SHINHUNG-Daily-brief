@@ -162,7 +162,7 @@
     <div class="card fx-card">
       <div class="fx-head">
         <span class="fx-name">USD / THB</span>
-        <span><span class="fx-value">약 33.59</span></span>
+        <span><span class="fx-value">약 33.55</span></span>
       </div>
       <div class="chart-wrap" id="chart-usdthb"></div>
       <div class="small-note">조회 시점 국제시장 시세 기준 · 실시간으로 변동됨</div>
@@ -171,10 +171,10 @@
     <div class="card fx-card">
       <div class="fx-head">
         <span class="fx-name">USD / CNY</span>
-        <span><span class="fx-value">데이터 확인 불가</span></span>
+        <span><span class="fx-value">약 6.71</span></span>
       </div>
       <div class="chart-wrap" id="chart-usdcny"></div>
-      <div class="small-note">조회 시점 국제시장 시세 기준 · 실시간으로 변동됨</div>
+      <div class="small-note">조회 시점 국제시장 시세 기준(역외 CNH 6.7067) · 실시간으로 변동됨</div>
     </div>
   </section>
 
@@ -196,13 +196,13 @@
     <div class="grid-cards">
       <div class="stat-card">
         <div class="stat-label">WTI 유가</div>
-        <div class="stat-value">90달러 미만</div>
-        <div class="stat-change down">▼ 약 -3.5% (전일 $91.71, 보도별 수치 상이·정확 종가 미확인)</div>
+        <div class="stat-value">$89.38</div>
+        <div class="stat-change down">▼ $3.22 (-3.48%) · 9/29 NYMEX 11월물 종가, 8/31 이후 최저</div>
       </div>
       <div class="stat-card">
         <div class="stat-label">국제 금 시세</div>
-        <div class="stat-value">약 $4,175</div>
-        <div class="stat-change up">▲ +0.2% (COMEX 선물, 7주 최저 후 반등)</div>
+        <div class="stat-value">$4,193.70</div>
+        <div class="stat-change up">▲ $25.30 (+0.61%) · COMEX 12월물 선물</div>
       </div>
       <div class="stat-card">
         <div class="stat-label">미국 기준금리</div>
@@ -229,34 +229,14 @@
   </section>
 
   <section id="news">
-    <h2 class="sec-title">📰 고객사 뉴스</h2>
-
+    <h2 class="sec-title">📰 고객사·업계 뉴스</h2>
     <div class="card">
-      <div class="news-company">LG전자</div>
-      <div class="news-date">2026.09.29 08:06</div>
-      <div class="news-title"><a href="https://www.fnnews.com/news/202609290806585960" target="_blank">LG전자, AI 냉각솔루션·로봇 성장 기대에 목표가 27만원</a></div>
-      <div class="news-summary">대신증권이 29일 LG전자 목표주가를 24만원에서 27만원으로 상향했다. AI 데이터센터 냉각솔루션과 로봇 사업의 성장 가능성을 근거로 들었다.</div>
-    </div>
-
-    <h2 class="sec-title" style="margin-top:22px;">🚢 물류·무역 업계 헤드라인</h2>
-    <div class="card">
-      <div class="headline-item">
-        <div class="news-date">2026.09.29</div>
-        <div class="news-title"><a href="https://www.ksw-news.com/news/articleView.html?idxno=3040595" target="_blank">해양수산부, 9월 29일 항만 재난 대비 교육·토론 훈련 실시</a></div>
-      </div>
-      <div class="headline-item">
-        <div class="news-date">2026.09.28 14:50</div>
-        <div class="news-title"><a href="https://www.fnnews.com/news/202609281450286925" target="_blank">해운운임 상승세 멈췄지만, 강보합 전망</a></div>
-      </div>
-      <div class="headline-item">
-        <div class="news-date">2026.09.28</div>
-        <div class="news-title"><a href="http://www.haesanews.com/news/articleView.html?idxno=151496" target="_blank">KOBC 운임지수 주간보고서/ KCCI 4678로 1.7% 하락…북미서안 8000달러, 유럽·중남미는 급락</a></div>
-      </div>
+      <div class="muted">오늘(9/30 17:00 기준)은 원문 본문 확인(web_fetch)이 가능한 24시간 이내 기사가 없어 뉴스 카드를 생략했습니다.</div>
     </div>
   </section>
 
   <footer class="bottom">
-    <p>마지막 업데이트: 2026-09-30 07:00 (KST)</p>
+    <p>마지막 업데이트: 2026-09-30 17:05 (KST)</p>
     <p>환율·주가·경제지표·해운운임지수 등은 검색 시점 기준 데이터로, 실시간 시세와 차이가 있을 수 있습니다. 정확한 거래는 반드시 공식 고시 자료를 확인하시기 바랍니다.</p>
   </footer>
 
@@ -299,8 +279,8 @@
   renderChart('chart-usd', months6, [1513.40,1476.10,1505.80,1541.50,1437.10,1372.50,1356.70], {fmt:function(v){return v.toFixed(0);}});
   renderChart('chart-cny', months6, [218.70,215.90,222.18,226.97,213.37,204.18,202.32], {fmt:function(v){return v.toFixed(1);}});
   renderChart('chart-thb', months6.slice(0,6), [4610.0,4502.0,4627.0,4634.0,4331.10,4244.3], {fmt:function(v){return v.toFixed(0);}});
-  renderChart('chart-usdthb', months6, [32.8286,32.7876,32.5438,33.2650,33.467,33.158,33.59], {fmt:function(v){return v.toFixed(2);}});
-  renderChart('chart-usdcny', months6.slice(0,6), [6.9200,6.8370,6.7774,6.7916,6.7551,6.7267], {fmt:function(v){return v.toFixed(2);}});
+  renderChart('chart-usdthb', months6, [32.8286,32.7876,32.5438,33.2650,33.467,33.158,33.55], {fmt:function(v){return v.toFixed(2);}});
+  renderChart('chart-usdcny', months6, [6.9200,6.8370,6.7774,6.7916,6.7551,6.7267,6.7067], {fmt:function(v){return v.toFixed(2);}});
   renderChart('chart-scfi', months6, [1826.77,1911.4,2572,3239.64,3062.95,3509.53,3686.62], {fmt:function(v){return v.toFixed(0);}});
   renderChart('chart-kcci', months6, [2094,2192,2478,3920,4123,4591,4678], {fmt:function(v){return v.toFixed(0);}});
 })();

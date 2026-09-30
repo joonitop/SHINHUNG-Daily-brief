@@ -55,7 +55,7 @@
     },
     "현재": {
       "latest_date": "2026-09-30",
-      "value": 33.59
+      "value": 33.55
     }
   },
   "USD_CNY": {
@@ -69,7 +69,8 @@
     },
     "현재": {
       "latest_date": "2026-09-30",
-      "value": null
+      "value": 6.7067,
+      "source_note": "역외 CNH 시세"
     }
   }
 }
