@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>신흥글로벌 데일리 뉴스</title>
+<style>
+  :root{
+    --bg:#f4f5f7; --card:#ffffff; --text:#1c1f26; --muted:#6b7280;
+    --accent:#2f6fed; --accent-dark:#1d4fbf; --border:#e5e7eb;
+    --up:#e0453f; --down:#2f6fed; --navh:56px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Noto Sans KR",sans-serif;
+    font-size:16px; line-height:1.5;
+    -webkit-text-size-adjust:100%;
+  }
+  .wrap{max-width:640px; margin:0 auto; padding:0 16px 32px;}
+  header.top{padding:18px 16px 8px; max-width:640px; margin:0 auto;}
+  h1.title{font-size:22px; margin:0 0 4px; font-weight:800; letter-spacing:-0.3px;}
+  .date-line{color:var(--muted); font-size:14px; margin:0;}
+  nav.tabs{
+    position:sticky; top:0; z-index:100; background:#ffffff;
+    display:flex; width:100%; border-bottom:1px solid var(--border);
+    box-shadow:0 1px 4px rgba(0,0,0,0.06);
+  }
+  nav.tabs a{
+    flex:1; text-align:center; padding:14px 2px; font-size:15px; font-weight:700;
+    color:var(--text); text-decoration:none; white-space:nowrap;
+  }
+  nav.tabs a:active, nav.tabs a:hover{background:#eef2ff; color:var(--accent-dark);}
+  section{scroll-margin-top:var(--navh); padding-top:18px;}
+  h2.sec-title{font-size:18px; margin:0 0 10px; font-weight:800; display:flex; align-items:center; gap:6px;}
+  .card{
+    background:var(--card); border:1px solid var(--border); border-radius:14px;
+    padding:12px 14px; margin-bottom:8px; box-shadow:0 1px 2px rgba(0,0,0,0.03);
+  }
+  .card + .card{margin-top:8px;}
+  .row{display:flex; justify-content:space-between; align-items:center; gap:8px;}
+  .muted{color:var(--muted); font-size:13px;}
+  .small-note{color:var(--muted); font-size:12px; margin-top:4px;}
+  .day-block{margin-bottom:10px;}
+  .day-block:last-child{margin-bottom:0;}
+  .day-title{font-weight:800; font-size:15px; margin-bottom:6px;}
+  .evt-line{padding:8px 0; border-top:1px dashed var(--border); font-size:15px;}
+  .evt-line:first-of-type{border-top:none;}
+  .evt-time{font-weight:700; color:var(--accent-dark); margin-right:6px;}
+  .fx-card .fx-head{display:flex; justify-content:space-between; align-items:baseline;}
+  .fx-name{font-weight:800; font-size:16px;}
+  .fx-value{font-weight:800; font-size:20px;}
+  .fx-change{font-size:13px; font-weight:700; margin-left:6px;}
+  .up{color:var(--up);}
+  .down{color:var(--down);}
+  .chart-wrap{margin-top:6px;}
+  svg.chart{width:100%; height:auto; display:block;}
+  .grid-cards{display:grid; grid-template-columns:1fr 1fr; gap:8px;}
+  .stat-card{background:var(--card); border:1px solid var(--border); border-radius:14px; padding:12px 14px;}
+  .stat-label{font-size:13px; color:var(--muted); font-weight:700; margin-bottom:4px;}
+  .stat-value{font-size:18px; font-weight:800;}
+  .stat-change{font-size:13px; font-weight:700; margin-top:2px;}
+  .stock-card .row{padding:4px 0;}
+  .stock-name{font-weight:800;}
+  .news-company{font-weight:800; font-size:15px; margin-bottom:2px;}
+  .news-date{font-size:12px; color:var(--muted); margin-bottom:6px;}
+  .news-title a{color:var(--accent-dark); font-weight:700; text-decoration:none; font-size:15px;}
+  .news-title a:active, .news-title a:hover{text-decoration:underline;}
+  .news-summary{font-size:14px; margin-top:4px; color:#333;}
+  .headline-item{padding:10px 0; border-top:1px dashed var(--border);}
+  .headline-item:first-child{border-top:none;}
+  footer.bottom{margin-top:24px; padding:16px 4px 8px; color:var(--muted); font-size:12px; border-top:1px solid var(--border);}
+  footer.bottom p{margin:4px 0;}
+
+  .page-tabs{ display:flex; width:100%; background:#ffffff; border-bottom:1px solid var(--border); }
+  .page-tabs a{ flex:1; text-align:center; padding:12px 4px; font-size:14px; font-weight:800; color:var(--muted); text-decoration:none; border-bottom:3px solid transparent; }
+  .page-tabs a.active{ color:var(--accent-dark); border-bottom-color:var(--accent); }
+</style>
+</head>
+<body>
+
+<div class="page-tabs">
+  <a href="../index.html">오늘의 브리핑</a>
+  <a href="index.html" class="active">지난 브리핑</a>
+</div>
+
+<header class="top">
+  <h1 class="title">신흥글로벌 데일리 뉴스 <span style="font-size:12px;background:#6b7280;color:#fff;border-radius:8px;padding:2px 8px;vertical-align:middle;">지난 브리핑</span></h1>
+    <p style="margin:4px 0 0;"><a href="index.html" style="font-size:14px;color:#1d4fbf;font-weight:700;text-decoration:none;">‹ 목록으로 돌아가기</a></p>
+  <p class="date-line" id="today-date">2026년 10월 22일 (목) · KST 기준</p>
+</header>
+
+<nav class="tabs">
+  <a href="#schedule">일정</a>
+  <a href="#fx">환율</a>
+  <a href="#indicators">경제지표</a>
+  <a href="#stock">주가</a>
+  <a href="#news">뉴스</a>
+</nav>
+
+<div class="wrap">
+
+  <section id="schedule">
+      <h2 class="sec-title">📅 향후 7일 일정 <span class="muted" style="font-weight:400;font-size:13px;">(SG일정)</span></h2>
+      <div class="card">
+        <div class="day-block"><div class="day-title">10/22 (목)</div><div class="evt-line"><span class="evt-time">종일</span>SGUS 출장 : 대표이사, 이정학JM (진행 중, ~10/26)</div><div class="evt-line"><span class="evt-time">종일</span>SGNJ 진단 (진행 중, ~10/26)</div><div class="evt-line"><span class="evt-time">종일</span>계층별(과장급) 역량교육 (~10/23)</div></div>
+        <div class="day-block"><div class="day-title">10/27 (화)</div><div class="evt-line"><span class="evt-time">09:00-11:00</span>해외 경영정보회의(US제외)</div></div>
+        <div class="day-block"><div class="day-title">10/28 (수)</div><div class="evt-line"><span class="evt-time">08:30-09:30</span>Task &amp; BI</div><div class="evt-line"><span class="evt-time">종일</span>통합 워크샵 (10/28 11시 ~ 10/29 9시)</div></div>
+      </div>
+    </section>
+    <section id="fx">
+      <h2 class="sec-title">💱 환율</h2>
+    <div class="card fx-card">
+      <div class="fx-head">
+        <span class="fx-name">KRW / USD</span>
+        <span><span class="fx-value">1,325.20</span><span class="fx-change down">▼2.90</span></span>
+      </div>
+      <div class="chart-wrap" id="chart-usd"></div>
+      <div class="small-note">매매기준율 확인 불가로 전일 종가로 대체 표시 · 10/21(수) 서울외환시장 주간거래 종가(오후 3시 30분 기준가 1,325.20원, 전 거래일 1,328.1원 대비 -2.9원, 2024년 10월 이후 약 2년 만의 최저; 연합뉴스·뉴시스). 오늘(10/22) 매매기준율은 오전 9시 이전 고시 전이라 조회되지 않음</div>
+    </div>
+
+    <div class="card fx-card">
+      <div class="fx-head">
+        <span class="fx-name">KRW / THB <span class="muted" style="font-weight:400;">(100바트)</span></span>
+        <span><span class="fx-value">3,937.0</span><span class="fx-change down">▼79.0</span></span>
+      </div>
+      <div class="chart-wrap" id="chart-thb"></div>
+      <div class="small-note">매매기준율 확인 불가로 전일 기준값으로 대체 표시 · 10/21(수) 15:30 기준 1바트=39.37원, 100바트 환산(서울외국환중개 재정 매매기준율, 연합뉴스). 증감은 직전 확인값(10/19, 4,016.0) 대비로 산출 시점·방식 차이가 있을 수 있음</div>
+    </div>
+
+    <div class="card fx-card">
+      <div class="fx-head">
+        <span class="fx-name">KRW / CNY</span>
+        <span><span class="fx-value">198.44</span><span class="fx-change down">▼1.04</span></span>
+      </div>
+      <div class="chart-wrap" id="chart-cny"></div>
+      <div class="small-note">매매기준율 확인 불가로 전일 기준값으로 대체 표시 · 10/21(수) 15:30 기준 중국 위안 198.44원(서울외국환중개, 연합뉴스). 증감은 직전 확인값(10/19, 199.48) 대비</div>
+    </div>
+
+    <div class="card fx-card">
+      <div class="fx-head">
+        <span class="fx-name">USD / THB</span>
+        <span><span class="fx-value">33.603</span><span class="fx-change up">▲0.032</span></span>
+      </div>
+      <div class="chart-wrap" id="chart-usdthb"></div>
+      <div class="small-note">조회 시점 국제시장 시세 기준이며 실시간으로 변동됨 · XE 미드마켓 10/21 20:07 UTC(10/22 05:07 KST) 33.6034바트. 증감은 직전 확인값(10/19, 33.571) 대비</div>
+    </div>
+
+    <div class="card fx-card">
+      <div class="fx-head">
+        <span class="fx-name">USD / CNY</span>
+        <span><span class="fx-value">6.6760</span><span class="fx-change down">▼0.0021</span></span>
+      </div>
+      <div class="chart-wrap" id="chart-usdcny"></div>
+      <div class="small-note">조회 시점 국제시장 시세 기준이며 실시간으로 변동됨 · Investing.com 10/21 6.6760위안(전일 종가 6.6781 대비 -0.03%)</div>
+    </div>
+
+    </section>
+    <section id="indicators">
+      <h2 class="sec-title">📊 경제지표</h2>
+      <div class="card">
+        <div class="row"><span class="fx-name">SCFI <span class="muted" style="font-weight:400;font-size:12px;">상하이컨테이너운임지수</span></span><span class="fx-value">3,679.58</span></div>
+        <div class="muted small-note">글로벌 컨테이너 해상운임 동향을 나타내는 대표 지수 (매주 금요일 발표) · 10/16 발표치(최신 발표, 이후 신규 발표 없음), 직전 발표(10/9, 3,664.11) 대비 +15.47(+0.42%) · 다음 발표 10/23</div>
+        <div class="chart-wrap" id="chart-scfi"></div>
+      </div>
+      <div class="card">
+        <div class="row"><span class="fx-name">KCCI <span class="muted" style="font-weight:400;font-size:12px;">한국컨테이너운임지수</span></span><span class="fx-value">4,646</span></div>
+        <div class="muted small-note">부산항 출발 컨테이너 운임을 기준으로 산출하는 지수 (매주 월요일 발표) · 10/19 발표치(최신 발표, 이후 신규 발표 없음), 전주(4,654) 대비 -8p(-0.17%)(한국해양진흥공사, 뉴시스) · 다음 발표 10/26</div>
+        <div class="chart-wrap" id="chart-kcci"></div>
+      </div>
+      <div class="grid-cards">
+        <div class="stat-card"><div class="stat-label">WTI 유가</div><div class="stat-value">$97.72</div><div class="stat-change down">10/21(현지) 종가 · ▼ $0.10 (-0.1%), 12월물 기준(11월물은 10/20 만기, 마감가 $101.79; 전일 12월물 $97.82) (Investing.com, 뉴스핌)</div></div>
+        <div class="stat-card"><div class="stat-label">국제 금 시세</div><div class="stat-value">$4,128.71</div><div class="stat-change up">10/21(현지) 오전 기준 현물 시세 ▲ 0.09% · 종가가 아닌 장중 시세 (Markets Insider)</div></div>
+        <div class="stat-card"><div class="stat-label">미국 기준금리</div><div class="stat-value">3.75~4.00%</div><div class="stat-change up">9/16 FOMC에서 0.25%p 인상 후 유지(연준 목표범위 하단 3.75%·상단 4.00%, FRED 10/20 기준) · 다음 FOMC 10/27~28</div></div>
+        <div class="stat-card"><div class="stat-label">한국 기준금리</div><div class="stat-value">3.00%</div><div class="stat-change up">7·8월 인상 후 유지(한국은행, 8/27 이후 3.00%) · 오늘(10/22) 금통위 결정 예정 — 결정 발표 전 기준이며 동결 전망 우세</div></div>
+      </div>
+    </section>
+    <section id="stock">
+      <h2 class="sec-title">📈 주가/지수</h2>
+      <div class="card stock-card">
+        <div class="row"><span class="stock-name">KOSPI</span><span>5,735.66 <span class="fx-change up">▲182.92 (+3.29%)</span></span></div>
+        <div class="row"><span class="stock-name">KOSDAQ</span><span>792.76 <span class="fx-change up">▲10.79 (+1.38%)</span></span></div>
+        <div class="row"><span class="stock-name">NASDAQ</span><span>26,702.86 <span class="fx-change up">▲278.04 (+1.05%)</span></span></div>
+        <div class="row"><span class="stock-name">DOW JONES</span><span>52,856.09 <span class="fx-change up">▲360.21 (+0.69%)</span></span></div>
+        <div class="small-note">국내 지수는 10/21(수) 종가(전 거래일 10/20 대비), 미국 지수는 10/21(수, 현지시간) 종가 기준이며 직전 거래일 대비 등락률입니다. 검색 시점 기준이며 실시간 시세와 차이가 있을 수 있습니다.</div>
+      </div>
+    </section>
+    <section id="news">
+      <h2 class="sec-title">📰 고객사 뉴스</h2>
+    <div class="card">
+      <div class="news-company">㈜LG (지주회사)</div>
+      <div class="news-date">2026.10.21 18:18 (KST) · CBC뉴스</div>
+      <div class="news-title"><a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTE1wS0NDdDZMb1F6eHZZOURhcUFwYlJfZzNubmp5RjlrZXBRak9ONERtSS04NWR6QU9ld2VaRWpFTjM4UlpkNHVieW1EbXBOdVlYd3Q0VjJCQnJLMXVEcHBQR1lfUFFLUWl0?oc=5" target="_blank">구광모, LG 미래 사업 재정비 나선다…엔비디아·MS 협력부터 AI 투자까지 전방위 점검</a></div>
+      <div class="news-summary">구광모 회장 주재로 19일부터 약 한 달간 이어지는 LG 전 계열사 사업보고회에서 엔비디아·마이크로소프트와의 후속 협력과 AI 투자 전략을 점검한다는 내용이다(제목 및 다른 매체 보도 기준).</div>
+      <div class="small-note">원문 미확인, 제목 기준</div>
+    </div>
+    <div class="card">
+      <div class="news-company">㈜LG (지주회사)</div>
+      <div class="news-date">2026.10.21 13:51 (KST) · 서울경제</div>
+      <div class="news-title"><a href="https://news.google.com/rss/articles/CBMiUkFVX3lxTFBJT01fUVNtLTJYdzctUHRtSExPaDFGcVkwMmp1dUFqZ043RW5CQVJCalE3cmYzX2wxR3hwQVJkb3FBU0pMbExnRnF5YjgyMkpNaEHSAVNBVV95cUxNMzhfMnRtLTF0T2VTdUZiYkljZVFSVnhtNzN0ZHJ6LUVhZ2t0MXl1cTRUWHlHQklQVHRMZEhjYkptRm1fMHo1NWFFeGZPdnBzMUZrUQ?oc=5" target="_blank">“AI-바이오 결합해 고객 삶 바꾼다” 항암 분야 힘 쏟는 LG그룹</a></div>
+      <div class="news-summary">LG그룹이 AI와 바이오를 결합해 항암 분야에 힘을 쏟고 있다는 내용이다(제목 기준).</div>
+      <div class="small-note">원문 미확인, 제목 기준</div>
+    </div>
+    <div class="card">
+      <div class="news-company">LG전자 (가전·전자)</div>
+      <div class="news-date">2026.10.21 10:00 (KST) · 연합뉴스</div>
+      <div class="news-title"><a href="https://www.yna.co.kr/view/AKR20261021026900003" target="_blank">LG전자, 냉난방 성능 높인 시스템 에어컨 &#x27;멀티 브이 7&#x27; 공개</a></div>
+      <div class="news-summary">LG전자가 21일 일산 킨텍스 &#x27;하프코 2026&#x27;에서 상업용 시스템 에어컨 &#x27;멀티 브이 7&#x27;을 공개했다. 온디바이스 AI와 클라우드 AI를 결합한 듀얼 AI 자율운전과 신형 &#x27;스핀엑스&#x27; 컴프레서로 냉난방 성능·효율을 높였고, 전시에서는 AI 데이터센터용 칠러·팬월유닛도 선보였다.</div>
+    </div>
+    <div class="card">
+      <div class="news-company">LG전자 (가전·전자)</div>
+      <div class="news-date">2026.10.21 14:31 (KST) · 폴리뉴스</div>
+      <div class="news-title"><a href="https://news.google.com/rss/articles/CBMibkFVX3lxTE55X2RWTmVhc2Fja2ppQUQxTEs0NVBMOUhZOEUyck5LTnpqNEtrY3NQQy01S29iMmxGZ1FuclFpZl9hR1F2bHRkS0FWMjhyVzA4Ni1VeUxUMlhSbExEcUxucmxWREM3X2xiT0hIVUFB?oc=5" target="_blank">&#x27;수주 확대·생산 투자&#x27;…LG전자, AI 데이터센터 시장 공략 가속</a></div>
+      <div class="news-summary">LG전자가 수주 확대와 생산 투자로 AI 데이터센터 시장 공략을 가속한다는 내용이다(제목 기준). LG전자는 앞서 북미 에어 컨트롤 콘셉트와 5GW 규모 냉각솔루션 장기공급계약을 체결했고, 미국·국내 칠러 생산 증설에 1,500억원을 투자하기로 했다(다른 매체 보도 기준).</div>
+      <div class="small-note">원문 미확인, 제목 기준</div>
+    </div>
+    <div class="card">
+      <div class="news-company">LG전자 로봇 사업</div>
+      <div class="news-date">2026.10.21 22:18 (KST) · 머니투데이</div>
+      <div class="news-title"><a href="https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5RMjZQMlpib1llaU1NWVJqLTNqaHlMcE1tejVFbUFva1BKZlpJeGNsbGRoX2xUMlpZWVF2MEJrT1BDWEp6aHJ5RG5nTFJLM25kNlNiYnhLNmlBVmFEeEhJOWREU1F2RGfSAWxBVV95cUxQWHdGTHRmNEVLekV2LXNGeUxFbmxtdVVDSUdoaXdjUmxtYkIwZmlvUkF4SGoxdXBzSE1ONGMzWjdmMEhqeG9nUUdqWkNzbkkzWXdUdEtGM2hjVkdoNGVOQXd5a1ppMFhkQnZRQVI?oc=5" target="_blank">젠슨 황 &quot;로봇판 챗GPT 시대 온다&quot;…LG전자도 로봇 AI 생태계 협력</a></div>
+      <div class="news-summary">젠슨 황 엔비디아 CEO가 &#x27;로봇판 챗GPT 시대&#x27;를 언급했고, LG전자도 엔비디아 기반 로봇 AI 생태계 협력에 참여한다는 내용이다(제목 기준). LG전자는 엔비디아 플랫폼 기반 이족보행 휴머노이드를 개발해 내년 1분기 공개를 목표로 하고 있다(다른 매체 보도 기준).</div>
+      <div class="small-note">원문 미확인, 제목 기준</div>
+    </div>
+    <div class="card">
+      <div class="news-company">LG전자 로봇 사업</div>
+      <div class="news-date">2026.10.22 00:30 (KST) · 동아일보</div>
+      <div class="news-title"><a href="https://news.google.com/rss/articles/CBMidkFVX3lxTE5XRlRhS0oxZHhpVVBWdGVKZ0c5eUdkVWQ4WmtYSUtaUDUxZFNpbkoxVWNpWkh1cnJOSEVfLUE3RW9oTnMtVE4wTmI1ZThfN3R3bEZoMEVwSEdGTXRFMnptakJoT1E2aWFCWHZvZnh6NUUxMldDOGfSAWZBVV95cUxObDBmbDNWaHVhUG95a1B0MHoxejZCNG1aVGF6QWF3Y1lsWEk2MVdSR1VVOHBzaW5IZUZMempqa3NSVW5jXzdUZGpZVkhvOWxScERvRjEzUm1lZ3lqbzVJOWZCQUEtWUE?oc=5" target="_blank">[Tech&amp;]바닥은 깨끗하게! 공간은 깔끔하게!… LG전자 청소로봇 ‘LG 로니’</a></div>
+      <div class="news-summary">LG전자 청소로봇 &#x27;LG 로니&#x27;를 소개한 기사다(제목 기준). 로니는 본체와 스테이션 모두에 100℃ 스팀을 적용하고 높이 15cm 히든스테이션을 갖춘 제품으로 7월 2일 출시됐다(LG전자 자료 기준).</div>
+      <div class="small-note">원문 미확인, 제목 기준</div>
+    </div>
+    <div class="card">
+      <div class="news-company">LG에너지솔루션</div>
+      <div class="news-date">2026.10.21 15:55 (KST) · 토요경제</div>
+      <div class="news-title"><a href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE83SWdaTGxMckR4UjBmWE10Q25DZVA4XzN6T3RCMGQwdXdncE9hTUZSWi0yOHU2RGY4ZURJY0VNRmphamZVeWw5LTFGVnA4MmdHZGh5bUV5ZFNQTmlPV09OWNIBb0FVX3lxTE84ZkV1MFhRZDNEd082Vy1ISVhfaEdDWGZxTVdZel93T0FNZTYyNkhwRGJRaFJyN0ktbVN6V0Z1NkVYN3g5eHNHV0ktU2ZjeE01NWRJaDNGOWEwYUxCbmItenVUQVJaZmtJWWRZYXVEdw?oc=5" target="_blank">LG에너지솔루션 최대 실적에도 배터리 3사 합산이익 29% 감소 전망</a></div>
+      <div class="news-summary">LG에너지솔루션이 분기 최대 실적을 냈음에도 배터리 3사 합산이익은 29% 감소할 것으로 전망된다는 내용이다(제목 기준). LG에너지솔루션은 3분기 잠정 매출 9조6,434억원, 영업이익 7,560억원으로 분기 최대를 기록했다(연합뉴스 10/19).</div>
+      <div class="small-note">원문 미확인, 제목 기준</div>
+    </div>
+    <div class="card">
+      <div class="news-company">LG에너지솔루션</div>
+      <div class="news-date">2026.10.21 12:00 (KST) · IT조선</div>
+      <div class="news-title"><a href="https://news.google.com/rss/articles/CBMicEFVX3lxTE1aNDVGenhBV2xjdjJLOTY2NjNFZ3dQLWFhSlRFek1yeTlkREJHTEVZRS1hSWJPUnZrdWtnSTEtMERJcC02VEpYV21zQlctc3JIRWFfdnliQkYwd2tPaV80WGRnLUUtZUtxeFFhdHBrcV_SAXRBVV95cUxOeXNtTk9YeWVjQ0htZUl4dk1TTkdxZUduOW9OUEMyLU1fTUNfcGhiaVlVSXRHSkdEYWdLSktxVjV3cnlGU2s4Vi1PMndaUXQ4LW91SlVlRDNjTy1GaFAwS3FXbkZqMXFwVjVpbGduQ2xRdmRYMQ?oc=5" target="_blank">LG엔솔 악몽이… 개미 울린 ‘중복상장’ 잔혹사 [솔리다임 상장 ②]</a></div>
+      <div class="news-summary">SK하이닉스 자회사 솔리다임 상장 논란을 다루며 LG엔솔의 중복상장 사례를 짚은 연재 기사다(제목 기준). 금융감독원장은 19일 국감에서 솔리다임 IPO가 중복상장 규정에 저촉된다는 판단을 밝혔다(한국경제 10/19).</div>
+      <div class="small-note">원문 미확인, 제목 기준</div>
+    </div>
+    <div class="card">
+      <div class="news-company">한국남동발전</div>
+      <div class="news-date">2026.10.21 12:25 (KST) · 브릿지경제</div>
+      <div class="news-title"><a href="https://news.google.com/rss/articles/CBMiWkFVX3lxTE14Z29UU0x5eDgtdE4xbzdVcGl0dmRFbVJkZE9XMWtldjJrT2xYUV9RcWpEb3hWQ3JNU0JGLUpBRDRDVVYxWVp0OE1tTEJLM2YzUTlrTk4wQklxUQ?oc=5" target="_blank">백상원 한국남동발전 상임감사위원, 강원지역 발전현장 찾아 안전·청렴 소통경영 실천</a></div>
+      <div class="news-summary">백상원 남동발전 상임감사위원이 강원지역 발전현장을 찾아 안전·청렴 중심의 소통경영과 예방감사를 강화했다는 내용이다(제목 및 다른 매체 제목 기준).</div>
+      <div class="small-note">원문 미확인, 제목 기준</div>
+    </div>
+    <div class="card">
+      <div class="news-company">한국남동발전</div>
+      <div class="news-date">2026.10.21 14:33 (KST) · 여수넷통뉴스</div>
+      <div class="news-title"><a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTE9XTW82cXFJajNNcVlOVWdyNmo4OUQ0b2dZQlFnek5ydFlEOWQxMk5tYWpBR1JmSDRDSDJQeENBTEdZZ2s3ZmoyRTBDZVFURzljc3p4MUxpY0p5N25EOHJCRm50VkwtbU5m?oc=5" target="_blank">롯데케미칼(주)여수공장·사회복지공동모금회·한국남동발전(주)여수발전본부, 여수시노인복지관에 후원 이어져</a></div>
+      <div class="news-summary">남동발전 여수발전본부가 롯데케미칼 여수공장 등과 함께 여수시노인복지관에 후원을 이어갔다는 내용이다(제목 기준).</div>
+      <div class="small-note">원문 미확인, 제목 기준</div>
+    </div>
+    <div class="card">
+      <div class="news-company">한국남부발전</div>
+      <div class="news-date">2026.10.21 14:41 (KST) · 디스커버리뉴스</div>
+      <div class="news-title"><a href="https://news.google.com/rss/articles/CBMickFVX3lxTE8wQzBKRnVLQ1NMdC1vSUlTekVWNEVyM0V3NTl5TVVyY2ZHUl91UHMwTTJMR3FwQUs1VTdXdlpVeklBam9wTWVnalc0azE4WXdXRWtRWjhHWlAyVmRTbXp0a3ZZR1hTcy1ySFlEODBHa0RmZw?oc=5" target="_blank">남부발전, 영광 야월해상풍력 사업 금융약정 체결 추진</a></div>
+      <div class="news-summary">남부발전이 영광 야월 해상풍력(104MW) 사업의 금융약정 체결을 추진한다는 내용이다(제목 기준). 이 사업은 국산 8MW급 터빈 13기가 설치되는 단지로 올해 9월 착공이 예정돼 있었다(남부발전 7/6 발표 기준).</div>
+      <div class="small-note">원문 미확인, 제목 기준</div>
+    </div>
+    <div class="card">
+      <div class="news-company">한국중부발전</div>
+      <div class="news-date">2026.10.21 15:01 (KST) · 디스커버리뉴스</div>
+      <div class="news-title"><a href="https://news.google.com/rss/articles/CBMickFVX3lxTFBXa3F4YzNZXy1GT1BYWFdTYVdpdmtBQ0UxOC1EbkpCRzM5YWJWMFJPUE9ra0RldWc2dUVsM2p4YlJLMFQ4YVVha0RFRkVkVktoZlpBTUNRQW04UHFzRk05NVFBZVR6YXg1SU1fdW5LajJUQQ?oc=5" target="_blank">중부발전, 강원풍력 추가 지분 인수 무산에 사업 종결</a></div>
+      <div class="news-summary">중부발전이 강원풍력의 추가 지분 인수가 무산되면서 해당 사업을 종결했다는 내용이다(제목 기준).</div>
+      <div class="small-note">원문 미확인, 제목 기준</div>
+    </div>
+    <div class="card">
+      <div class="news-company">한국중부발전</div>
+      <div class="news-date">2026.10.21 14:28 (KST) · 세정포커스</div>
+      <div class="news-title"><a href="https://news.google.com/rss/articles/CBMibkFVX3lxTE5XUEtCR05zTGVIX3hCUFNoUzBOMjAzTE0zVFhjSVdSWjdoUk8wdms3b3RfQ3BtcHI4OHBvbU5xbFRoeVFPREJCeHFhVUt0ZG0zTl91dzU1QjU0bk9zRzlBYkIyMEZlMGozSnpHQkNn?oc=5" target="_blank">서해구, 고구마 100박스 기부받아...한국중부발전 인천발전본부·인천사회봉사협의회 직접 재배한 고구마 나눔</a></div>
+      <div class="news-summary">인천 서구가 중부발전 인천발전본부와 인천사회봉사협의회가 직접 재배한 고구마 100박스를 기부받았다는 내용이다(제목 기준).</div>
+      <div class="small-note">원문 미확인, 제목 기준</div>
+    </div>
+    <div class="card">
+      <div class="news-company">발전5사 통합 (남동·남부·중부 공통)</div>
+      <div class="news-date">2026.10.21 13:58 (KST) · 연합뉴스</div>
+      <div class="news-title"><a href="https://www.yna.co.kr/view/AKR20261021102300052" target="_blank">경남도, 집중유치 대상 2차 공공기관 9곳으로 추려</a></div>
+      <div class="news-summary">경남도가 서울·수도권 공공기관 2차 이전과 관련해 한국산업기술진흥원·한국마사회 등 9곳을 집중 유치 대상으로 정해 국토부에 전달했다. 한국남동발전 본사가 경남혁신도시에 있는 점을 내세워 발전공기업 5사 통합본사 유치에도 나선다(매일경제·경남도민일보 등 &#x27;발전공기업 통합본사&#x27; 유치 보도 다수).</div>
+    </div>
+    <div class="card">
+      <div class="news-company">발전5사 통합 (남동·남부·중부 공통)</div>
+      <div class="news-date">2026.10.21 18:40 (KST) · 뉴스1</div>
+      <div class="news-title"><a href="https://news.google.com/rss/articles/CBMiYEFVX3lxTFBpRVpJVE5LbUZmMThrYmhLVjFDeXFUN2dQOWN2Si1hOU9mQ0lJMGVzTWpfemNkajFiWDhISEplR25MZnJ0eVlFQVZ0aU55aFlmaTJkUW5XN1ZiQVBNSkxwMw?oc=5" target="_blank">충남도, 발전 3사 노조 대표와 간담회…협력방안 논의</a></div>
+      <div class="news-summary">충남도가 발전 3사 노조 대표와 간담회를 열고 통합본사 충남 유치를 위한 협력방안을 논의했다는 내용이다(제목 및 다른 매체 제목 기준).</div>
+      <div class="small-note">원문 미확인, 제목 기준</div>
+    </div>
+
+<h2 class="sec-title" style="margin-top:18px;">🏢 관계사 뉴스</h2>
+
+      <h2 class="sec-title" style="margin-top:18px;">🚢 업계 헤드라인</h2>
+      <div class="card">
+        <div class="headline-item"><div class="news-date">2026.10.21 17:26 (KST) · 대한경제</div><div class="news-title"><a href="https://news.google.com/rss/articles/CBMic0FVX3lxTE84YzZWN1lxSWlPYWk1S2taTnpYb2RBYlJFNms0WDREWENaalpseWFHZU9NN2dIaUE4T213eWpVbTZpcFBVbFhuU0V3cTlKamd5bjd0Q1JCUk9DZmR4QUVPaWNtb0xLSEU3dlJmZ2YxMEIwSU0?oc=5" target="_blank">한국통합물류협회 첫 월간 물류통계…해상운임 연저점 대비 2.9배</a></div><div class="news-summary">한국통합물류협회가 처음 낸 월간 물류통계에서 해상운임이 연저점 대비 2.9배 수준으로 나타났다는 내용이다(제목 기준). 협회는 육·해·공 물류통계를 통합해 10월부터 월간 서비스를 시작한다(헬로티·해사신문 제목 기준).</div><div class="small-note">원문 미확인, 제목 기준</div></div>
+<div class="headline-item"><div class="news-date">2026.10.21 09:23 (KST) · 연합인포맥스</div><div class="news-title"><a href="https://news.google.com/rss/articles/CBMidEFVX3lxTE1HV1F2SHpiRGpESWZiZ1lOTWZ0MFM4SmRBeHhsWmE3Y3A4MnJwTHk5endZQ1lKanBoR0VjV1B0NHJpOTk0dlNGb2MteDVsbUF5Rkh6Xy16UVJYcmtXRzdVNnM3WnpRR0ZHOWdIcy1UQkV4aVJG?oc=5" target="_blank">HMM, 3Q 영업익 245% 뛴 1조원 전망…고운임·공급 병목 수혜</a></div><div class="news-summary">HMM의 3분기 영업이익이 전년 대비 245% 늘어난 1조원 수준으로 전망된다는 내용이다(제목 기준). 신한투자증권은 1조42억원, 하나증권은 1조600억원을 추정했다(한국경제·해사신문·S저널 10/14~15).</div><div class="small-note">원문 미확인, 제목 기준</div></div>
+<div class="headline-item"><div class="news-date">2026.10.21 18:19 (KST) · 한국해운신문</div><div class="news-title"><a href="http://www.maritimepress.co.kr/news/articleView.html?idxno=333575" target="_blank">상해 컨테이너 운임지수 2주 연속 상승</a></div><div class="news-summary">10월 16일부 SCFI 종합지수는 전주보다 0.4% 오른 3,679.58포인트로 2주 연속 상승했다. 북유럽·지중해행 운임이 2주 연속 오르고 중동행은 상승 반전했으며, 북미·남미동안·동남아행은 하락했다.</div></div>
+<div class="headline-item"><div class="news-date">2026.10.22 01:29 (KST) · 해사신문</div><div class="news-title"><a href="https://news.google.com/rss/articles/CBMia0FVX3lxTFA4eURGWVFjZ0FOYnV2M21tSzJBNjloc3pXWmlvS2RRV3h6TXJTbVdNOTY0X0ZzMHpleGZXZEt3aENnZjY5cThVWGM0NFUyYjluVUFiR2lVSlcwR3ZmNDZ3aV9MdUZEekxicmdj?oc=5" target="_blank">수에즈운하 복귀에도 컨테이너 운임 상승…2027년 공급과잉 우려</a></div><div class="news-summary">수에즈운하 복귀가 진행되는 가운데에도 컨테이너 운임이 올랐지만 2027년 공급과잉 우려가 제기된다는 내용이다(제목 기준). BIMCO는 2027년 컨테이너선 선복이 9% 늘 것으로 전망했다(해사신문 9/28).</div><div class="small-note">원문 미확인, 제목 기준</div></div>
+<div class="headline-item"><div class="news-date">2026.10.21 09:05 (KST) · 코리아쉬핑가제트</div><div class="news-title"><a href="https://news.google.com/rss/articles/CBMiZ0FVX3lxTE9JRnJxc0RIczRHUG9vYW5zODFaczE5Zy02SWNhRk1IbXdfZzNBWG5WdmZCdWYtWmMzMno4UFVLSU1IeVhxLVJCWUlKYU9lOWxRM3FGTWw1UHVJN205dTJ4dVkycF9kSjg?oc=5" target="_blank">글로벌 컨선사들, 상반기 외형 커졌지만 수익성 일제히 후퇴</a></div><div class="news-summary">글로벌 컨테이너선사들이 올해 상반기 외형은 커졌지만 수익성은 일제히 후퇴했다는 내용이다(제목 기준).</div><div class="small-note">원문 미확인, 제목 기준</div></div>
+</div>
+    </section>
+    <footer class="bottom">
+      <p>마지막 업데이트: 2026-10-22 06:57 (KST)</p>
+      <p>환율·주가·경제지표·해운운임지수 등은 검색 시점 기준 데이터로, 실시간 시세와 차이가 있을 수 있습니다. 원화 환율은 10/22 매매기준율(오전 9시 이전 고시) 발표 전 실행되어 10/21(수) 15:30 종가·기준값으로 대체 표시했습니다. 국제 금 시세는 종가가 아닌 10/21 장중 시세입니다. 뉴스는 Google 뉴스 RSS 기준으로 직전 수집(10/21 06:55) 이후 발행된 기사를 대상으로 했으며, 원문 URL을 확인하지 못한 기사는 Google 뉴스 링크와 함께 &quot;원문 미확인&quot;으로 표시했습니다. 관계사(신성델타테크·신성에스티)는 조건에 맞는 기사(시세 기사 제외)가 없어 카드를 생략했습니다. 정확한 거래는 반드시 공식 고시 자료를 확인하시기 바랍니다.</p>
+    </footer>
+  </div>
+
+<script>
+(function(){
+  function renderChart(elId, labels, values, opts){
+    opts = opts || {};
+    var el = document.getElementById(elId);
+    if(!el) return;
+    var w = 300, h = 120, padL = 36, padR = 10, padT = 14, padB = 20;
+    var innerW = w - padL - padR, innerH = h - padT - padB;
+    var min = Math.min.apply(null, values), max = Math.max.apply(null, values);
+    if(min === max){ min -= 1; max += 1; }
+    var range = max - min;
+    var n = values.length;
+    var pts = values.map(function(v, i){
+      var x = padL + (innerW * i / (n - 1));
+      var y = padT + innerH - ((v - min) / range) * innerH;
+      return [x, y];
+    });
+    var pathD = pts.map(function(p, i){ return (i===0?'M':'L') + p[0].toFixed(1) + ',' + p[1].toFixed(1); }).join(' ');
+    var fmt = opts.fmt || function(v){ return v.toFixed(2); };
+    var svg = '<svg class="chart" viewBox="0 0 ' + w + ' ' + h + '" preserveAspectRatio="xMidYMid meet">';
+    svg += '<path d="' + pathD + '" fill="none" stroke="#2f6fed" stroke-width="2"/>';
+    pts.forEach(function(p, i){
+      svg += '<circle cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="2.6" fill="' + (i === n-1 ? '#e0453f' : '#2f6fed') + '"/>';
+      var labY = p[1] - 7;
+      if(labY < 9) labY = p[1] + 13;
+      svg += '<text x="' + p[0].toFixed(1) + '" y="' + labY.toFixed(1) + '" font-size="9" text-anchor="middle" fill="#333">' + fmt(values[i]) + '</text>';
+      svg += '<text x="' + p[0].toFixed(1) + '" y="' + (h - 4) + '" font-size="9" text-anchor="middle" fill="#8a8f98">' + labels[i] + '</text>';
+    });
+    svg += '</svg>';
+    el.innerHTML = svg;
+  }
+
+  var months6 = ['4월','5월','6월','7월','8월','9월','현재'];
+  var months6fx = ['4월','5월','6월','7월','8월','9월','현재'];
+
+  renderChart('chart-usd', months6fx, [1476.1, 1505.8, 1541.5, 1437.1, 1372.5, 1352.8, 1325.2], {fmt:function(v){return v.toFixed(0);}});
+  renderChart('chart-cny', months6fx, [215.9, 222.18, 226.97, 213.37, 204.18, 201.74, 198.44], {fmt:function(v){return v.toFixed(1);}});
+  renderChart('chart-thb', months6fx, [4502.0, 4627.0, 4634.0, 4331.1, 4244.3, 4031.2, 3937.0], {fmt:function(v){return v.toFixed(0);}});
+  renderChart('chart-usdthb', months6fx, [32.7876, 32.5438, 33.265, 33.467, 33.158, 33.59, 33.6034], {fmt:function(v){return v.toFixed(2);}});
+  renderChart('chart-usdcny', months6fx, [6.837, 6.7774, 6.7916, 6.7551, 6.7267, 6.715, 6.676], {fmt:function(v){return v.toFixed(2);}});
+  renderChart('chart-scfi', months6, [1911.4, 2572, 3239.64, 3062.95, 3509.53, 3662.3, 3679.58], {fmt:function(v){return v.toFixed(0);}});
+  renderChart('chart-kcci', months6, [2192, 2478, 3920, 4123, 4591, 4678, 4646], {fmt:function(v){return v.toFixed(0);}});
+})();
+</script>
+
+</body>
+</html>
